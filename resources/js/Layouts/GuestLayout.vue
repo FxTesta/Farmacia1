@@ -13,7 +13,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
             </div>
         </nav>
 
-        <div class="fixed h-full w-full flex flex-col items-center sm:pt-20 bg-gray-900">
+        <div class="fixed h-full w-full flex flex-col items-center sm:pt-3 bg-gray-900">
             <div>
                 <ApplicationLogo class="w-52 h-20 fill-current text-gray-500" />
             </div>
