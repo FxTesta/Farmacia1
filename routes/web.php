@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -36,3 +37,21 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+//CLIENTES
+Route::controller(ClienteController::class)->middleware('auth')->group(function () {
+
+    Route::get('/cliente', 'index')->name('cliente');
+    Route::get('/crear-cliente', 'create')->name('cliente.create');
+    Route::post('/cliente', 'store')->name('cliente.store');
+    Route::get('/editar-cliente/{cliente_id}', 'edit')->name('cliente.edit');
+    Route::put('/editar-cliente/{cliente}', 'update')->name('cliente.update');
+    Route::delete('/cliente/delete/{cliente}', 'destroy')->name('cliente.destroy');
+
+    //User-Role
+    //Route::get('/cliente/{cliente}', 'show')->name('cliente.show');
+    //Route::post('/cliente/{cliente}/role', 'assignRole')->name('cliente.role');
+    //Route::delete('/cliente/{cliente}/role/{role}', 'removeRole')->name('cliente.role.remove');
+
+});
