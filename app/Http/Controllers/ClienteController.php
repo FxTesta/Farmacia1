@@ -1,0 +1,93 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Cliente;
+use Inertia\Inertia;
+use Illuminate\Http\Request;
+
+class ClienteController extends Controller
+{
+    
+
+    public function index()
+    {
+        $cliente = Cliente::all();
+        return Inertia::render('Cliente/index',[
+            'cliente' => $cliente,
+        ]);
+    }
+
+    public function create()
+    {
+        return Inertia::render('Cliente/create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'cedula' => 'required',
+            'ruc' => 'required|string|max:255',
+            'direccion' => 'required|string|max:255',
+            'referencia' => 'required|string|max:255',
+            'telefono' => 'required|max:255',
+            'email' => 'required|string|email|max:255|unique:'.Cliente::class,
+        ]);
+
+        Cliente::create([
+            'name' => $request->name,
+            'cedula' => $request->cedula,
+            'ruc' => $request->ruc,
+            'direccion' => $request->direccion,
+            'referencia' => $request->referencia,
+            'telefono' => $request->telefono,
+            'email' => $request->email,
+        ]);
+
+        return redirect()->route('cliente');
+        
+    }
+
+    public function destroy(Cliente $cliente)
+    {
+        $cliente->delete();
+        return redirect()->back()->with('toast', 'Usuario Eliminado');
+    }
+
+    public function edit($cliente_id)
+    {
+        $cliente = Cliente::find($cliente_id);
+
+        return Inertia::render('Cliente/edit',[
+            'cliente' => $cliente,
+        ]);
+    }
+
+    public function update(Cliente $cliente)
+    {
+        request()->validate([
+            'name' => ['required'],
+            'cedula' =>['required'],
+            'ruc' =>['required'],
+            'direccion' =>['required'],
+            'referencia' =>['required'],
+            'telefono' =>['required'],
+            'email' =>['required'],
+            
+        ]);
+
+        $cliente->update([
+            'name' => request('name'),
+            'cedula' => request('cedula'),
+            'ruc' => request('ruc'),
+            'direccion' => request('direccion'),
+            'referencia' => request('referencia'),
+            'telefono' => request('telefono'),
+            'email' => request('email'),
+            
+        ]);
+        return redirect()->route('cliente');
+    }
+    
+}
