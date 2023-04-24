@@ -2,9 +2,8 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
 import SideBar from '@/Components/SideBar.vue';
-import {ShieldCheckIcon,PencilIcon, UserAddIcon, SearchIcon} from "@heroicons/vue/outline";
+import {PencilIcon, UserAddIcon, SearchIcon} from "@heroicons/vue/outline";
 import Delete from '@/Pages/Cliente/delete.vue';
-//import TopBar from '@/Layouts/TopBar.vue';
 
 const props = defineProps({
 cliente: Object
@@ -48,7 +47,7 @@ cliente: Object
                                     placeholder="Buscar Clientes"
                                     autocomplete="off"
                                     aria-label="Buscar Clientes"
-                                    class="pr-3 pl-10 py-1 font-mono text-gray-700 bg-cyan-100 rounded-2xl border-none ring-2 ring-cyan-400 focus:ring-cyan-300 focus:ring-2"
+                                    class="pr-3 pl-10 py-1 text-sm font-medium text-gray-700 bg-cyan-100 rounded-2xl border-none ring-2 ring-cyan-400 focus:ring-cyan-300 focus:ring-2"
                                 />
                             </div>
                         </div>
@@ -61,6 +60,7 @@ cliente: Object
                         <table class="min-w-full">
                             <thead>
                                 <tr class="border-b border-slate-300 text-gray-700 text-left">
+                                    <th>ID</th>
                                     <th>Nombre</th>
                                     <th>Cédula</th>
                                     <th>RUC</th>
@@ -70,6 +70,7 @@ cliente: Object
                             </thead>
                             <tbody class="divide-y divide-gray-400 divide-opacity-30">
                                 <tr v-for="clientes in cliente">
+                                    <td class="text-gray-700 py-4">{{clientes.id}}</td>
                                     <td class="text-gray-700 py-4">{{clientes.name}}</td>
                                     <td class="text-gray-700 py-4">{{clientes.cedula}}</td>
 

@@ -15,11 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->bigInteger('cedula');
-            $table->string('ruc');
+            $table->string('ruc')->nullable();
             $table->string('direccion');
-            $table->string('referencia');
+            $table->string('barrio')->nullable();
+            $table->string('callelateral')->nullable();
+            $table->string('referencia')->nullable();
             $table->bigInteger('telefono');
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->timestamps();
         });
     }

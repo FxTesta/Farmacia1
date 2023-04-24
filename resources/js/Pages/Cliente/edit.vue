@@ -19,6 +19,8 @@ const form = useForm({
     ruc: props.cliente.ruc,
     direccion: props.cliente.direccion,
     referencia: props.cliente.referencia,
+    barrio: props.cliente.barrio,
+    callelateral: props.cliente.callelateral,
     telefono: props.cliente.telefono,
     email: props.cliente.email,
 });
@@ -116,6 +118,36 @@ const submit = () => {
                                 />
 
                                 <InputError class="mt-2" :message="form.errors.direccion" />
+                            </div>
+
+                            <div class="mt-4">
+                                <InputLabel for="callelateral" value="Calle lateral" class="text-gray-600"/>
+
+                                <TextInput
+                                    id="direccion"
+                                    type="text"
+                                    class="mt-1 block w-full bg-gray-200 text-gray-600"
+                                    v-model="form.callelateral"
+                                    required
+                                    autocomplete="callelateral"
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.callelateral" />
+                            </div>
+                            
+                            <div class="mt-4">
+                                <InputLabel for="barrio" value="Barrio" class="text-gray-600"/>
+
+                                <TextInput
+                                    id="barrio"
+                                    type="text"
+                                    class="mt-1 block w-full bg-gray-200 text-gray-600"
+                                    v-model="form.barrio"
+                                    required
+                                    autocomplete="barrio"
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.barrio" />
                             </div>
 
                             <div class="mt-4">
