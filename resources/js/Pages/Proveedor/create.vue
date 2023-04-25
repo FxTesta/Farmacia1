@@ -33,7 +33,7 @@ const submit = () => {
     <AuthenticatedLayout>
 
         <template #header>
-            <h2 class="flex uppercase font-bold text-xl text-gray-800 leading-tight">Crear Proveedor</h2>
+            <h2 class="flex uppercase font-bold text-xl text-gray-800 leading-tight">Registrar Proveedor</h2>
         </template>
 
         <div class="py-12">
@@ -186,7 +186,7 @@ const submit = () => {
                             <div class="flex items-center justify-end mt-6">
 
                                 <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                    Crear Proveedor
+                                    Registrar Proveedor
                                 </PrimaryButton>
                             </div>
                         </form>

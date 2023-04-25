@@ -17,7 +17,7 @@ proveedor: Object
     <AuthenticatedLayout>
 
         <template #header>
-            <h2 class="flex uppercase font-bold text-xl text-gray-800 leading-tight">Proveedor</h2>
+            <h2 class="flex uppercase font-bold text-xl text-gray-800 leading-tight">Proveedores</h2>
         </template>
 
         <div class="py-12">
@@ -33,7 +33,7 @@ proveedor: Object
                                     as="button"
                                     class="hover:bg-gray-300 ring-2 focus:ring-set-2 ring-cyan-400 rounded-full">
                                     <UserAddIcon class="h-6 w-6 inline mb-1 ml-2 rounded-full"/>
-                                    <a class="text-sm font-medium rounded-md mr-3"> Crear Proveedor </a>
+                                    <a class="text-sm font-medium rounded-md mr-3"> Registrar Proveedor </a>
                                 </Link>
                             </div>
                             <div
