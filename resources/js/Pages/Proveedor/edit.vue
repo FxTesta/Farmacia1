@@ -7,21 +7,27 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import {ArrowLeftIcon} from "@heroicons/vue/outline";
+//import TopBar from '@/Layouts/TopBar.vue';
+
+const props = defineProps({
+proveedor: Object
+});
 
 const form = useForm({
-    name: '',
-    cedula: '',
-    ruc: '',
-    direccion: '',
-    barrio: '',
-    callelateral: '',
-    referencia: '',
-    telefono: '',
-    email: '',
+    name: props.proveedores.name,
+    cedula: props.proveedores.cedula,
+    ruc: props.proveedores.ruc,
+    direccion: props.proveedores.direccion,
+    referencia: props.proveedores.referencia,
+    barrio: props.proveedores.barrio,
+    callelateral: props.proveedores.callelateral,
+    telefono: props.proveedores.telefono,
+    email: props.proveedores.email,
 });
 
 const submit = () => {
-    form.post(route('cliente.store'));
+
+    form.put(route('proveedor.update',{proveedor: props.proveedor.id}));
 };
 
 </script>
@@ -33,7 +39,7 @@ const submit = () => {
     <AuthenticatedLayout>
 
         <template #header>
-            <h2 class="flex uppercase font-bold text-xl text-gray-800 leading-tight">Crear Cliente</h2>
+            <h2 class="flex uppercase font-bold text-xl text-gray-800 leading-tight">Editar Proveedor</h2>
         </template>
 
         <div class="py-12">
@@ -42,7 +48,7 @@ const submit = () => {
                 <div class="-mt-9 mb-2">
                         <Link
                             class="w-8 h-8 bg-black/20 hover:bg-black/30 rounded-md grid place-content-center"
-                            as="button" :href="route('cliente')">
+                            as="button" :href="route('proveedor')">
                             <ArrowLeftIcon class="w-5 h-5" />
                         </Link>
                 </div>
@@ -59,7 +65,7 @@ const submit = () => {
                                     type="text"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.name"
-                                    required
+                                    requiredtext-gray-600
                                     autofocus
                                     autocomplete="name"
                                 />
@@ -67,7 +73,7 @@ const submit = () => {
                                 <InputError class="mt-2" :message="form.errors.name" />
                             </div>
 
-                            
+                         
                             <div class="mt-4">
                                 <InputLabel for="cedula" value="Cedula" class="text-gray-600"/>
 
@@ -77,6 +83,7 @@ const submit = () => {
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.cedula"
                                     required
+                                    autofocus
                                     autocomplete="cedula"
                                 />
 
@@ -84,13 +91,14 @@ const submit = () => {
                             </div>
 
                             <div class="mt-4">
-                                <InputLabel for="ruc" value="RUC (opcional)" class="text-gray-600"/>
+                                <InputLabel for="ruc" value="Ruc" class="text-gray-600"/>
 
                                 <TextInput
                                     id="ruc"
                                     type="text"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.ruc"
+                                    required
                                     autocomplete="ruc"
                                 />
 
@@ -113,41 +121,44 @@ const submit = () => {
                             </div>
 
                             <div class="mt-4">
-                                <InputLabel for="barrio" value="Barrio (opcional)" class="text-gray-600"/>
+                                <InputLabel for="callelateral" value="Calle lateral" class="text-gray-600"/>
+
+                                <TextInput
+                                    id="direccion"
+                                    type="text"
+                                    class="mt-1 block w-full bg-gray-200 text-gray-600"
+                                    v-model="form.callelateral"
+                                    required
+                                    autocomplete="callelateral"
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.callelateral" />
+                            </div>
+                            
+                            <div class="mt-4">
+                                <InputLabel for="barrio" value="Barrio" class="text-gray-600"/>
 
                                 <TextInput
                                     id="barrio"
                                     type="text"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.barrio"
+                                    required
                                     autocomplete="barrio"
                                 />
 
                                 <InputError class="mt-2" :message="form.errors.barrio" />
                             </div>
-                            
-                            <div class="mt-4">
-                                <InputLabel for="callelateral" value="Calle Lateral (opcional)" class="text-gray-600"/>
-
-                                <TextInput
-                                    id="callelateral"
-                                    type="text"
-                                    class="mt-1 block w-full bg-gray-200 text-gray-600"
-                                    v-model="form.callelateral"
-                                    autocomplete="callelateral"
-                                />
-
-                                <InputError class="mt-2" :message="form.errors.callelateral" />
-                            </div>
 
                             <div class="mt-4">
-                                <InputLabel for="referencia" value="Referencias Dirección (opcional)" class="text-gray-600"/>
+                                <InputLabel for="referencia" value="Referencias Dirección" class="text-gray-600"/>
 
                                 <TextInput
                                     id="referencia"
                                     type="text"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.referencia"
+                                    required
                                     autocomplete="referencia"
                                 />
 
@@ -170,13 +181,14 @@ const submit = () => {
                             </div>
 
                             <div class="mt-4">
-                                <InputLabel for="email" value="Email (opcional)" class="text-gray-600"/>
+                                <InputLabel for="email" value="Email" class="text-gray-600"/>
 
                                 <TextInput
                                     id="email"
                                     type="email"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.email"
+                                    required
                                     autocomplete="email"
                                 />
 
@@ -186,7 +198,7 @@ const submit = () => {
                             <div class="flex items-center justify-end mt-6">
 
                                 <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                    Crear Cliente
+                                    Editar Proveedor
                                 </PrimaryButton>
                             </div>
                         </form>

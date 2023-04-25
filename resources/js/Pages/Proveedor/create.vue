@@ -21,7 +21,7 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('cliente.store'));
+    form.post(route('proveedor.store'));
 };
 
 </script>
@@ -33,7 +33,7 @@ const submit = () => {
     <AuthenticatedLayout>
 
         <template #header>
-            <h2 class="flex uppercase font-bold text-xl text-gray-800 leading-tight">Crear Cliente</h2>
+            <h2 class="flex uppercase font-bold text-xl text-gray-800 leading-tight">Crear Proveedor</h2>
         </template>
 
         <div class="py-12">
@@ -42,7 +42,7 @@ const submit = () => {
                 <div class="-mt-9 mb-2">
                         <Link
                             class="w-8 h-8 bg-black/20 hover:bg-black/30 rounded-md grid place-content-center"
-                            as="button" :href="route('cliente')">
+                            as="button" :href="route('proveedor')">
                             <ArrowLeftIcon class="w-5 h-5" />
                         </Link>
                 </div>
@@ -186,7 +186,7 @@ const submit = () => {
                             <div class="flex items-center justify-end mt-6">
 
                                 <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                    Crear Cliente
+                                    Crear Proveedor
                                 </PrimaryButton>
                             </div>
                         </form>
