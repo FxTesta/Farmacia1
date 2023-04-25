@@ -14,15 +14,15 @@ proveedor: Object
 });
 
 const form = useForm({
-    name: props.proveedores.name,
-    cedula: props.proveedores.cedula,
-    ruc: props.proveedores.ruc,
-    direccion: props.proveedores.direccion,
-    referencia: props.proveedores.referencia,
-    barrio: props.proveedores.barrio,
-    callelateral: props.proveedores.callelateral,
-    telefono: props.proveedores.telefono,
-    email: props.proveedores.email,
+    name: props.proveedor.name,
+    cedula: props.proveedor.cedula,
+    ruc: props.proveedor.ruc,
+    direccion: props.proveedor.direccion,
+    referencia: props.proveedor.referencia,
+    barrio: props.proveedor.barrio,
+    callelateral: props.proveedor.callelateral,
+    telefono: props.proveedor.telefono,
+    email: props.proveedor.email,
 });
 
 const submit = () => {

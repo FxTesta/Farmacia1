@@ -79,7 +79,7 @@ proveedor: Object
                                     <td class="py-4">
                                         <div class="inline-flex">          
                                             <Link 
-                                                :href="`/editar-proveedor/${proveedor.id}`"
+                                                :href="`/editar-proveedor/${proveedores.id}`"
                                                 as="button"
                                                 class="w-8 h-8 t hover:bg-black/30 rounded-md grid place-content-center">
                                                 <PencilIcon class="w-6 h-6"/>
