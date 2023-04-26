@@ -28,11 +28,13 @@ class ClienteController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'cedula' => 'required',
-            'ruc' => 'required|string|max:255',
+            'ruc' => 'string|max:255|nullable',
             'direccion' => 'required|string|max:255',
-            'referencia' => 'required|string|max:255',
+            'barrio' => 'string|max:255|nullable',
+            'callelateral' => 'string|max:255|nullable',
+            'referencia' => 'string|max:255|nullable',
             'telefono' => 'required|max:255',
-            'email' => 'required|string|email|max:255|unique:'.Cliente::class,
+            'email' => 'nullable|string|email|max:255|unique:'.Cliente::class,
         ]);
 
         Cliente::create([
@@ -40,6 +42,8 @@ class ClienteController extends Controller
             'cedula' => $request->cedula,
             'ruc' => $request->ruc,
             'direccion' => $request->direccion,
+            'barrio' => $request->barrio,
+            'callelateral' => $request->callelateral,
             'referencia' => $request->referencia,
             'telefono' => $request->telefono,
             'email' => $request->email,

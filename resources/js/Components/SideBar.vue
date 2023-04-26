@@ -22,13 +22,13 @@ export default {
           href: '/cliente',
           title: 'Clientes',
           icon: 'fa fa-user',
-          child: [
+          /*child: [
             {
               href: '/charts/sublink',
               title: 'Sub Link',
               icon: 'fa fa-user',
             }
-          ]
+          ]*/
         }
       ],
       collapsed: {

@@ -7,13 +7,14 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import {ArrowLeftIcon} from "@heroicons/vue/outline";
-//import TopBar from '@/Layouts/TopBar.vue';
 
 const form = useForm({
     name: '',
     cedula: '',
     ruc: '',
     direccion: '',
+    barrio: '',
+    callelateral: '',
     referencia: '',
     telefono: '',
     email: '',
@@ -58,7 +59,7 @@ const submit = () => {
                                     type="text"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.name"
-                                    requiredtext-gray-600
+                                    required
                                     autofocus
                                     autocomplete="name"
                                 />
@@ -76,7 +77,6 @@ const submit = () => {
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.cedula"
                                     required
-                                    autofocus
                                     autocomplete="cedula"
                                 />
 
@@ -84,14 +84,13 @@ const submit = () => {
                             </div>
 
                             <div class="mt-4">
-                                <InputLabel for="ruc" value="Ruc" class="text-gray-600"/>
+                                <InputLabel for="ruc" value="RUC (opcional)" class="text-gray-600"/>
 
                                 <TextInput
                                     id="ruc"
                                     type="text"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.ruc"
-                                    required
                                     autocomplete="ruc"
                                 />
 
@@ -114,14 +113,41 @@ const submit = () => {
                             </div>
 
                             <div class="mt-4">
-                                <InputLabel for="referencia" value="Referencias Dirección" class="text-gray-600"/>
+                                <InputLabel for="barrio" value="Barrio (opcional)" class="text-gray-600"/>
+
+                                <TextInput
+                                    id="barrio"
+                                    type="text"
+                                    class="mt-1 block w-full bg-gray-200 text-gray-600"
+                                    v-model="form.barrio"
+                                    autocomplete="barrio"
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.barrio" />
+                            </div>
+                            
+                            <div class="mt-4">
+                                <InputLabel for="callelateral" value="Calle Lateral (opcional)" class="text-gray-600"/>
+
+                                <TextInput
+                                    id="callelateral"
+                                    type="text"
+                                    class="mt-1 block w-full bg-gray-200 text-gray-600"
+                                    v-model="form.callelateral"
+                                    autocomplete="callelateral"
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.callelateral" />
+                            </div>
+
+                            <div class="mt-4">
+                                <InputLabel for="referencia" value="Referencias Dirección (opcional)" class="text-gray-600"/>
 
                                 <TextInput
                                     id="referencia"
                                     type="text"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.referencia"
-                                    required
                                     autocomplete="referencia"
                                 />
 
@@ -144,14 +170,13 @@ const submit = () => {
                             </div>
 
                             <div class="mt-4">
-                                <InputLabel for="email" value="Email" class="text-gray-600"/>
+                                <InputLabel for="email" value="Email (opcional)" class="text-gray-600"/>
 
                                 <TextInput
                                     id="email"
                                     type="email"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.email"
-                                    required
                                     autocomplete="email"
                                 />
 
