@@ -29,7 +29,14 @@ export default {
               icon: 'fa fa-user',
             }
           ]*/
-        }
+        },
+        
+        {
+          href: '/producto',
+          title: 'Productos',
+          icon: 'fa-sharp fa-solid fa-cart-shopping'
+          
+        },
       ],
       collapsed: {
         type: Boolean,
