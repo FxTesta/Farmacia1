@@ -57,7 +57,7 @@ const submit = () => {
                     <div class="px-10 pb-10 pt-5 overflow-y-auto">
 
                         <form @submit.prevent="submit">
-                            <div>
+                            <div class="mt-4 ">
                                 <InputLabel for="categoria" value="Categoria" class="text-gray-600"/>
                                 <TextInput
                                     id="categoria"
@@ -70,7 +70,7 @@ const submit = () => {
                                 />
                                 <InputError class="mt-2" :message="form.errors.descripcion" />
                             </div>
-                            <div>
+                            <div class="mt-4 ">
                                 <InputLabel for="name" value="Descripcion" class="text-gray-600"/>
 
                                 <TextInput
@@ -85,7 +85,7 @@ const submit = () => {
                                 <InputError class="mt-2" :message="form.errors.descripcion" />
 
                             </div>
-                            <div class=" inline-flex space-x-10">
+                            <div class="mt-4 inline-flex space-x-10">
 
                                 <div>
                                     <InputLabel for="marca" value="Marca" class="text-gray-600"/>
@@ -144,7 +144,7 @@ const submit = () => {
                                 />
                             </div>
                             
-                            <div class=" inline-flex space-x-10">
+                            <div class="mt-4 inline-flex space-x-10">
                                 <div >
                                     
                                     <InputLabel for="vencimiento" value="Vencimiento" class="text-gray-600"/>
@@ -186,7 +186,7 @@ const submit = () => {
                                 <InputError class="mt-2" :message="form.errors.codigo" />
                             </div>
 
-                            <div class=" inline-flex space-x-10">
+                            <div class="mt-4 inline-flex space-x-10">
                                 <div>
                                     <InputLabel for="precioventa" value="Precio de venta" class="text-gray-600"/>
 
@@ -218,7 +218,7 @@ const submit = () => {
                                 </div>
                             </div>
 
-                            <div class=" inline-flex space-x-10">
+                            <div class="mt-4 inline-flex space-x-10">
                                 <div >
                                     <InputLabel for="stock" value="Stock" class="text-gray-600"/>
 
