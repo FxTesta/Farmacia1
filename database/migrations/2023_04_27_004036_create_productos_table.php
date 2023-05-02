@@ -13,16 +13,23 @@ return new class extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('description');
+            $table->string('categoria');
+            $table->string('descripcion');
+            $table->string('marca');
+            $table->string('venta');
+            $table->string('laboratorio');
+            $table->string('regsanitario');
             $table->date('vencimiento');
-            $table->integer('cantidad');
-            $table->integer('precio');
+            $table->date('alerta');
+            $table->integer('codigo');
+            $table->integer('precioventa');            
+            $table->integer('preciocompra');
             $table->integer('stock');
+            $table->integer('stockmin');
             $table->timestamps();
         });
     }
-/**
+/**xam
 *Nombre del medicamento
 *Código de barras o código de producto
 *Número de registro sanitario
@@ -34,9 +41,6 @@ return new class extends Migration
 *Proveedor del medicamento
 *Precio de compra y venta
 *Stock disponible y mínimo requerido
-*Ubicación del medicamento en la farmacia o almacén
-*Historial de movimientos y ventas del medicamento
-*Información adicional, como restricciones de uso o precauciones especiales.
  * 
  */
     /**

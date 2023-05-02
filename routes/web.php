@@ -49,19 +49,13 @@ Route::controller(ClienteController::class)->middleware('auth')->group(function 
     Route::get('/editar-cliente/{cliente_id}', 'edit')->name('cliente.edit');
     Route::put('/editar-cliente/{cliente}', 'update')->name('cliente.update');
     Route::delete('/cliente/delete/{cliente}', 'destroy')->name('cliente.destroy');
-
-    //User-Role
-    //Route::get('/cliente/{cliente}', 'show')->name('cliente.show');
-    //Route::post('/cliente/{cliente}/role', 'assignRole')->name('cliente.role');
-    //Route::delete('/cliente/{cliente}/role/{role}', 'removeRole')->name('cliente.role.remove');
-
 });
 
 //Productos
 Route::controller(ProductoController::class)->middleware('auth')->group(function () {
 
     Route::get('/producto', 'index')->name('producto');
-    Route::get('/crear-cliente', 'create')->name('cliente.create');
+    Route::get('/crear-producto', 'create')->name('producto.create');
     Route::post('/cliente', 'store')->name('cliente.store');
     Route::get('/editar-cliente/{cliente_id}', 'edit')->name('cliente.edit');
     Route::put('/editar-cliente/{cliente}', 'update')->name('cliente.update');
