@@ -58,6 +58,19 @@ const submit = () => {
 
                         <form @submit.prevent="submit">
                             <div>
+                                <InputLabel for="categoria" value="Categoria" class="text-gray-600"/>
+                                <TextInput
+                                    id="categoria"
+                                    type="text"
+                                    class="mt-1 block w-full bg-gray-200 text-gray-600"
+                                    v-model="form.categoria"
+                                    required
+                                    autofocus
+                                    autocomplete="categoria"
+                                />
+                                <InputError class="mt-2" :message="form.errors.descripcion" />
+                            </div>
+                            <div>
                                 <InputLabel for="name" value="Descripcion" class="text-gray-600"/>
 
                                 <TextInput
