@@ -49,13 +49,14 @@ producto: Object
                                     class="pr-3 pl-10 py-1 text-sm font-medium text-gray-700 bg-cyan-100 rounded-2xl border-none ring-2 ring-cyan-400 focus:ring-cyan-300 focus:ring-2"
                                 />
                             </div>
+                            
                         </div>
                     </div>
                 </div>
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                    
                     <div class="px-10 pb-10 pt-2 overflow-y-auto">
-
+                            
                         
                     </div>
                 </div>
