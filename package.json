@@ -17,7 +17,6 @@
         "vue": "^3.2.41"
     },
     "dependencies": {
-
         "@fortawesome/fontawesome-free": "^6.4.0",
         "@fortawesome/fontawesome-svg-core": "^6.4.0",
         "@fortawesome/free-brands-svg-icons": "^6.4.0",
@@ -26,7 +25,7 @@
         "@fortawesome/vue-fontawesome": "^3.0.3",
         "@headlessui/vue": "^1.7.13",
         "@heroicons/vue": "^1.0.6",
+        "flowbite-datepicker": "^1.2.2",
         "vue-sidebar-menu": "^5.2.6"
-
     }
 }
