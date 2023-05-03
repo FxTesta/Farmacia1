@@ -72,6 +72,7 @@ producto: Object
                                     <th class="px-2">Codigo de barras</th>
                                     <th class="px-2">Precio Venta</th>
                                     <th class="px-2">Precio Compra</th>
+                                    <th class="px-2">Stock</th>
                                     <th class="px-2">Stock Min.</th>
                                     <th class="px-2">Acciones</th>
                                 </tr>
@@ -79,6 +80,7 @@ producto: Object
                             <tbody class="divide-y divide-gray-400 divide-opacity-30">
                                 <tr v-for="productos in producto">
                                     <td class="text-gray-700 py-4 px-2">{{productos.id}}</td>
+                                    <td class="text-gray-700 py-4 px-2">{{productos.categoria}}</td>
                                     <td class="text-gray-700 py-4 px-2">{{productos.descripcion}}</td>
                                     <td class="text-gray-700 py-4 px-2">{{productos.marca}}</td>
                                     <td class="text-gray-700 py-4 px-2">{{productos.venta}}</td>
