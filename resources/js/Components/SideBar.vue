@@ -15,8 +15,9 @@ export default {
         },
         {
           href: '/dashboard',
-          title: 'Dashboard',
-          icon: 'fa fa-dashboard'
+          title: 'Inicio',
+          icon: 'fa-solid fa-house-chimney-medical'
+                 
         },
         {
           href: '/cliente',

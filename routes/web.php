@@ -56,9 +56,9 @@ Route::controller(ProductoController::class)->middleware('auth')->group(function
 
     Route::get('/producto', 'index')->name('producto');
     Route::get('/crear-producto', 'create')->name('producto.create');
-    Route::post('/cliente', 'store')->name('cliente.store');
-    Route::get('/editar-cliente/{cliente_id}', 'edit')->name('cliente.edit');
-    Route::put('/editar-cliente/{cliente}', 'update')->name('cliente.update');
-    Route::delete('/cliente/delete/{cliente}', 'destroy')->name('cliente.destroy');
+    Route::post('/producto', 'store')->name('producto.store');
+    Route::get('/editar-producto/{producto_id}', 'edit')->name('producto.edit');
+    Route::put('/editar-producto/{producto}', 'update')->name('producto.update');
+    Route::delete('/producto/delete/{producto}', 'destroy')->name('producto.destroy');
 
 });

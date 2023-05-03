@@ -31,8 +31,9 @@ producto: Object
                                     :href="`/crear-producto/`"
                                     as="button"
                                     class="hover:bg-gray-300 ring-2 focus:ring-set-2 ring-cyan-400 rounded-full">
-                                    <UserAddIcon class="h-6 w-6 inline mb-1 ml-2 rounded-full"/>
-                                    <a class="text-sm font-medium rounded-md mr-3"> Crear Producto </a>
+                                    <i class="h-6 w-6 inline mb-1 ml-2 rounded-full fa-sharp fa-solid fa-prescription-bottle-medical"/>
+                                    <a class="text-sm font-medium rounded-md mr-3 "> Crear Producto </a>
+                                    
                                 </Link>
                             </div>
                             <div
@@ -56,7 +57,58 @@ producto: Object
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                    
                     <div class="px-10 pb-10 pt-2 overflow-y-auto">
-                            
+                        <table class="min-w-full">
+                            <thead>
+                                <tr class="border-b border-slate-300 text-gray-700 text-left">
+                                    <th>ID</th>
+                                    <th class="px-2">Categoria</th>
+                                    <th class="px-2">Descripcion</th>
+                                    <th class="px-2">Marca</th>
+                                    <th class="px-2">Venta</th>
+                                    <th class="px-2">Laboratorio</th>
+                                    <th class="px-2">Registro Sanitario</th>
+                                    <th class="px-2">Vencimiento</th>
+                                    <th class="px-2">Alerta Venci.</th>
+                                    <th class="px-2">Codigo de barras</th>
+                                    <th class="px-2">Precio Venta</th>
+                                    <th class="px-2">Precio Compra</th>
+                                    <th class="px-2">Stock Min.</th>
+                                    <th class="px-2">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-400 divide-opacity-30">
+                                <tr v-for="productos in producto">
+                                    <td class="text-gray-700 py-4 px-2">{{productos.id}}</td>
+                                    <td class="text-gray-700 py-4 px-2">{{productos.descripcion}}</td>
+                                    <td class="text-gray-700 py-4 px-2">{{productos.marca}}</td>
+                                    <td class="text-gray-700 py-4 px-2">{{productos.venta}}</td>
+                                    <td class="text-gray-700 py-4 px-2">{{productos.laboratorio}}</td>
+                                    <td class="text-gray-700 py-4 px-2">{{productos.regsanitario}}</td>
+                                    <td class="text-gray-700 py-4 px-2">{{productos.vencimiento}}</td>
+                                    <td class="text-gray-700 py-4 px-2">{{productos.alerta}}</td>
+                                    <td class="text-gray-700 py-4 px-2">{{productos.codigo}}</td>
+                                    <td class="text-gray-700 py-4 px-2">{{productos.precioventa}}</td>
+                                    <td class="text-gray-700 py-4 px-2">{{productos.preciocompra}}</td>
+                                    <td class="text-gray-700 py-4 px-2">{{productos.stock}}</td>
+                                    <td class="text-gray-700 py-4 px-2">{{productos.stockmin}}</td>
+                                    <td class="py-4">
+                                        <div class="inline-flex">          
+                                            <Link 
+                                                :href="`/editar-producto/${productos.id}`"
+                                                as="button"
+                                                class="w-8 h-8 t hover:bg-black/30 rounded-md grid place-content-center">
+                                                <PencilIcon class="w-6 h-6"/>
+                                            </Link>
+                                        
+                                            <div>
+                                                <Delete :producto="productos" :key="productos.id"/>
+                                            </div>
+                                        </div>
+                                                    
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                         
                     </div>
                 </div>
