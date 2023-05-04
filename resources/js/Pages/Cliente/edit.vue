@@ -65,7 +65,7 @@ const submit = () => {
                                     type="text"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.name"
-                                    requiredtext-gray-600
+                                    required
                                     autofocus
                                     autocomplete="name"
                                 />

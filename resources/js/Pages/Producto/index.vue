@@ -3,6 +3,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
 import SideBar from '@/Components/SideBar.vue';
 import {PencilIcon, UserAddIcon, SearchIcon} from "@heroicons/vue/outline";
+import Delete from '@/Pages/Producto/delete.vue';
 
 const props = defineProps({
 producto: Object

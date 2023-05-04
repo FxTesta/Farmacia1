@@ -69,7 +69,7 @@ class ProductoController extends Controller
     
     public function edit($producto_id)
     {
-        $producto = Producto::find($producto);
+        $producto = Producto::find($producto_id);
 
         return Inertia::render('Producto/edit',[
             'producto' => $producto,
@@ -79,24 +79,37 @@ class ProductoController extends Controller
     public function update(Producto $producto)
     {
         request()->validate([
-            'name' => ['required'],
-            'cedula' =>['required'],
-            'ruc' =>['required'],
-            'direccion' =>['required'],
-            'referencia' =>['required'],
-            'telefono' =>['required'],
-            'email' =>['required'],
+            'categoria' => ['required'],
+            'descripcion' => ['required'],
+            'marca' => ['required'],
+            'venta' => ['required'],
+            'laboratorio' => ['nullable'],
+            'regsanitario' => ['nullable'],
+            'vencimiento' => ['nullable'],
+            'alerta' => ['nullable'],
+            'codigo' => ['nullable'],
+            'precioventa' => ['required'],
+            'preciocompra' => ['nullable'],
+            'stock' => ['required'],
+            'stockmin' => ['nullable'],
             
         ]);
 
         $producto->update([
-            'name' => request('name'),
-            'cedula' => request('cedula'),
-            'ruc' => request('ruc'),
-            'direccion' => request('direccion'),
-            'referencia' => request('referencia'),
-            'telefono' => request('telefono'),
-            'email' => request('email'),
+            
+            'categoria' => request('categoria'),
+            'descripcion' => request('descripcion'),
+            'marca' => request('marca'),
+            'venta' => request('venta'),
+            'laboratorio' => request('laboratorio'),
+            'regsanitario' => request('regsanitario'),
+            'vencimiento' => request('vencimiento'),
+            'alerta' => request('alerta'),
+            'codigo' => request('codigo'),
+            'precioventa' => request('precioventa'),
+            'preciocompra' => request('preciocompra'),
+            'stock' => request('stock'),
+            'stockmin' => request('stockmin'),
             
         ]);
         return redirect()->route('producto');
