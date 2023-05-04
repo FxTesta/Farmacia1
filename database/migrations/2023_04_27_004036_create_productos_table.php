@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('descripcion');
             $table->string('marca');
             $table->string('venta');
-            $table->string('laboratorio');
+            $table->string('laboratorio')->nullable();
             $table->string('regsanitario');
             $table->date('vencimiento');
             $table->date('alerta');
