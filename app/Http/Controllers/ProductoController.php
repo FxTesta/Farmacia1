@@ -56,6 +56,7 @@ class ProductoController extends Controller
             'stock' => $request->stock,
             'stockmin' => $request->stockmin,
         ]);
+        
 
         return redirect()->route('producto');
         

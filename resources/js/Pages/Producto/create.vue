@@ -178,6 +178,7 @@ const submit = () => {
 
                                 </div>
                             </div>
+                            
                             <div class="mt-4">
                                 <InputLabel for="codigo" value="Codigo" class="text-gray-600"/>
 
