@@ -127,7 +127,6 @@ const submit = () => {
                                     type="text"
                                     class="mt-1 w-full bg-gray-200 text-gray-600"
                                     v-model="form.laboratorio"
-                                    required
                                     autocomplete="laboratorio"
                                 />
 
