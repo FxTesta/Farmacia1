@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -36,3 +38,39 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+//CLIENTES
+Route::controller(ClienteController::class)->middleware('auth')->group(function () {
+
+    Route::get('/cliente', 'index')->name('cliente');
+    Route::get('/crear-cliente', 'create')->name('cliente.create');
+    Route::post('/cliente', 'store')->name('cliente.store');
+    Route::get('/editar-cliente/{cliente_id}', 'edit')->name('cliente.edit');
+    Route::put('/editar-cliente/{cliente}', 'update')->name('cliente.update');
+    Route::delete('/cliente/delete/{cliente}', 'destroy')->name('cliente.destroy');
+
+    //User-Role
+    //Route::get('/cliente/{cliente}', 'show')->name('cliente.show');
+    //Route::post('/cliente/{cliente}/role', 'assignRole')->name('cliente.role');
+    //Route::delete('/cliente/{cliente}/role/{role}', 'removeRole')->name('cliente.role.remove');
+
+});
+
+
+//PROVEEDORES
+Route::controller(ProveedorController::class)->middleware('auth')->group(function () {
+
+    Route::get('/proveedor', 'index')->name('proveedor');
+    Route::get('/crear-proveedor', 'create')->name('proveedor.create');
+    Route::post('/proveedor', 'store')->name('proveedor.store');
+    Route::get('/editar-proveedor/{proveedor_id}', 'edit')->name('proveedor.edit');
+    Route::put('/editar-proveedor/{proveedor}', 'update')->name('proveedor.update');
+    Route::delete('/cliente/proveedor/{proveedor}', 'destroy')->name('proveedor.destroy');
+
+    //User-Role
+    //Route::get('/proveedor/{proveedor}', 'show')->name('proveedor.show');
+    //Route::post('/proveedor/{proveedor}/role', 'assignRole')->name('proveedor.role');
+    //Route::delete('/proveedor/{proveedor}/role/{role}', 'removeRole')->name('proveedor.role.remove');
+
+});
