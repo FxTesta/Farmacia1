@@ -27,7 +27,6 @@ class ProveedorController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'cedula' => 'required',
             'ruc' => 'string|max:255|nullable',
             'direccion' => 'required|string|max:255',
             'barrio' => 'string|max:255|nullable',
@@ -39,7 +38,6 @@ class ProveedorController extends Controller
 
         Proveedor::create([
             'name' => $request->name,
-            'cedula' => $request->cedula,
             'ruc' => $request->ruc,
             'direccion' => $request->direccion,
             'barrio' => $request->barrio,

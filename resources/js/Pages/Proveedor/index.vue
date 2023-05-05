@@ -25,7 +25,6 @@ proveedor: Object
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ml-16">
                 <div class="-mt-10">
                     <div class="flex justify-end">
-                       <!-- <span class="pt-2 pr-6">hola</span>-->
                        <div class="inline-flex space-x-2 mb-2 mt-2 mr-2">
                             <div class="mt-1">
                                 <Link 
@@ -62,7 +61,6 @@ proveedor: Object
                                 <tr class="border-b border-slate-300 text-gray-700 text-left">
                                     <th>ID</th>
                                     <th>Nombre</th>
-                                    <th>Cédula</th>
                                     <th>RUC</th>
                                     <th>Dirección</th>
                                     <th>Acciones</th>
@@ -72,8 +70,6 @@ proveedor: Object
                                 <tr v-for="proveedores in proveedor">
                                     <td class="text-gray-700 py-4">{{proveedores.id}}</td>
                                     <td class="text-gray-700 py-4">{{proveedores.name}}</td>
-                                    <td class="text-gray-700 py-4">{{proveedores.cedula}}</td>
-
                                     <td class="text-gray-700 py-4">{{proveedores.ruc}}</td>
                                     <td class="py-4 inline-flex">{{proveedores.direccion}}</td>
                                     <td class="py-4">

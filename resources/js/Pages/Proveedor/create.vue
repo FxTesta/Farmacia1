@@ -10,7 +10,6 @@ import {ArrowLeftIcon} from "@heroicons/vue/outline";
 
 const form = useForm({
     name: '',
-    cedula: '',
     ruc: '',
     direccion: '',
     barrio: '',
@@ -67,21 +66,6 @@ const submit = () => {
                                 <InputError class="mt-2" :message="form.errors.name" />
                             </div>
 
-                            
-                            <div class="mt-4">
-                                <InputLabel for="cedula" value="Cedula" class="text-gray-600"/>
-
-                                <TextInput
-                                    id="cedula"
-                                    type="number"
-                                    class="mt-1 block w-full bg-gray-200 text-gray-600"
-                                    v-model="form.cedula"
-                                    required
-                                    autocomplete="cedula"
-                                />
-
-                                <InputError class="mt-2" :message="form.errors.cedula" />
-                            </div>
 
                             <div class="mt-4">
                                 <InputLabel for="ruc" value="RUC (opcional)" class="text-gray-600"/>
