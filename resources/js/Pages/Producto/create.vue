@@ -10,6 +10,9 @@ import TextInput from '@/Components/TextInput.vue';
 import {ArrowLeftIcon} from "@heroicons/vue/outline";
 
 
+
+
+
 const form = useForm({
     categoria: '',
     descripcion: '',
@@ -24,16 +27,29 @@ const form = useForm({
     preciocompra: '',
     stock: '',
     stockmin: '',
+    image: '',
 });
 
 const submit = () => {
     form.post(route('producto.store'));
 };
 
+function mindate(){
+	return new Date().toISOString().split('T')[0]
+}
+
+function maxdate(){
+	return new Date(Date.now() + ( 1210000000)).toISOString().split('T')[0]
+}
+function mostrar(valor){
+    document.getElementById("resultado").innerHTML=valor;
+}
+ 
 
 </script>
 
 <template>
+    
     <Head title="Dashboard" />
 
     <SideBar />
@@ -60,15 +76,26 @@ const submit = () => {
                         <form @submit.prevent="submit">
                             <div class="mt-4 ">
                                 <InputLabel for="categoria" value="Categoria" class="text-gray-600"/>
-                                <TextInput
-                                    id="categoria"
-                                    type="text"
-                                    class="mt-1 block w-full bg-gray-200 text-gray-600"
-                                    v-model="form.categoria"
-                                    required
-                                    autofocus
-                                    autocomplete="categoria"
-                                />
+                                
+                                <select type="text" v-model="form.categoria" class="mt-1 block w-full bg-gray-200 text-gray-600 sm:rounded-lg">
+                                    <option disabled value="">Seleccione una categoria</option>
+                                    <option>A - Tracto alimentario y metabolismo</option>
+                                    <option>B - Sangre y órganos hematopoyéticos</option>
+                                    <option>C - Sistema cardiovascular</option>
+                                    <option>D - Dermatológicos</option>
+                                    <option>G - Sistema genitourinario y hormonas sexuales</option>
+                                    <option>H - Preparados hormonales sistémicos, excluyendo hormonas sexuales e insulinas</option>
+                                    <option>J - Antiinfecciosos para uso sistémico</option>
+                                    <option>L - Antineoplásicos e inmunomoduladores</option>
+                                    <option>M - Sistema musculoesquelético</option>
+                                    <option>N - Sistema nervioso</option>
+                                    <option>P - Antiparasitarios, insecticidas y repelentes</option>
+                                    <option>R - Sistema respiratorio</option>
+                                    <option>S - Órganos de los sentidos</option>
+                                    <option>V - Varios</option>
+                                    <option>W - Cosméticos</option>
+                                    <option>X - Alimentos y dietéticos</option>
+                                </select>
                                 <InputError class="mt-2" :message="form.errors.descripcion" />
                             </div>
                             <div class="mt-4 ">
@@ -92,6 +119,7 @@ const submit = () => {
                                     <InputLabel for="marca" value="Marca" class="text-gray-600"/>
 
                                 <TextInput
+                                    
                                     id="marca"
                                     type="text"
                                     class="mt-1  bg-gray-200 text-gray-600"
@@ -99,6 +127,7 @@ const submit = () => {
                                     required
                                     autocomplete="marca"
                                 />
+                                
 
                                 <InputError class="mt-2" :message="form.errors.marca" />
                                 </div>
@@ -106,7 +135,7 @@ const submit = () => {
                                 <div>
                                     <InputLabel for="venta" value="Tipo de venta" class="text-gray-600"/>
                                 <select type="text" v-model="form.venta"   class="mt-1  bg-gray-200 text-gray-600 sm:rounded-lg">
-                                    <option disabled value="">Seleccione un elemento</option>
+                                    <option disabled value="">Seleccione el tipo</option>
                                     <option>Libre</option>
                                     <option>Bajo receta</option>
                                 </select>
@@ -133,7 +162,7 @@ const submit = () => {
                             </div>
 
                             <div class="mt-4">
-                                <InputLabel for="regsanitario" value="Reg. Sanitario" class="text-gray-600"/>
+                                <InputLabel for="regsanitario" value="Reg. Sanitario" class="text-gray-600 " />
 
                                 <TextInput
                                     id="regsanitario"
@@ -151,22 +180,25 @@ const submit = () => {
                                     <InputLabel for="vencimiento" value="Vencimiento" class="text-gray-600"/>
                                 
                                     <div>
-                                        <input     
+                                        <input    
+                                            :min="mindate()" 
+                                            
                                             v-model="form.vencimiento"
                                             type="date"
                                             name="vencimiento"
                                             id="vencimiento"
                                             class="mt-1 w-full bg-gray-200 text-gray-600 rounded-md"
-                                        >
+                                            
+                                        >                                
                                     </div>
 
                                 </div>
 
-                                <div >
-                                    
-                                    <InputLabel for="alerta" value="Alerta de vencimiento" class="text-gray-600"/>
+                                <div >                                    
+                                    <InputLabel for="alerta" value="Alerta de vencimiento:" class="text-gray-600"/>
                                     <div>
-                                        <input     
+                                        <input 
+                                            :min="mindate()"   
                                             v-model="form.alerta"
                                             type="date"
                                             name="alerta"
@@ -174,11 +206,9 @@ const submit = () => {
                                             class="mt-1 w-full bg-gray-200 text-gray-600 rounded-md"
                                         >
                                     </div>
-                                    
-
-                                </div>
+                                </div> 
                             </div>
-                            
+                            <p v-if="form.alerta>form.vencimiento" class="text-red-600">*La fecha de alerta no puede ser mayor que la fecha de vencimiento</p>
                             <div class="mt-4">
                                 <InputLabel for="codigo" value="Codigo" class="text-gray-600"/>
 
@@ -254,7 +284,23 @@ const submit = () => {
                                     />
                                     <InputError class="mt-2" :message="form.errors.stockmin" />
                                 </div>
+                                
+                                
                             </div>
+                            <div class="mt-2">
+                                    <InputLabel for="image" value="Agregar foto" class="text-gray-600"/>
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    <Input
+                                        id="image"
+                                        type="file"
+                                        class=" mt-2 bg-gray-200 text-gray-600 rounded-md "
+                                        v-model="form.image"
+                                        required
+                                        autocomplete="image"
+                                    />
+
+                                    
+                                </div>
 
                             <div class="flex items-center justify-end mt-6">
 

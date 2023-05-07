@@ -33,12 +33,13 @@ class ProductoController extends Controller
             'laboratorio' => 'string|nullable',
             'regsanitario' => 'string|nullable',
             'vencimiento' => 'nullable',
-            'alerta' => 'nullable',
+            'alerta' => 'nullable|before_or_equal:vencimiento',
             'codigo' => 'nullable',
             'precioventa' => 'required',
             'preciocompra' => 'nullable',
             'stock' => 'required',
-            'stockmin' => 'nullable',
+            'stockmin' => 'nullable|before_or_equal:vencimiento',
+            'image' => 'nullable',
         ]);
 
         Producto::create([
@@ -55,6 +56,7 @@ class ProductoController extends Controller
             'preciocompra' => $request->preciocompra,
             'stock' => $request->stock,
             'stockmin' => $request->stockmin,
+            'image' => $request->image,
         ]);
         
 
@@ -93,6 +95,7 @@ class ProductoController extends Controller
             'preciocompra' => ['nullable'],
             'stock' => ['required'],
             'stockmin' => ['nullable'],
+            'image' => ['nullable'],
             
         ]);
 
@@ -111,6 +114,7 @@ class ProductoController extends Controller
             'preciocompra' => request('preciocompra'),
             'stock' => request('stock'),
             'stockmin' => request('stockmin'),
+            'image' => request('image'),
             
         ]);
         return redirect()->route('producto');

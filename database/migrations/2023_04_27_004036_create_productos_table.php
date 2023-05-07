@@ -25,7 +25,8 @@ return new class extends Migration
             $table->integer('precioventa');            
             $table->integer('preciocompra');
             $table->integer('stock');
-            $table->integer('stockmin');
+            $table->integer('stockmin')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
