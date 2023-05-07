@@ -31,7 +31,7 @@ export default {
             }
           ]*/
         },
-<<<<<<< HEAD
+
         
         {
           href: '/producto',
@@ -39,7 +39,7 @@ export default {
           icon: 'fa-sharp fa-solid fa-cart-shopping'
           
         },
-=======
+
         {
           href: '/proveedor',
           title: 'Proveedores',
@@ -52,7 +52,7 @@ export default {
             }
           ]*/
         }
->>>>>>> testa
+
       ],
       collapsed: {
         type: Boolean,

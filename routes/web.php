@@ -52,7 +52,7 @@ Route::controller(ClienteController::class)->middleware('auth')->group(function 
     Route::delete('/cliente/delete/{cliente}', 'destroy')->name('cliente.destroy');
 });
 
-<<<<<<< HEAD
+
 //Productos
 Route::controller(ProductoController::class)->middleware('auth')->group(function () {
 
@@ -64,7 +64,7 @@ Route::controller(ProductoController::class)->middleware('auth')->group(function
     Route::delete('/producto/delete/{producto}', 'destroy')->name('producto.destroy');
 
 });
-=======
+
 
 //PROVEEDORES
 Route::controller(ProveedorController::class)->middleware('auth')->group(function () {
@@ -76,10 +76,4 @@ Route::controller(ProveedorController::class)->middleware('auth')->group(functio
     Route::put('/editar-proveedor/{proveedor}', 'update')->name('proveedor.update');
     Route::delete('/cliente/proveedor/{proveedor}', 'destroy')->name('proveedor.destroy');
 
-    //User-Role
-    //Route::get('/proveedor/{proveedor}', 'show')->name('proveedor.show');
-    //Route::post('/proveedor/{proveedor}/role', 'assignRole')->name('proveedor.role');
-    //Route::delete('/proveedor/{proveedor}/role/{role}', 'removeRole')->name('proveedor.role.remove');
-
 });
->>>>>>> testa
