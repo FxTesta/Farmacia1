@@ -38,12 +38,6 @@ function mindate(){
 	return new Date().toISOString().split('T')[0]
 }
 
-function maxdate(){
-	return new Date(Date.now() + ( 1210000000)).toISOString().split('T')[0]
-}
-function mostrar(valor){
-    document.getElementById("resultado").innerHTML=valor;
-}
  
 
 </script>
@@ -77,7 +71,7 @@ function mostrar(valor){
                             <div class="mt-4 ">
                                 <InputLabel for="categoria" value="Categoria" class="text-gray-600"/>
                                 
-                                <select type="text" v-model="form.categoria" class="mt-1 block w-full bg-gray-200 text-gray-600 sm:rounded-lg">
+                                <select type="text" v-model="form.categoria" class="mt-1 block w-full bg-gray-200 text-gray-600 sm:rounded-lg" autofocus>
                                     <option disabled value="">Seleccione una categoria</option>
                                     <option>A - Tracto alimentario y metabolismo</option>
                                     <option>B - Sangre y órganos hematopoyéticos</option>
@@ -96,20 +90,20 @@ function mostrar(valor){
                                     <option>W - Cosméticos</option>
                                     <option>X - Alimentos y dietéticos</option>
                                 </select>
-                                <InputError class="mt-2" :message="form.errors.descripcion" />
+                                <InputError class="mt-2" :message="form.errors.categoria" />
                             </div>
                             <div class="mt-4 ">
-                                <InputLabel for="name" value="Descripcion" class="text-gray-600"/>
+                                <InputLabel for="descripcion" value="Descripcion" class="text-gray-600"/>
 
                                 <TextInput
                                     id="descripcion"
                                     type="text"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.descripcion"
-                                    required
-                                    autofocus
+                                    required                                    
                                     autocomplete="descripcion"
                                 />
+                                
                                 <InputError class="mt-2" :message="form.errors.descripcion" />
 
                             </div>
@@ -181,8 +175,7 @@ function mostrar(valor){
                                 
                                     <div>
                                         <input    
-                                            :min="mindate()" 
-                                            
+                                            :min="mindate()"                                             
                                             v-model="form.vencimiento"
                                             type="date"
                                             name="vencimiento"
@@ -305,8 +298,9 @@ function mostrar(valor){
                             <div class="flex items-center justify-end mt-6">
 
                                 <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                    Crear Producto
+                                    Crear Producto                                    
                                 </PrimaryButton>
+                                
                             </div>
                         </form>
 

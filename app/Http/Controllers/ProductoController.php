@@ -38,8 +38,8 @@ class ProductoController extends Controller
             'precioventa' => 'required',
             'preciocompra' => 'nullable',
             'stock' => 'required',
-            'stockmin' => 'nullable|before_or_equal:vencimiento',
-            'image' => 'nullable',
+            'stockmin' => 'nullable',
+            'descuento' => 'nullable',
         ]);
 
         Producto::create([
@@ -56,7 +56,7 @@ class ProductoController extends Controller
             'preciocompra' => $request->preciocompra,
             'stock' => $request->stock,
             'stockmin' => $request->stockmin,
-            'image' => $request->image,
+            'descuento' => $request->image,
         ]);
         
 

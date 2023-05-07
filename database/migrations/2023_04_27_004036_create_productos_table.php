@@ -26,24 +26,13 @@ return new class extends Migration
             $table->integer('preciocompra');
             $table->integer('stock');
             $table->integer('stockmin')->nullable();
-            $table->string('image')->nullable();
+            $table->string('descuento')->nullable();
+            $table->string('presentacion')->nullable();
+            $table->string('estante')->nullable();
             $table->timestamps();
         });
     }
-/**xam
-*Nombre del medicamento
-*Código de barras o código de producto
-*Número de registro sanitario
-*Composición y dosis del medicamento
-*Forma farmacéutica (tabletas, cápsulas, inyectables, etc.)
-*Vía de administración (oral, tópica, intravenosa, etc.)
-*Presentación (envase, tamaño, cantidad)
-*Fecha de caducidad y lote
-*Proveedor del medicamento
-*Precio de compra y venta
-*Stock disponible y mínimo requerido
- * 
- */
+
     /**
      * Reverse the migrations.
      */

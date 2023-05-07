@@ -31,6 +31,7 @@ export default {
             }
           ]*/
         },
+<<<<<<< HEAD
         
         {
           href: '/producto',
@@ -38,6 +39,20 @@ export default {
           icon: 'fa-sharp fa-solid fa-cart-shopping'
           
         },
+=======
+        {
+          href: '/proveedor',
+          title: 'Proveedores',
+          icon: 'fa fa-user',
+          /*child: [
+            {
+              href: '/charts/sublink',
+              title: 'Sub Link',
+              icon: 'fa fa-user',
+            }
+          ]*/
+        }
+>>>>>>> testa
       ],
       collapsed: {
         type: Boolean,

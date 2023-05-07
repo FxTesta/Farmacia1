@@ -22,7 +22,7 @@ producto: Object
 
         <div class="py-12">
 
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ml-16">
+            <div class="max-w-fit mx-auto sm:px-6 lg:px-8 ml-16">
                 <div class="-mt-10">
                     <div class="flex justify-end">
                        <!-- <span class="pt-2 pr-6">hola</span>-->
@@ -75,7 +75,7 @@ producto: Object
                                     <th class="px-2">Precio Compra</th>
                                     <th class="px-2">Stock</th>
                                     <th class="px-2">Stock Min.</th>
-                                    <th class="px-2">foto</th>
+                                
                                     <th class="px-2">Acciones</th>
                                 </tr>
                             </thead>
@@ -95,7 +95,7 @@ producto: Object
                                     <td class="text-gray-700 py-4 px-2">{{productos.preciocompra}}</td>
                                     <td class="text-gray-700 py-4 px-2">{{productos.stock}}</td>
                                     <td class="text-gray-700 py-4 px-2">{{productos.stockmin}}</td>
-                                    <td class="text-gray-700 py-4 px-2">{{productos.image}}</td>
+                                    
                                     <td class="py-4">
                                         <div class="inline-flex">          
                                             <Link 
