@@ -14,7 +14,7 @@ import {ArrowLeftIcon} from "@heroicons/vue/outline";
 
 
 const form = useForm({
-    categoria: '',
+    categorias_id: '',
     descripcion: '',
     marca: '',
     venta: '',
@@ -69,27 +69,27 @@ function mindate(){
 
                         <form @submit.prevent="submit">
                             <div class="mt-4 ">
-                                <InputLabel for="categoria" value="Categoria" class="text-gray-600"/>
+                                <InputLabel for="categorias_id" value="Categoria" class="text-gray-600"/>
                                 
                                 <select type="text" v-model="form.categoria" class="mt-1 block w-full bg-gray-200 text-gray-600 sm:rounded-lg" autofocus>
                                     <option disabled value="">Seleccione una categoria</option>
-                                    <option>A - Tracto alimentario y metabolismo</option>
-                                    <option>B - Sangre y órganos hematopoyéticos</option>
-                                    <option>C - Sistema cardiovascular</option>
-                                    <option>D - Dermatológicos</option>
-                                    <option>G - Sistema genitourinario y hormonas sexuales</option>
-                                    <option>H - Preparados hormonales sistémicos, excluyendo hormonas sexuales e insulinas</option>
-                                    <option>J - Antiinfecciosos para uso sistémico</option>
-                                    <option>L - Antineoplásicos e inmunomoduladores</option>
-                                    <option>M - Sistema musculoesquelético</option>
-                                    <option>N - Sistema nervioso</option>
-                                    <option>P - Antiparasitarios, insecticidas y repelentes</option>
-                                    <option>R - Sistema respiratorio</option>
-                                    <option>S - Órganos de los sentidos</option>
-                                    <option>V - Varios</option>
-                                    <option>W - Cosméticos</option>
-                                    <option>X - Alimentos y dietéticos</option>
+                                    <tr v-for="productos in producto">
+                                        <option>{{productos.id}}</option>
+                                    </tr>
                                 </select>
+                                <p v-if="v-model == 'otro'">
+                                    <div class="mt-4 ">
+                                        <InputLabel for="" value="Nueva categoria" class="text-gray-600"/>
+                                        <TextInput
+                                            id=""
+                                            type="text"
+                                            class="mt-1 block w-full bg-gray-200 text-gray-600"
+                                            v-model=""
+                                            required                                    
+                                            autocomplete=""
+                                        />
+                                    </div>
+                                </p>
                                 <InputError class="mt-2" :message="form.errors.categoria" />
                             </div>
                             <div class="mt-4 ">
@@ -155,18 +155,7 @@ function mindate(){
                                 
                             </div>
 
-                            <div class="mt-4">
-                                <InputLabel for="regsanitario" value="Reg. Sanitario" class="text-gray-600 " />
-
-                                <TextInput
-                                    id="regsanitario"
-                                    type="text"
-                                    class="mt-1 w-full bg-gray-200 text-gray-600"
-                                    v-model="form.regsanitario"
-                                    required
-                                    autocomplete="regsanitario"
-                                />
-                            </div>
+                            
                             
                             <div class="mt-4 inline-flex space-x-10">
                                 <div >
@@ -248,7 +237,34 @@ function mindate(){
                                     <InputError class="mt-2" :message="form.errors.preciocompra" />
                                 </div>
                             </div>
+                            <div class="mt-4 inline-flex space-x-10">
+                                <div>
+                                    <InputLabel for="descuento" value="Descuento %" class="text-gray-600"/>
 
+                                    <TextInput
+                                        id="descuento"
+                                        type="number"
+                                        class="mt-1 block w-full bg-gray-200 text-gray-600"
+                                        v-model="form.descuento"
+                                        required
+                                        autocomplete="descuento"
+                                    />
+
+                                    <InputError class="mt-2" :message="form.errors.descuento" />
+                                </div>
+                                <div>
+                                <InputLabel for="Estante" value="Estante" class="text-gray-600 " />
+
+                                <TextInput
+                                    id="estante"
+                                    type="text"
+                                    class="mt-1 w-full bg-gray-200 text-gray-600"
+                                    v-model="form.estante"
+                                    required
+                                    autocomplete="estante"
+                                />
+                            </div>
+                            </div>
                             <div class="mt-4 inline-flex space-x-10">
                                 <div >
                                     <InputLabel for="stock" value="Stock" class="text-gray-600"/>
@@ -280,20 +296,7 @@ function mindate(){
                                 
                                 
                             </div>
-                            <div class="mt-2">
-                                    <InputLabel for="image" value="Agregar foto" class="text-gray-600"/>
-                                    <i class="fa-solid fa-cloud-arrow-up"></i>
-                                    <Input
-                                        id="image"
-                                        type="file"
-                                        class=" mt-2 bg-gray-200 text-gray-600 rounded-md "
-                                        v-model="form.image"
-                                        required
-                                        autocomplete="image"
-                                    />
-
-                                    
-                                </div>
+                           
 
                             <div class="flex items-center justify-end mt-6">
 

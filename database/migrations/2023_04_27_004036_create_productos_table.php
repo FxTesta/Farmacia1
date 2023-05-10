@@ -13,12 +13,11 @@ return new class extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
-            $table->string('categoria');
+            $table->foreignId('categorias_id')->constrained()->OnDelete('cascade');
             $table->string('descripcion');
             $table->string('marca');
             $table->string('venta');
             $table->string('laboratorio')->nullable();
-            $table->string('regsanitario');
             $table->date('vencimiento');
             $table->date('alerta');
             $table->integer('codigo');
@@ -26,7 +25,7 @@ return new class extends Migration
             $table->integer('preciocompra');
             $table->integer('stock');
             $table->integer('stockmin')->nullable();
-            $table->string('descuento')->nullable();
+            $table->integer('descuento')->nullable();
             $table->string('presentacion')->nullable();
             $table->string('estante')->nullable();
             $table->timestamps();

@@ -22,7 +22,7 @@ producto: Object
 
         <div class="py-12">
 
-            <div class="max-w-fit mx-auto sm:px-6 lg:px-8 ml-16">
+            <div class="max-w-screen-2xl mx-auto sm:px-6  ml-16">
                 <div class="-mt-10">
                     <div class="flex justify-end">
                        <!-- <span class="pt-2 pr-6">hola</span>-->
@@ -67,14 +67,14 @@ producto: Object
                                     <th class="px-2">Marca</th>
                                     <th class="px-2">Venta</th>
                                     <th class="px-2">Laboratorio</th>
-                                    <th class="px-2">Registro Sanitario</th>
+                                    <th class="px-2">RegistroSanitario</th>
                                     <th class="px-2">Vencimiento</th>
-                                    <th class="px-2">Alerta Venci.</th>
-                                    <th class="px-2">Codigo de barras</th>
-                                    <th class="px-2">Precio Venta</th>
-                                    <th class="px-2">Precio Compra</th>
+                                    <th class="px-2">AlertaVenci.</th>
+                                    <th class="px-2">Codigodebarras</th>
+                                    <th class="px-2">PrecioVenta</th>
+                                    <th class="px-2">PrecioCompra</th>
                                     <th class="px-2">Stock</th>
-                                    <th class="px-2">Stock Min.</th>
+                                    <th class="px-2">StockMin.</th>
                                 
                                     <th class="px-2">Acciones</th>
                                 </tr>

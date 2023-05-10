@@ -22,7 +22,7 @@ cliente: Object
 
         <div class="py-12">
 
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ml-16">
+            <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8 ml-16">
                 <div class="-mt-10">
                     <div class="flex justify-end">
                        <!-- <span class="pt-2 pr-6">hola</span>-->

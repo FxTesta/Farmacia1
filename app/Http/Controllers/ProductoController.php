@@ -26,12 +26,11 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'categoria' => 'required|string|max:100',
+            'categorias_id' => 'required',
             'descripcion' => 'required',
             'marca' => 'string|required',
             'venta' => 'required',
             'laboratorio' => 'string|nullable',
-            'regsanitario' => 'string|nullable',
             'vencimiento' => 'nullable',
             'alerta' => 'nullable|before_or_equal:vencimiento',
             'codigo' => 'nullable',
@@ -40,15 +39,16 @@ class ProductoController extends Controller
             'stock' => 'required',
             'stockmin' => 'nullable',
             'descuento' => 'nullable',
+            'presentacion' => 'nullable',
+            'estante' => 'nullable',
         ]);
 
         Producto::create([
-            'categoria' => $request->categoria,
+            'categorias_id' => $request->categorias_id,
             'descripcion' => $request->descripcion,
             'marca' => $request->marca,
             'venta' => $request->venta,
             'laboratorio' => $request->laboratorio,
-            'regsanitario' => $request->regsanitario,
             'vencimiento' => $request->vencimiento,
             'alerta' => $request->alerta,
             'codigo' => $request->codigo,
@@ -56,7 +56,9 @@ class ProductoController extends Controller
             'preciocompra' => $request->preciocompra,
             'stock' => $request->stock,
             'stockmin' => $request->stockmin,
-            'descuento' => $request->image,
+            'descuento' => $request->descuento,
+            'presentacion' => $request->presentacion,
+            'estante' => $request->estante,
         ]);
         
 
@@ -82,12 +84,11 @@ class ProductoController extends Controller
     public function update(Producto $producto)
     {
         request()->validate([
-            'categoria' => ['required'],
+            'categorias_id' => ['required'],
             'descripcion' => ['required'],
             'marca' => ['required'],
             'venta' => ['required'],
             'laboratorio' => ['nullable'],
-            'regsanitario' => ['nullable'],
             'vencimiento' => ['nullable'],
             'alerta' => ['nullable'],
             'codigo' => ['nullable'],
@@ -95,13 +96,16 @@ class ProductoController extends Controller
             'preciocompra' => ['nullable'],
             'stock' => ['required'],
             'stockmin' => ['nullable'],
-            'image' => ['nullable'],
+            'descuento' => ['nullable'],
+            'presentacion' => ['nullable'],
+            'estante' => ['nullable'],
+            
             
         ]);
 
         $producto->update([
             
-            'categoria' => request('categoria'),
+            'categorias_id' => request('categorias_id'),
             'descripcion' => request('descripcion'),
             'marca' => request('marca'),
             'venta' => request('venta'),
@@ -114,7 +118,9 @@ class ProductoController extends Controller
             'preciocompra' => request('preciocompra'),
             'stock' => request('stock'),
             'stockmin' => request('stockmin'),
-            'image' => request('image'),
+            'descuento' => request('descuento'),
+            'presentacion' => request('presentacion'),
+            'estante' => request('estante'),
             
         ]);
         return redirect()->route('producto');
