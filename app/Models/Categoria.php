@@ -11,8 +11,4 @@ class Categoria extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function producto(): HasMany
-    {
-        return $this->hasMany(Producto::class);
-    }
 }

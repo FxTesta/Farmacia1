@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('categorias_id')->constrained()->OnDelete('cascade');
+            //$table->foreignId('categoria_id')->constrained()->OnDelete('cascade');
+            $table->string('categoria');
             $table->string('descripcion');
             $table->string('marca');
             $table->string('venta');
             $table->string('laboratorio')->nullable();
             $table->date('vencimiento');
             $table->date('alerta');
-            $table->integer('codigo');
+            $table->bigInteger('codigo');
             $table->integer('precioventa');            
             $table->integer('preciocompra');
             $table->integer('stock');
@@ -28,7 +29,6 @@ return new class extends Migration
             $table->integer('descuento')->nullable();
             $table->string('presentacion')->nullable();
             $table->string('estante')->nullable();
-            $table->string('categorianombre');
             $table->timestamps();
         });
     }

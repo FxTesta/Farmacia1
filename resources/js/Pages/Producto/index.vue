@@ -67,14 +67,11 @@ producto: Object
                                     <th class="px-2">Marca</th>
                                     <th class="px-2">Venta</th>
                                     <th class="px-2">Laboratorio</th>
-                                    <th class="px-2">RegistroSanitario</th>
                                     <th class="px-2">Vencimiento</th>
-                                    <th class="px-2">AlertaVenci.</th>
                                     <th class="px-2">Codigodebarras</th>
                                     <th class="px-2">PrecioVenta</th>
                                     <th class="px-2">PrecioCompra</th>
                                     <th class="px-2">Stock</th>
-                                    <th class="px-2">StockMin.</th>
                                 
                                     <th class="px-2">Acciones</th>
                                 </tr>
@@ -87,14 +84,11 @@ producto: Object
                                     <td class="text-gray-700 py-4 px-2">{{productos.marca}}</td>
                                     <td class="text-gray-700 py-4 px-2">{{productos.venta}}</td>
                                     <td class="text-gray-700 py-4 px-2">{{productos.laboratorio}}</td>
-                                    <td class="text-gray-700 py-4 px-2">{{productos.regsanitario}}</td>
                                     <td class="text-gray-700 py-4 px-2">{{productos.vencimiento}}</td>
-                                    <td class="text-gray-700 py-4 px-2">{{productos.alerta}}</td>
                                     <td class="text-gray-700 py-4 px-2">{{productos.codigo}}</td>
                                     <td class="text-gray-700 py-4 px-2">{{productos.precioventa}}</td>
                                     <td class="text-gray-700 py-4 px-2">{{productos.preciocompra}}</td>
                                     <td class="text-gray-700 py-4 px-2">{{productos.stock}}</td>
-                                    <td class="text-gray-700 py-4 px-2">{{productos.stockmin}}</td>
                                     
                                     <td class="py-4">
                                         <div class="inline-flex">          

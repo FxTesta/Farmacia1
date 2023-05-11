@@ -10,18 +10,18 @@ import TextInput from '@/Components/TextInput.vue';
 import {ArrowLeftIcon} from "@heroicons/vue/outline";
 
 
-const props = defineProps({
+/*const props = defineProps({
     categoria: Object,
-});
+});*/
 
 
 const form = useForm({
-    categorias_id: '',
+    //categoria_id: '',
+    categoria: '',
     descripcion: '',
     marca: '',
     venta: '',
     laboratorio: '',
-    regsanitario: '',
     vencimiento: '',
     alerta: '',
     codigo: '',
@@ -29,6 +29,9 @@ const form = useForm({
     preciocompra: '',
     stock: '',
     stockmin: '',
+    estante: '',
+    presentacion: '',
+    descuento: '',
 });
 
 const submit = () => {
@@ -70,20 +73,44 @@ function mindate(){
 
                         <form @submit.prevent="submit">
 
-                            
-                            <!--PROBANDO poner el desplegable para las categorías-->
+                            <!--CATEGORÍA USANDO OTRA TABLA-->
 
-                            <!--<InputLabel for="categorias_id" value="Categoría" class="text-gray-600"/>
+                            <!--<InputLabel for="categoria_id" value="Categoría" class="text-gray-600"/>
                             <select 
-                                v-model="form.categorias_id"
+                                v-model="form.categoria_id"
                                  class="mt-1 block w-full bg-gray-200 text-gray-600" >
                                 <option disabled value="">Selecciona Una Categoría</option>
-                                <option v-for="item in sprint.lists" :value="item.id">
+                                <option v-for="item in categoria" :value="item.id">
                                     {{ item.name }}
                                 </option>
                             </select>-->
 
                             <!--PROBANDO -->
+
+                            <div >
+                                <InputLabel for="categoria" value="Categoría" class="text-gray-600"/>
+                                <select type="text" v-model="form.categoria"   class="mt-1 block w-full bg-gray-200 text-gray-600 rounded-lg">
+                                    <option disabled value="">Seleccionar Categoría</option>    
+                                    <option>A - Tracto alimentario y metabolismo</option>
+                                    <option>B - Sangre y órganos hematopoyéticos</option>
+                                    <option>C - Sistema cardiovascular</option>
+                                    <option> D - Dermatológicos</option>
+                                    <option>G - Sistema genitourinario y hormonas sexuales</option>
+                                    <option>H - Preparados hormonales sistémicos, excluyendo hormonas sexuales e insulinas</option>
+                                    <option>J - Antiinfecciosos para uso sistémico</option>
+                                    <option>L - Antineoplásicos e inmunomoduladores</option>
+                                    <option>M - Sistema musculoesquelético</option>
+                                    <option>N - Sistema nervioso</option>
+                                    <option>P - Antiparasitarios, insecticidas y repelentes</option>
+                                    <option>R - Sistema respiratorio</option>
+                                    <option>S - Órganos de los sentidos</option>
+                                    <option>V - Varios</option>
+                                    <option>W - Cosméticos</option>
+                                    <option>X - Alimentos y dietéticos</option>
+                                </select>
+                                <InputError class="mt-2" :message="form.errors.venta" />
+                            </div>
+
                             <div class="mt-4 ">
                                 <InputLabel for="descripcion" value="Descripcion" class="text-gray-600"/>
 

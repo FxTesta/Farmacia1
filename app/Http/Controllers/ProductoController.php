@@ -24,14 +24,22 @@ class ProductoController extends Controller
 
         //añadir categoría para que cargue
 
-        /*  */
-        return Inertia::render('Producto/create');
+        /*$categoria = Categoria::all();
+
+        return Inertia::render('Producto/create',[
+            'categoria' => $categoria,
+            
+        ]);*/
+
+
+       return Inertia::render('Producto/create');
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'categorias_id' => 'required',
+            //'categoria_id' => 'required',
+            'categoria' => 'required',
             'descripcion' => 'required',
             'marca' => 'string|required',
             'venta' => 'required',
@@ -49,10 +57,10 @@ class ProductoController extends Controller
         ]);
 
         // para crear un campo con el nombre de la cateogría
-        $categorianombre = Categoria::where('id', $request->input('categorias_id'))->first();
+        //$categorianombre = Categoria::where('id', $request->input('categoria_id'))->first();
 
         Producto::create([
-            'categorias_id' => $request->categorias_id,
+            'categoria' => $request->categoria,
             'descripcion' => $request->descripcion,
             'marca' => $request->marca,
             'venta' => $request->venta,
@@ -67,7 +75,7 @@ class ProductoController extends Controller
             'descuento' => $request->descuento,
             'presentacion' => $request->presentacion,
             'estante' => $request->estante,
-            'categorianombre' => $categorianombre->name,
+            //'categorianombre' => $categorianombre->name,
         ]);
         
 
@@ -93,7 +101,7 @@ class ProductoController extends Controller
     public function update(Producto $producto)
     {
         request()->validate([
-            'categorias_id' => ['required'],
+            'categoria' => ['required'],
             'descripcion' => ['required'],
             'marca' => ['required'],
             'venta' => ['required'],
@@ -114,12 +122,11 @@ class ProductoController extends Controller
 
         $producto->update([
             
-            'categorias_id' => request('categorias_id'),
+            'categoria' => request('categoria'),
             'descripcion' => request('descripcion'),
             'marca' => request('marca'),
             'venta' => request('venta'),
             'laboratorio' => request('laboratorio'),
-            'regsanitario' => request('regsanitario'),
             'vencimiento' => request('vencimiento'),
             'alerta' => request('alerta'),
             'codigo' => request('codigo'),

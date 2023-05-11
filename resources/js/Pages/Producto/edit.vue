@@ -18,7 +18,6 @@ const form = useForm({
     marca: props.producto.marca,
     venta: props.producto.venta,
     laboratorio: props.producto.laboratorio,
-    regsanitario: props.producto.regsanitario,
     vencimiento: props.producto.vencimiento,
     alerta: props.producto.alerta,
     codigo: props.producto.codigo,
@@ -26,6 +25,9 @@ const form = useForm({
     preciocompra: props.producto.preciocompra,
     stock: props.producto.stock,
     stockmin: props.producto.stockmin,
+    estante: props.producto.estante,
+    presentacion: props.producto.presentacion,
+    descuento: props.producto.descuento,
 });
 
 const submit = () => {
@@ -131,19 +133,6 @@ const submit = () => {
                                 />
 
                                 
-                            </div>
-
-                            <div class="mt-4">
-                                <InputLabel for="regsanitario" value="Reg. Sanitario" class="text-gray-600"/>
-
-                                <TextInput
-                                    id="regsanitario"
-                                    type="text"
-                                    class="mt-1 w-full bg-gray-200 text-gray-600"
-                                    v-model="form.regsanitario"
-                                    required
-                                    autocomplete="regsanitario"
-                                />
                             </div>
                             
                             <div class="mt-4 inline-flex space-x-10">
