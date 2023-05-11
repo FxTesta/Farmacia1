@@ -9,7 +9,7 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import {ArrowLeftIcon} from "@heroicons/vue/outline";
 
-
+//para traer la lista de categorías
 /*const props = defineProps({
     categoria: Object,
 });*/
