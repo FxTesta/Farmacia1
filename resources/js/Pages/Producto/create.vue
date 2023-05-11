@@ -32,6 +32,7 @@ const form = useForm({
     estante: '',
     presentacion: '',
     descuento: '',
+
 });
 
 const submit = () => {
