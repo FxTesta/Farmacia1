@@ -10,7 +10,9 @@ import TextInput from '@/Components/TextInput.vue';
 import {ArrowLeftIcon} from "@heroicons/vue/outline";
 
 
-
+const props = defineProps({
+    categoria: Object,
+});
 
 
 const form = useForm({
@@ -69,7 +71,17 @@ function mindate(){
 
                         <form @submit.prevent="submit">
                             <!--PROBANDO poner el desplegable para las categorías-->
-                            
+
+                            <InputLabel for="categorias_id" value="Categoría" class="text-gray-600"/>
+                            <select 
+                                v-model="form.categorias_id"
+                                 class="mt-1 block w-full bg-gray-200 text-gray-600" >
+                                <option disabled value="">Selecciona Una Categoría</option>
+                                <option v-for="item in sprint.lists" :value="item.id">
+                                    {{ item.name }}
+                                </option>
+                            </select>
+
                             <!--PROBANDO -->
                             <div class="mt-4 ">
                                 <InputLabel for="descripcion" value="Descripcion" class="text-gray-600"/>
