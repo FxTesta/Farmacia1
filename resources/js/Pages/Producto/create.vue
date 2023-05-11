@@ -73,8 +73,8 @@ function mindate(){
                                 
                                 <select type="text" v-model="form.categoria" class="mt-1 block w-full bg-gray-200 text-gray-600 sm:rounded-lg" autofocus>
                                     <option disabled value="">Seleccione una categoria</option>
-                                    <tr v-for="productos in producto">
-                                        <option>{{productos.id}}</option>
+                                    <tr v-for="categorias in categoria">
+                                        <option>{{categorias.name}}</option>
                                     </tr>
                                 </select>
                                 <p v-if="v-model == 'otro'">
@@ -84,7 +84,7 @@ function mindate(){
                                             id=""
                                             type="text"
                                             class="mt-1 block w-full bg-gray-200 text-gray-600"
-                                            v-model=""
+                                            v-model="asd"
                                             required                                    
                                             autocomplete=""
                                         />
