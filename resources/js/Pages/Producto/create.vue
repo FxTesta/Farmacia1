@@ -29,7 +29,6 @@ const form = useForm({
     preciocompra: '',
     stock: '',
     stockmin: '',
-    image: '',
 });
 
 const submit = () => {
@@ -71,34 +70,10 @@ function mindate(){
 
                         <form @submit.prevent="submit">
 
-                            <div class="mt-4 ">
-                                <InputLabel for="categorias_id" value="Categoria" class="text-gray-600"/>
-                                
-                                <select type="text" v-model="form.categoria" class="mt-1 block w-full bg-gray-200 text-gray-600 sm:rounded-lg" autofocus>
-                                    <option disabled value="">Seleccione una categoria</option>
-                                    <tr v-for="categorias in categoria">
-                                        <option>{{categorias.name}}</option>
-                                    </tr>
-                                </select>
-                                <p v-if="v-model == 'otro'">
-                                    <div class="mt-4 ">
-                                        <InputLabel for="" value="Nueva categoria" class="text-gray-600"/>
-                                        <TextInput
-                                            id=""
-                                            type="text"
-                                            class="mt-1 block w-full bg-gray-200 text-gray-600"
-                                            v-model="asd"
-                                            required                                    
-                                            autocomplete=""
-                                        />
-                                    </div>
-                                </p>
-                                <InputError class="mt-2" :message="form.errors.categoria" />
-                            </div>
-
+                            
                             <!--PROBANDO poner el desplegable para las categorías-->
 
-                            <InputLabel for="categorias_id" value="Categoría" class="text-gray-600"/>
+                            <!--<InputLabel for="categorias_id" value="Categoría" class="text-gray-600"/>
                             <select 
                                 v-model="form.categorias_id"
                                  class="mt-1 block w-full bg-gray-200 text-gray-600" >
@@ -106,7 +81,7 @@ function mindate(){
                                 <option v-for="item in sprint.lists" :value="item.id">
                                     {{ item.name }}
                                 </option>
-                            </select>
+                            </select>-->
 
                             <!--PROBANDO -->
                             <div class="mt-4 ">
