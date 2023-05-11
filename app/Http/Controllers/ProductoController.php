@@ -19,16 +19,13 @@ class ProductoController extends Controller
         ]);
     }
 
-    public function create(Categoria $categoria)
+    public function create()
     {    
 
         //añadir categoría para que cargue
 
-        $categoria->load('producto');
-        return Inertia::render('Producto/create',[
-            'categoria' => $categoria,
-            
-        ]);
+        /*  */
+        return Inertia::render('Producto/create');
     }
 
     public function store(Request $request)
