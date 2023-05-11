@@ -68,7 +68,7 @@ function mindate(){
                     <div class="px-10 pb-10 pt-5 overflow-y-auto">
 
                         <form @submit.prevent="submit">
-<<<<<<< HEAD
+
                             <div class="mt-4 ">
                                 <InputLabel for="categorias_id" value="Categoria" class="text-gray-600"/>
                                 
@@ -93,11 +93,10 @@ function mindate(){
                                 </p>
                                 <InputError class="mt-2" :message="form.errors.categoria" />
                             </div>
-=======
+
                             <!--PROBANDO poner el desplegable para las categorías-->
                             
                             <!--PROBANDO -->
->>>>>>> 7961ecaf0638652db8a68634a1c89f68edafecbb
                             <div class="mt-4 ">
                                 <InputLabel for="descripcion" value="Descripcion" class="text-gray-600"/>
 
