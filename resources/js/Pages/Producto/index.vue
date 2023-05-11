@@ -68,9 +68,9 @@ producto: Object
                                     <th class="px-2">Venta</th>
                                     <th class="px-2">Laboratorio</th>
                                     <th class="px-2">Vencimiento</th>
-                                    <th class="px-2">Codigodebarras</th>
-                                    <th class="px-2">PrecioVenta</th>
-                                    <th class="px-2">PrecioCompra</th>
+                                    <th class="px-2">Codigo de barras</th>
+                                    <th class="px-2">Precio Venta</th>
+                                    <th class="px-2">Precio Compra</th>
                                     <th class="px-2">Stock</th>
                                 
                                     <th class="px-2">Acciones</th>

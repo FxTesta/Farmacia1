@@ -87,45 +87,19 @@ function mindate(){
                             </select>-->
 
                             <!--PROBANDO -->
-
-                            <div >
-                                <InputLabel for="categoria" value="Categoría" class="text-gray-600"/>
-                                <select type="text" v-model="form.categoria"   class="mt-1 block w-full bg-gray-200 text-gray-600 rounded-lg">
-                                    <option disabled value="">Seleccionar Categoría</option>    
-                                    <option>A - Tracto alimentario y metabolismo</option>
-                                    <option>B - Sangre y órganos hematopoyéticos</option>
-                                    <option>C - Sistema cardiovascular</option>
-                                    <option> D - Dermatológicos</option>
-                                    <option>G - Sistema genitourinario y hormonas sexuales</option>
-                                    <option>H - Preparados hormonales sistémicos, excluyendo hormonas sexuales e insulinas</option>
-                                    <option>J - Antiinfecciosos para uso sistémico</option>
-                                    <option>L - Antineoplásicos e inmunomoduladores</option>
-                                    <option>M - Sistema musculoesquelético</option>
-                                    <option>N - Sistema nervioso</option>
-                                    <option>P - Antiparasitarios, insecticidas y repelentes</option>
-                                    <option>R - Sistema respiratorio</option>
-                                    <option>S - Órganos de los sentidos</option>
-                                    <option>V - Varios</option>
-                                    <option>W - Cosméticos</option>
-                                    <option>X - Alimentos y dietéticos</option>
-                                </select>
-                                <InputError class="mt-2" :message="form.errors.venta" />
-                            </div>
-
-                            <div class="mt-4 ">
-                                <InputLabel for="descripcion" value="Descripcion" class="text-gray-600"/>
-
+                            <div class="mt-4">
+                                <InputLabel for="codigo" value="Codigo" class="text-gray-600"/>
                                 <TextInput
-                                    id="descripcion"
-                                    type="text"
+                                    id="codigo"
+                                    type="number"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
-                                    v-model="form.descripcion"
-                                    required                                    
-                                    autocomplete="descripcion"
+                                    v-model="form.codigo"
+                                    required
+                                    autocomplete="codigo"
+                                    autofocus
                                 />
-                                
-                                <InputError class="mt-2" :message="form.errors.descripcion" />
 
+                                <InputError class="mt-2" :message="form.errors.codigo" />
                             </div>
                             <div class="mt-4 inline-flex space-x-10">
 
@@ -158,6 +132,47 @@ function mindate(){
                                     <InputError class="mt-2" :message="form.errors.venta" />
                                 </div>
                             </div>
+                            <div class="mt-4">
+                                <InputLabel for="categoria" value="Categoría" class="text-gray-600"/>
+                                <select type="text" v-model="form.categoria"   class="mt-1 block w-full bg-gray-200 text-gray-600 rounded-lg">
+                                    <option disabled value="">Seleccionar Categoría</option>    
+                                    <option>A - Tracto alimentario y metabolismo</option>
+                                    <option>B - Sangre y órganos hematopoyéticos</option>
+                                    <option>C - Sistema cardiovascular</option>
+                                    <option> D - Dermatológicos</option>
+                                    <option>G - Sistema genitourinario y hormonas sexuales</option>
+                                    <option>H - Preparados hormonales sistémicos, excluyendo hormonas sexuales e insulinas</option>
+                                    <option>J - Antiinfecciosos para uso sistémico</option>
+                                    <option>L - Antineoplásicos e inmunomoduladores</option>
+                                    <option>M - Sistema musculoesquelético</option>
+                                    <option>N - Sistema nervioso</option>
+                                    <option>P - Antiparasitarios, insecticidas y repelentes</option>
+                                    <option>R - Sistema respiratorio</option>
+                                    <option>S - Órganos de los sentidos</option>
+                                    <option>V - Varios</option>
+                                    <option>W - Cosméticos</option>
+                                    <option>X - Alimentos y dietéticos</option>
+                                </select>
+                                <InputError class="mt-2" :message="form.errors.venta" />
+                            </div>
+                            
+                            <div class="mt-4 ">
+                                <InputLabel  for="descripcion" value="Descripcion" class="text-gray-600"/>
+
+                                <TextInput
+                                    id="descripcion"
+                                   
+                                    type="text"
+                                    class="mt-1  w-full bg-gray-200 text-gray-600 rounded-lg"
+                                    v-model="form.descripcion"
+                                    required                                    
+                                    autocomplete="descripcion"
+                                />
+                                
+                                <InputError class="mt-2" :message="form.errors.descripcion" />
+
+                            </div>
+                            
                             
                             
                             <div class="mt-4">
@@ -174,8 +189,6 @@ function mindate(){
 
                                 
                             </div>
-
-                            
                             
                             <div class="mt-4 inline-flex space-x-10">
                                 <div >
@@ -211,19 +224,25 @@ function mindate(){
                                 </div> 
                             </div>
                             <p v-if="form.alerta>form.vencimiento" class="text-red-600">*La fecha de alerta no puede ser mayor que la fecha de vencimiento</p>
+
                             <div class="mt-4">
-                                <InputLabel for="codigo" value="Codigo" class="text-gray-600"/>
-
-                                <TextInput
-                                    id="codigo"
-                                    type="number"
-                                    class="mt-1 block w-full bg-gray-200 text-gray-600"
-                                    v-model="form.codigo"
-                                    required
-                                    autocomplete="codigo"
-                                />
-
-                                <InputError class="mt-2" :message="form.errors.codigo" />
+                                <InputLabel for="presentacion" value="Presentación" class="text-gray-600"/>
+                                <select type="text" v-model="form.presentacion"   class=" w-full bg-gray-200 text-gray-600 sm:rounded-lg">
+                                    <option disabled value="">Seleccione el tipo de presentación</option>
+                                    <option>Polvos medicinales</option>
+                                    <option>Comprimidos</option>
+                                    <option>Píldoras</option>
+                                    <option>Cápsulas</option>
+                                    <option>Ampollas</option>
+                                    <option>Jarabes</option>
+                                    <option>Inyectables</option>
+                                    <option>Emulsiones</option>
+                                    <option>Colirios</option>
+                                    <option>Supositorios</option>
+                                    <option>Pomadas</option>
+                                    <option>Otro</option>
+                                </select>
+                                <InputError class="mt-2" :message="form.errors.presentacion" />
                             </div>
 
                             <div class="mt-4 inline-flex space-x-10">
@@ -260,7 +279,6 @@ function mindate(){
                             <div class="mt-4 inline-flex space-x-10">
                                 <div>
                                     <InputLabel for="descuento" value="Descuento %" class="text-gray-600"/>
-
                                     <TextInput
                                         id="descuento"
                                         type="number"
@@ -269,21 +287,19 @@ function mindate(){
                                         required
                                         autocomplete="descuento"
                                     />
-
                                     <InputError class="mt-2" :message="form.errors.descuento" />
                                 </div>
                                 <div>
-                                <InputLabel for="Estante" value="Estante" class="text-gray-600 " />
-
-                                <TextInput
-                                    id="estante"
-                                    type="text"
-                                    class="mt-1 w-full bg-gray-200 text-gray-600"
-                                    v-model="form.estante"
-                                    required
-                                    autocomplete="estante"
-                                />
-                            </div>
+                                    <InputLabel for="Estante" value="Estante" class="text-gray-600 " />
+                                    <TextInput
+                                        id="estante"
+                                        type="text"
+                                        class="mt-1 w-full bg-gray-200 text-gray-600"
+                                        v-model="form.estante"
+                                        required
+                                        autocomplete="estante"
+                                    />
+                                </div>
                             </div>
                             <div class="mt-4 inline-flex space-x-10">
                                 <div >
