@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Producto;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
@@ -20,6 +21,10 @@ class ProductoController extends Controller
 
     public function create()
     {    
+
+        //añadir categoría para que cargue
+
+        
         return Inertia::render('Producto/create');
     }
 
@@ -43,6 +48,9 @@ class ProductoController extends Controller
             'estante' => 'nullable',
         ]);
 
+        // para crear un campo con el nombre de la cateogría
+        $categorianombre = Categoria::where('id', $request->input('categorias_id'))->first();
+
         Producto::create([
             'categorias_id' => $request->categorias_id,
             'descripcion' => $request->descripcion,
@@ -59,6 +67,7 @@ class ProductoController extends Controller
             'descuento' => $request->descuento,
             'presentacion' => $request->presentacion,
             'estante' => $request->estante,
+            'categorianombre' => $categorianombre->name,
         ]);
         
 

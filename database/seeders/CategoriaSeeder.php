@@ -1,102 +1,102 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\Categorias;
+
+use App\Models\Categoria;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CCategorias extends Seeder
+class CategoriaSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Categorias::create([
+        Categoria::create([
             
             'name' => 'A - Tracto alimentario y metabolismo',
             
         ]);
-        Categorias::create([
+        Categoria::create([
             
             'name' => 'B - Sangre y órganos hematopoyéticos',
             
         ]);
-        Categorias::create([
+        Categoria::create([
             
             'name' => 'C - Sistema cardiovascular',
             
         ]);
-        Categorias::create([
+        Categoria::create([
             
             'name' => 'D - Dermatológicos',
             
         ]);
-        Categorias::create([
+        Categoria::create([
             
             'name' => 'G - Sistema genitourinario y hormonas sexuales',
             
         ]);
-        Categorias::create([
+        Categoria::create([
             
             'name' => 'H - Preparados hormonales sistémicos, excluyendo hormonas sexuales e insulinas',
             
         ]);
-        Categorias::create([
+        Categoria::create([
             
             'name' => 'J - Antiinfecciosos para uso sistémico',
             
         ]);
-        Categorias::create([
+        Categoria::create([
             
             'name' => 'L - Antineoplásicos e inmunomoduladores',
             
         ]);
-        Categorias::create([
+        Categoria::create([
             
             'name' => 'M - Sistema musculoesquelético',
             
         ]);
-        Categorias::create([
+        Categoria::create([
             
             'name' => 'N - Sistema nervioso',
             
         ]);
-        Categorias::create([
+        Categoria::create([
             
             'name' => 'P - Antiparasitarios, insecticidas y repelentes',
             
         ]);
-        Categorias::create([
+        Categoria::create([
             
             'name' => 'R - Sistema respiratorio',
             
         ]);
-        Categorias::create([
+        Categoria::create([
             
             'name' => 'S - Órganos de los sentidos',
             
         ]);
-        Categorias::create([
+        Categoria::create([
             
             'name' => 'V - Varios',
             
         ]);
-        Categorias::create([
+        Categoria::create([
             
             'name' => 'W - Cosméticos',
             
         ]);
-        Categorias::create([
+        Categoria::create([
             
             'name' => 'X - Alimentos y dietéticos',
             
         ]);
-        Categorias::create([
+        Categoria::create([
             
             'name' => 'Otro',
             
         ]);
     }
-    
 }

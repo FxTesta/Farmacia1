@@ -28,6 +28,7 @@ return new class extends Migration
             $table->integer('descuento')->nullable();
             $table->string('presentacion')->nullable();
             $table->string('estante')->nullable();
+            $table->string('categorianombre');
             $table->timestamps();
         });
     }
