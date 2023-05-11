@@ -21,7 +21,6 @@ const form = useForm({
     marca: '',
     venta: '',
     laboratorio: '',
-    regsanitario: '',
     vencimiento: '',
     alerta: '',
     codigo: '',
@@ -29,7 +28,9 @@ const form = useForm({
     preciocompra: '',
     stock: '',
     stockmin: '',
-    image: '',
+    estante: '',
+    descuento: '',
+    pre: '',
 });
 
 const submit = () => {
@@ -107,6 +108,7 @@ function mindate(){
                                     {{ item.name }}
                                 </option>
                             </select>
+                            
 
                             <!--PROBANDO -->
                             <div class="mt-4 ">
