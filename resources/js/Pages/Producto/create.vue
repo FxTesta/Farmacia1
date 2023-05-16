@@ -88,7 +88,7 @@ function mindate(){
 
                             <!--PROBANDO -->
                             <div class="mt-4">
-                                <InputLabel for="codigo" value="Codigo" class="text-gray-600"/>
+                                <InputLabel for="codigo" value="Codigo de Barras" class="text-gray-600"/>
                                 <TextInput
                                     id="codigo"
                                     type="number"
