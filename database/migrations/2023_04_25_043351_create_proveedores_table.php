@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('proveedores', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('empresa');
             $table->string('name');
-            $table->bigInteger('cedula');
-            $table->string('ruc')->nullable();
+            $table->bigInteger('cedula')->nullable();
+            $table->string('ruc');
             $table->string('direccion');
             $table->string('barrio')->nullable();
             $table->string('callelateral')->nullable();

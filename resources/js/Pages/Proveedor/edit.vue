@@ -14,6 +14,7 @@ proveedor: Object
 });
 
 const form = useForm({
+    empresa: props.proveedor.empresa,
     name: props.proveedor.name,
     cedula: props.proveedor.cedula,
     ruc: props.proveedor.ruc,
@@ -57,6 +58,22 @@ const submit = () => {
                     <div class="px-10 pb-10 pt-5 overflow-y-auto">
 
                         <form @submit.prevent="submit">
+                            <div>
+                                <InputLabel for="empresa" value="Empresa" class="text-gray-600"/>
+
+                                <TextInput
+                                    id="empresa"
+                                    type="text"
+                                    class="mt-1 block w-full bg-gray-200 text-gray-600"
+                                    v-model="form.empresa"
+                                    requiredtext-gray-600
+                                    autofocus
+                                    autocomplete="empresa"
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.empresa" />
+                            </div>
+
                             <div>
                                 <InputLabel for="name" value="Nombre" class="text-gray-600"/>
 

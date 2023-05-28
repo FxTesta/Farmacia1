@@ -9,6 +9,7 @@ import TextInput from '@/Components/TextInput.vue';
 import {ArrowLeftIcon} from "@heroicons/vue/outline";
 
 const form = useForm({
+    empresa: '',
     name: '',
     cedula: '',
     ruc: '',
@@ -52,6 +53,22 @@ const submit = () => {
 
                         <form @submit.prevent="submit">
                             <div>
+                                <InputLabel for="empresa" value="Empresa" class="text-gray-600"/>
+
+                                <TextInput
+                                    id="empresa"
+                                    type="text"
+                                    class="mt-1 block w-full bg-gray-200 text-gray-600"
+                                    v-model="form.empresa"
+                                    required
+                                    autofocus
+                                    autocomplete="empresa"
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.empresa" />
+                            </div>
+
+                            <div>
                                 <InputLabel for="name" value="Nombre" class="text-gray-600"/>
 
                                 <TextInput
@@ -60,7 +77,6 @@ const submit = () => {
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.name"
                                     required
-                                    autofocus
                                     autocomplete="name"
                                 />
 
@@ -76,7 +92,6 @@ const submit = () => {
                                     type="number"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.cedula"
-                                    required
                                     autocomplete="cedula"
                                 />
 
@@ -84,13 +99,14 @@ const submit = () => {
                             </div>
 
                             <div class="mt-4">
-                                <InputLabel for="ruc" value="RUC (opcional)" class="text-gray-600"/>
+                                <InputLabel for="ruc" value="RUC (DE LA EMPRESA)" class="text-gray-600"/>
 
                                 <TextInput
                                     id="ruc"
                                     type="text"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.ruc"
+                                    required
                                     autocomplete="ruc"
                                 />
 
@@ -155,7 +171,7 @@ const submit = () => {
                             </div>
 
                             <div class="mt-4">
-                                <InputLabel for="telefono" value="Numero Telefono" class="text-gray-600"/>
+                                <InputLabel for="telefono" value="Contacto" class="text-gray-600"/>
 
                                 <TextInput
                                     id="telefono"

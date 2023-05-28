@@ -61,21 +61,22 @@ proveedor: Object
                             <thead>
                                 <tr class="border-b border-slate-300 text-gray-700 text-left">
                                     <th>ID</th>
-                                    <th>Nombre</th>
-                                    <th>Cédula</th>
+                                    <th>Empresa</th>
                                     <th>RUC</th>
+                                    <th>Nombre</th>
                                     <th>Dirección</th>
+                                    <th>Contacto</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-400 divide-opacity-30">
                                 <tr v-for="proveedores in proveedor">
                                     <td class="text-gray-700 py-4">{{proveedores.id}}</td>
-                                    <td class="text-gray-700 py-4">{{proveedores.name}}</td>
-                                    <td class="text-gray-700 py-4">{{proveedores.cedula}}</td>
-
+                                    <td class="text-gray-700 py-4">{{proveedores.empresa}}</td>
                                     <td class="text-gray-700 py-4">{{proveedores.ruc}}</td>
+                                    <td class="text-gray-700 py-4">{{proveedores.name}}</td>
                                     <td class="py-4 inline-flex">{{proveedores.direccion}}</td>
+                                    <td class="text-gray-700 py-4">{{proveedores.telefono}}</td>
                                     <td class="py-4">
                                         <div class="inline-flex">          
                                             <Link 

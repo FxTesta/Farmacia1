@@ -26,9 +26,10 @@ class ProveedorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'empresa' => 'required',
             'name' => 'required|string|max:255',
-            'cedula' => 'required',
-            'ruc' => 'string|max:255|nullable',
+            'cedula' => 'nullable|string|max:255|nullable',
+            'ruc' => 'required',
             'direccion' => 'required|string|max:255',
             'barrio' => 'string|max:255|nullable',
             'callelateral' => 'string|max:255|nullable',
@@ -38,6 +39,7 @@ class ProveedorController extends Controller
         ]);
 
         Proveedor::create([
+            'empresa' => $request->empresa,
             'name' => $request->name,
             'cedula' => $request->cedula,
             'ruc' => $request->ruc,
@@ -72,7 +74,6 @@ class ProveedorController extends Controller
     {
         request()->validate([
             'name' => ['required'],
-            'cedula' =>['required'],
             'ruc' =>['required'],
             'direccion' =>['required'],
             'referencia' =>['required'],
@@ -83,7 +84,6 @@ class ProveedorController extends Controller
 
         $proveedor->update([
             'name' => request('name'),
-            'cedula' => request('cedula'),
             'ruc' => request('ruc'),
             'direccion' => request('direccion'),
             'referencia' => request('referencia'),
