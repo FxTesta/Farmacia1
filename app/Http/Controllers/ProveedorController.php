@@ -41,7 +41,6 @@ class ProveedorController extends Controller
         Proveedor::create([
             'empresa' => $request->empresa,
             'name' => $request->name,
-            'cedula' => $request->cedula,
             'ruc' => $request->ruc,
             'direccion' => $request->direccion,
             'barrio' => $request->barrio,

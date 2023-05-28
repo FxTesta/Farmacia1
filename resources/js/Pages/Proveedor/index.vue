@@ -25,7 +25,6 @@ proveedor: Object
             <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8 ml-16">
                 <div class="-mt-10">
                     <div class="flex justify-end">
-                       <!-- <span class="pt-2 pr-6">hola</span>-->
                        <div class="inline-flex space-x-2 mb-2 mt-2 mr-2">
                             <div class="mt-1">
                                 <Link 
@@ -61,7 +60,11 @@ proveedor: Object
                             <thead>
                                 <tr class="border-b border-slate-300 text-gray-700 text-left">
                                     <th>ID</th>
+<<<<<<< HEAD
                                     <th>Empresa</th>
+=======
+                                    <th>Nombre</th>
+>>>>>>> 3a8619f4d0624a7869efecd74bf3df1712f3ba14
                                     <th>RUC</th>
                                     <th>Nombre</th>
                                     <th>Dirección</th>

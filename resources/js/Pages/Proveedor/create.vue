@@ -11,7 +11,6 @@ import {ArrowLeftIcon} from "@heroicons/vue/outline";
 const form = useForm({
     empresa: '',
     name: '',
-    cedula: '',
     ruc: '',
     direccion: '',
     barrio: '',
