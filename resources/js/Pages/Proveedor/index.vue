@@ -60,11 +60,7 @@ proveedor: Object
                             <thead>
                                 <tr class="border-b border-slate-300 text-gray-700 text-left">
                                     <th>ID</th>
-<<<<<<< HEAD
                                     <th>Empresa</th>
-=======
-                                    <th>Nombre</th>
->>>>>>> 3a8619f4d0624a7869efecd74bf3df1712f3ba14
                                     <th>RUC</th>
                                     <th>Nombre</th>
                                     <th>Dirección</th>
