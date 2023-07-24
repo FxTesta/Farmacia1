@@ -28,8 +28,8 @@ class ProveedorController extends Controller
         $request->validate([
             'empresa' => 'required',
             'name' => 'required|string|max:255',
-            'cedula' => 'nullable|string|max:255|nullable',
             'ruc' => 'required',
+            'dv',
             'direccion' => 'required|string|max:255',
             'barrio' => 'string|max:255|nullable',
             'callelateral' => 'string|max:255|nullable',
@@ -42,6 +42,7 @@ class ProveedorController extends Controller
             'empresa' => $request->empresa,
             'name' => $request->name,
             'ruc' => $request->ruc,
+            'dv' => $request->dv,
             'direccion' => $request->direccion,
             'barrio' => $request->barrio,
             'callelateral' => $request->callelateral,
@@ -74,16 +75,18 @@ class ProveedorController extends Controller
         request()->validate([
             'name' => ['required'],
             'ruc' =>['required'],
+            'dv' =>['required'],
             'direccion' =>['required'],
-            'referencia' =>['required'],
+            'referencia',
             'telefono' =>['required'],
-            'email' =>['required'],
+            'email',
             
         ]);
 
         $proveedor->update([
             'name' => request('name'),
             'ruc' => request('ruc'),
+            'dv' => request('dv'),
             'direccion' => request('direccion'),
             'referencia' => request('referencia'),
             'telefono' => request('telefono'),

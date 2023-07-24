@@ -15,8 +15,8 @@ return new class extends Migration
             $table->increments('id');
             $table->string('empresa');
             $table->string('name');
-            $table->bigInteger('cedula')->nullable();
             $table->string('ruc');
+            $table->bigInteger('dv')->nullable();
             $table->string('direccion');
             $table->string('barrio')->nullable();
             $table->string('callelateral')->nullable();

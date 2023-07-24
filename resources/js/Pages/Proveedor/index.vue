@@ -62,6 +62,7 @@ proveedor: Object
                                     <th>ID</th>
                                     <th>Empresa</th>
                                     <th>RUC</th>
+                                    <th>DV</th>
                                     <th>Nombre</th>
                                     <th>Dirección</th>
                                     <th>Contacto</th>
@@ -73,6 +74,7 @@ proveedor: Object
                                     <td class="text-gray-700 py-4">{{proveedores.id}}</td>
                                     <td class="text-gray-700 py-4">{{proveedores.empresa}}</td>
                                     <td class="text-gray-700 py-4">{{proveedores.ruc}}</td>
+                                    <td class="text-gray-700 py-4">{{proveedores.dv}}</td>
                                     <td class="text-gray-700 py-4">{{proveedores.name}}</td>
                                     <td class="py-4 inline-flex">{{proveedores.direccion}}</td>
                                     <td class="text-gray-700 py-4">{{proveedores.telefono}}</td>

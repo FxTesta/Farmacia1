@@ -7,7 +7,9 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import {ArrowLeftIcon} from "@heroicons/vue/outline";
-//import TopBar from '@/Layouts/TopBar.vue';
+import { ref, onBeforeUpdate } from 'vue';
+import { calcularDigitoVerificador } from '@/dv';
+
 
 const props = defineProps({
 proveedor: Object
@@ -16,14 +18,28 @@ proveedor: Object
 const form = useForm({
     empresa: props.proveedor.empresa,
     name: props.proveedor.name,
-    cedula: props.proveedor.cedula,
     ruc: props.proveedor.ruc,
+    dv: props.proveedor.dv,
     direccion: props.proveedor.direccion,
     referencia: props.proveedor.referencia,
     barrio: props.proveedor.barrio,
     callelateral: props.proveedor.callelateral,
     telefono: props.proveedor.telefono,
     email: props.proveedor.email,
+});
+
+const calculatedDV = ref(null);
+
+const calculateDV = () => {
+    const ruc = form.ruc;
+    const dv = calcularDigitoVerificador(ruc);
+    form.dv = dv;
+};
+
+calculateDV();
+
+onBeforeUpdate(() => {
+    calculateDV();
 });
 
 const submit = () => {
@@ -82,29 +98,11 @@ const submit = () => {
                                     type="text"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.name"
-                                    requiredtext-gray-600
-                                    autofocus
+                                    required
                                     autocomplete="name"
                                 />
 
                                 <InputError class="mt-2" :message="form.errors.name" />
-                            </div>
-
-                         
-                            <div class="mt-4">
-                                <InputLabel for="cedula" value="Cedula" class="text-gray-600"/>
-
-                                <TextInput
-                                    id="cedula"
-                                    type="number"
-                                    class="mt-1 block w-full bg-gray-200 text-gray-600"
-                                    v-model="form.cedula"
-                                    required
-                                    autofocus
-                                    autocomplete="cedula"
-                                />
-
-                                <InputError class="mt-2" :message="form.errors.cedula" />
                             </div>
 
                             <div class="mt-4">
@@ -117,9 +115,27 @@ const submit = () => {
                                     v-model="form.ruc"
                                     required
                                     autocomplete="ruc"
+                                    @input="calculateDV"
                                 />
 
+                                <div v-if="calculatedDV !== null" class="text-gray-600 mt-1">DV: {{ calculatedDV }}</div>
+
                                 <InputError class="mt-2" :message="form.errors.ruc" />
+                            </div>
+
+                            <div class="mt-4">
+                                <InputLabel for="dv" value="dv" class="text-gray-600"/>
+
+                                <TextInput
+                                    id="dv"
+                                    type="number"
+                                    class="mt-1 block w-full bg-gray-200 text-gray-600"
+                                    v-model="form.dv"
+                                    autocomplete="dv"
+                                    placeholder="se genera al guardar"
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.dv" />
                             </div>
 
                             <div class="mt-4">
@@ -145,7 +161,6 @@ const submit = () => {
                                     type="text"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.callelateral"
-                                    required
                                     autocomplete="callelateral"
                                 />
 
@@ -160,7 +175,6 @@ const submit = () => {
                                     type="text"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.barrio"
-                                    required
                                     autocomplete="barrio"
                                 />
 
@@ -175,7 +189,6 @@ const submit = () => {
                                     type="text"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.referencia"
-                                    required
                                     autocomplete="referencia"
                                 />
 
@@ -190,7 +203,6 @@ const submit = () => {
                                     type="number"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.telefono"
-                                    required
                                     autocomplete="telefono"
                                 />
 
@@ -205,7 +217,6 @@ const submit = () => {
                                     type="email"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.email"
-                                    required
                                     autocomplete="email"
                                 />
 
