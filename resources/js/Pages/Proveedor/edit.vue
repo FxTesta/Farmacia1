@@ -82,7 +82,7 @@ const submit = () => {
                                     type="text"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.empresa"
-                                    requiredtext-gray-600
+                                    required
                                     autofocus
                                     autocomplete="empresa"
                                 />
@@ -157,7 +157,7 @@ const submit = () => {
                                 <InputLabel for="callelateral" value="Calle lateral" class="text-gray-600"/>
 
                                 <TextInput
-                                    id="direccion"
+                                    id="callelateral"
                                     type="text"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.callelateral"

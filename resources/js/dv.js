@@ -2,6 +2,11 @@ export function calcularDigitoVerificador(p_ruc, p_basemax) {
 
     p_basemax = typeof p_basemax !== 'undefined' ? p_basemax : 11;
 
+    if (!p_ruc || p_ruc.trim() === '') {
+        // Si no se ingresó RUC, devolver una cadena vacía
+        return '';
+    }
+
     let p_rucStr = p_ruc.toString(); // convertimos el parametro a una cadena
     let v_caracter = "";
     let v_numero_al = "";

@@ -29,6 +29,7 @@ class ClienteController extends Controller
             'name' => 'required|string|max:255',
             'cedula' => 'required',
             'ruc' => 'string|max:255|nullable',
+            'dv',
             'direccion' => 'required|string|max:255',
             'barrio' => 'string|max:255|nullable',
             'callelateral' => 'string|max:255|nullable',
@@ -41,6 +42,7 @@ class ClienteController extends Controller
             'name' => $request->name,
             'cedula' => $request->cedula,
             'ruc' => $request->ruc,
+            'dv' => $request->dv,
             'direccion' => $request->direccion,
             'barrio' => $request->barrio,
             'callelateral' => $request->callelateral,
@@ -73,11 +75,12 @@ class ClienteController extends Controller
         request()->validate([
             'name' => ['required'],
             'cedula' =>['required'],
-            'ruc' =>['required'],
+            'ruc',
+            'dv',
             'direccion' =>['required'],
-            'referencia' =>['required'],
+            'referencia',
             'telefono' =>['required'],
-            'email' =>['required'],
+            'email' ,
             
         ]);
 
@@ -85,6 +88,7 @@ class ClienteController extends Controller
             'name' => request('name'),
             'cedula' => request('cedula'),
             'ruc' => request('ruc'),
+            'dv' => request('dv'),
             'direccion' => request('direccion'),
             'referencia' => request('referencia'),
             'telefono' => request('telefono'),
