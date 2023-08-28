@@ -15,8 +15,9 @@ export default {
         },
         {
           href: '/dashboard',
-          title: 'Dashboard',
-          icon: 'fa fa-dashboard'
+          title: 'Inicio',
+          icon: 'fa-solid fa-house-chimney-medical'
+                 
         },
         {
           href: '/cliente',
@@ -29,7 +30,29 @@ export default {
               icon: 'fa fa-user',
             }
           ]*/
+        },
+
+        
+        {
+          href: '/producto',
+          title: 'Productos',
+          icon: 'fa-sharp fa-solid fa-cart-shopping'
+          
+        },
+
+        {
+          href: '/proveedor',
+          title: 'Proveedores',
+          icon: 'fa-solid fa-truck-field',
+          /*child: [
+            {
+              href: '/charts/sublink',
+              title: 'Sub Link',
+              icon: 'fa fa-user',
+            }
+          ]*/
         }
+
       ],
       collapsed: {
         type: Boolean,

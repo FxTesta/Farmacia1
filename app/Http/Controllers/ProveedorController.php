@@ -2,45 +2,45 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cliente;
+use App\Models\Proveedor;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 
-class ClienteController extends Controller
+class ProveedorController extends Controller
 {
     
 
     public function index()
     {
-        $cliente = Cliente::all();
-        return Inertia::render('Cliente/index',[
-            'cliente' => $cliente,
+        $proveedor = Proveedor::all();
+        return Inertia::render('Proveedor/index',[
+            'proveedor' => $proveedor,
         ]);
     }
 
     public function create()
     {
-        return Inertia::render('Cliente/create');
+        return Inertia::render('Proveedor/create');
     }
 
     public function store(Request $request)
     {
         $request->validate([
+            'empresa' => 'required',
             'name' => 'required|string|max:255',
-            'cedula' => 'required',
-            'ruc' => 'string|max:255|nullable',
+            'ruc' => 'required',
             'dv',
             'direccion' => 'required|string|max:255',
             'barrio' => 'string|max:255|nullable',
             'callelateral' => 'string|max:255|nullable',
             'referencia' => 'string|max:255|nullable',
             'telefono' => 'required|max:255',
-            'email' => 'nullable|string|email|max:255|unique:'.Cliente::class,
+            'email' => 'nullable|string|email|max:255|unique:'.Proveedor::class,
         ]);
 
-        Cliente::create([
+        Proveedor::create([
+            'empresa' => $request->empresa,
             'name' => $request->name,
-            'cedula' => $request->cedula,
             'ruc' => $request->ruc,
             'dv' => $request->dv,
             'direccion' => $request->direccion,
@@ -51,42 +51,40 @@ class ClienteController extends Controller
             'email' => $request->email,
         ]);
 
-        return redirect()->route('cliente');
+        return redirect()->route('proveedor');
         
     }
 
-    public function destroy(Cliente $cliente)
+    public function destroy(Proveedor $proveedor)
     {
-        $cliente->delete();
-        return redirect()->back()->with('toast', 'Usuario Eliminado');
+        $proveedor->delete();
+        return redirect()->back()->with('toast', 'Proveedor Eliminado');
     }
 
-    public function edit($cliente_id)
+    public function edit($proveedor_id)
     {
-        $cliente = Cliente::find($cliente_id);
+        $proveedor = Proveedor::find($proveedor_id);
 
-        return Inertia::render('Cliente/edit',[
-            'cliente' => $cliente,
+        return Inertia::render('Proveedor/edit',[
+            'proveedor' => $proveedor,
         ]);
     }
 
-    public function update(Cliente $cliente)
+    public function update(Proveedor $proveedor)
     {
         request()->validate([
             'name' => ['required'],
-            'cedula' =>['required'],
-            'ruc',
-            'dv',
+            'ruc' =>['required'],
+            'dv' =>['required'],
             'direccion' =>['required'],
             'referencia',
             'telefono' =>['required'],
-            'email' ,
+            'email',
             
         ]);
 
-        $cliente->update([
+        $proveedor->update([
             'name' => request('name'),
-            'cedula' => request('cedula'),
             'ruc' => request('ruc'),
             'dv' => request('dv'),
             'direccion' => request('direccion'),
@@ -95,7 +93,7 @@ class ClienteController extends Controller
             'email' => request('email'),
             
         ]);
-        return redirect()->route('cliente');
+        return redirect()->route('proveedor');
     }
     
 }

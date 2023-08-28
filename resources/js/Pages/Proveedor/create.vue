@@ -12,8 +12,8 @@ import { calcularDigitoVerificador } from '@/dv';
 
 
 const form = useForm({
+    empresa: '',
     name: '',
-    cedula: '',
     ruc: '',
     dv: '',
     direccion: '',
@@ -39,7 +39,7 @@ onBeforeUpdate(() => {
 });
 
 const submit = () => {
-    form.post(route('cliente.store'));
+    form.post(route('proveedor.store'));
 };
 
 </script>
@@ -51,7 +51,7 @@ const submit = () => {
     <AuthenticatedLayout>
 
         <template #header>
-            <h2 class="flex uppercase font-bold text-xl text-gray-800 leading-tight">Crear Cliente</h2>
+            <h2 class="flex uppercase font-bold text-xl text-gray-800 leading-tight">Registrar Proveedor</h2>
         </template>
 
         <div class="py-12">
@@ -60,7 +60,7 @@ const submit = () => {
                 <div class="-mt-9 mb-2">
                         <Link
                             class="w-8 h-8 bg-black/20 hover:bg-black/30 rounded-md grid place-content-center"
-                            as="button" :href="route('cliente')">
+                            as="button" :href="route('proveedor')">
                             <ArrowLeftIcon class="w-5 h-5" />
                         </Link>
                 </div>
@@ -70,7 +70,23 @@ const submit = () => {
 
                         <form @submit.prevent="submit">
                             <div>
-                                <InputLabel for="name" value="Nombre" class="text-gray-600"/>
+                                <InputLabel for="empresa" value="Empresa" class="text-gray-600"/>
+
+                                <TextInput
+                                    id="empresa"
+                                    type="text"
+                                    class="mt-1 block w-full bg-gray-200 text-gray-600"
+                                    v-model="form.empresa"
+                                    required
+                                    autofocus
+                                    autocomplete="empresa"
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.empresa" />
+                            </div>
+
+                            <div>
+                                <InputLabel for="name" value="Nombre y apellido del proveedor" class="text-gray-600"/>
 
                                 <TextInput
                                     id="name"
@@ -78,37 +94,21 @@ const submit = () => {
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.name"
                                     required
-                                    autofocus
                                     autocomplete="name"
                                 />
 
                                 <InputError class="mt-2" :message="form.errors.name" />
                             </div>
 
-                            
                             <div class="mt-4">
-                                <InputLabel for="cedula" value="Cedula" class="text-gray-600"/>
-
-                                <TextInput
-                                    id="cedula"
-                                    type="number"
-                                    class="mt-1 block w-full bg-gray-200 text-gray-600"
-                                    v-model="form.cedula"
-                                    required
-                                    autocomplete="cedula"
-                                />
-
-                                <InputError class="mt-2" :message="form.errors.cedula" />
-                            </div>
-
-                            <div class="mt-4">
-                                <InputLabel for="ruc" value="RUC (opcional)" class="text-gray-600"/>
+                                <InputLabel for="ruc" value="RUC (DE LA EMPRESA)" class="text-gray-600"/>
 
                                 <TextInput
                                     id="ruc"
                                     type="text"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.ruc"
+                                    required
                                     autocomplete="ruc"
                                     placeholder="cargar sin guion ni dv"
                                     @input="calculateDV"
@@ -193,7 +193,7 @@ const submit = () => {
                             </div>
 
                             <div class="mt-4">
-                                <InputLabel for="telefono" value="Numero Telefono" class="text-gray-600"/>
+                                <InputLabel for="telefono" value="Contacto" class="text-gray-600"/>
 
                                 <TextInput
                                     id="telefono"
@@ -224,7 +224,7 @@ const submit = () => {
                             <div class="flex items-center justify-end mt-6">
 
                                 <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                    Crear Cliente
+                                    Registrar Proveedor
                                 </PrimaryButton>
                             </div>
                         </form>
