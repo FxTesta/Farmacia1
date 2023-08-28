@@ -223,6 +223,7 @@ const submit = () => {
                                         v-model="form.preciocompra"
                                         required
                                         autocomplete="preciocompra"
+                                        disabled
                                     />
                                     <InputError class="mt-2" :message="form.errors.preciocompra" />
                                 </div>
@@ -236,7 +237,7 @@ const submit = () => {
                                         type="number"
                                         class="mt-1 block w-full bg-gray-200 text-gray-600"
                                         v-model="form.descuento"
-                                        required
+                                        
                                         autocomplete="descuento"
                                     />
                                     <InputError class="mt-2" :message="form.errors.descuento" />
@@ -248,7 +249,7 @@ const submit = () => {
                                         type="text"
                                         class="mt-1 w-full bg-gray-200 text-gray-600"
                                         v-model="form.estante"
-                                        required
+                                        
                                         autocomplete="estante"
                                     />
                                 </div>
@@ -263,8 +264,9 @@ const submit = () => {
                                         type="number"
                                         class="mt-1 block w-full bg-gray-200 text-gray-600"
                                         v-model="form.stock"
-                                        required
+                                        
                                         autocomplete="stock"
+                                        disabled
                                     />
                                     <InputError class="mt-2" :message="form.errors.stock" />
                                 </div>

@@ -284,10 +284,9 @@ function mindate(){
                                         type="number"
                                         class="mt-1 block w-full bg-gray-200 text-gray-600"
                                         v-model="form.descuento"
-                                        required
                                         autocomplete="descuento"
                                     />
-                                    <InputError class="mt-2" :message="form.errors.descuento" />
+                                    
                                 </div>
                                 <div>
                                     <InputLabel for="Estante" value="Estante" class="text-gray-600 " />
@@ -296,7 +295,7 @@ function mindate(){
                                         type="text"
                                         class="mt-1 w-full bg-gray-200 text-gray-600"
                                         v-model="form.estante"
-                                        required
+                                        
                                         autocomplete="estante"
                                     />
                                 </div>
@@ -310,7 +309,6 @@ function mindate(){
                                         type="number"
                                         class="mt-1 block w-full bg-gray-200 text-gray-600"
                                         v-model="form.stock"
-                                        required
                                         autocomplete="stock"
                                     />
                                     <InputError class="mt-2" :message="form.errors.stock" />
