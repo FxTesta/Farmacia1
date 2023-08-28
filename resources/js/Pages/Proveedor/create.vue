@@ -7,17 +7,35 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import {ArrowLeftIcon} from "@heroicons/vue/outline";
+import { ref, onBeforeUpdate } from 'vue';
+import { calcularDigitoVerificador } from '@/dv';
+
 
 const form = useForm({
+    empresa: '',
     name: '',
-    cedula: '',
     ruc: '',
+    dv: '',
     direccion: '',
     barrio: '',
     callelateral: '',
     referencia: '',
     telefono: '',
     email: '',
+});
+
+const calculatedDV = ref(null);
+
+const calculateDV = () => {
+    const ruc = form.ruc;
+    const dv = calcularDigitoVerificador(ruc);
+    form.dv = dv;
+};
+
+calculateDV();
+
+onBeforeUpdate(() => {
+    calculateDV();
 });
 
 const submit = () => {
@@ -52,7 +70,23 @@ const submit = () => {
 
                         <form @submit.prevent="submit">
                             <div>
-                                <InputLabel for="name" value="Nombre" class="text-gray-600"/>
+                                <InputLabel for="empresa" value="Empresa" class="text-gray-600"/>
+
+                                <TextInput
+                                    id="empresa"
+                                    type="text"
+                                    class="mt-1 block w-full bg-gray-200 text-gray-600"
+                                    v-model="form.empresa"
+                                    required
+                                    autofocus
+                                    autocomplete="empresa"
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.empresa" />
+                            </div>
+
+                            <div>
+                                <InputLabel for="name" value="Nombre y apellido del proveedor" class="text-gray-600"/>
 
                                 <TextInput
                                     id="name"
@@ -60,41 +94,45 @@ const submit = () => {
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.name"
                                     required
-                                    autofocus
                                     autocomplete="name"
                                 />
 
                                 <InputError class="mt-2" :message="form.errors.name" />
                             </div>
 
-                            
                             <div class="mt-4">
-                                <InputLabel for="cedula" value="Cedula" class="text-gray-600"/>
-
-                                <TextInput
-                                    id="cedula"
-                                    type="number"
-                                    class="mt-1 block w-full bg-gray-200 text-gray-600"
-                                    v-model="form.cedula"
-                                    required
-                                    autocomplete="cedula"
-                                />
-
-                                <InputError class="mt-2" :message="form.errors.cedula" />
-                            </div>
-
-                            <div class="mt-4">
-                                <InputLabel for="ruc" value="RUC (opcional)" class="text-gray-600"/>
+                                <InputLabel for="ruc" value="RUC (DE LA EMPRESA)" class="text-gray-600"/>
 
                                 <TextInput
                                     id="ruc"
                                     type="text"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.ruc"
+                                    required
                                     autocomplete="ruc"
+                                    placeholder="cargar sin guion ni dv"
+                                    @input="calculateDV"
                                 />
 
+                                <div v-if="calculatedDV !== null" class="text-gray-600 mt-1">DV: {{ calculatedDV }}</div>
+
                                 <InputError class="mt-2" :message="form.errors.ruc" />
+                            </div>
+
+                            <div class="mt-4">
+                                <InputLabel for="dv" value="DV" class="text-gray-600"/>
+
+                                <TextInput
+                                    id="dv"
+                                    type="text"
+                                    class="mt-1 block w-full bg-gray-200 text-gray-600"
+                                    autocomplete="dv"
+                                    readonly
+                                    placeholder="se genera al guardar"
+                                    
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.dv" />
                             </div>
 
                             <div class="mt-4">
@@ -155,7 +193,7 @@ const submit = () => {
                             </div>
 
                             <div class="mt-4">
-                                <InputLabel for="telefono" value="Numero Telefono" class="text-gray-600"/>
+                                <InputLabel for="telefono" value="Contacto" class="text-gray-600"/>
 
                                 <TextInput
                                     id="telefono"

@@ -74,6 +74,6 @@ Route::controller(ProveedorController::class)->middleware('auth')->group(functio
     Route::post('/proveedor', 'store')->name('proveedor.store');
     Route::get('/editar-proveedor/{proveedor_id}', 'edit')->name('proveedor.edit');
     Route::put('/editar-proveedor/{proveedor}', 'update')->name('proveedor.update');
-    Route::delete('/cliente/proveedor/{proveedor}', 'destroy')->name('proveedor.destroy');
+    Route::delete('/proveedor/delete/{proveedor}', 'destroy')->name('proveedor.destroy');
 
 });

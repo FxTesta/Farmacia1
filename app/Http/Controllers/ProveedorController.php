@@ -26,9 +26,10 @@ class ProveedorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'empresa' => 'required',
             'name' => 'required|string|max:255',
-            'cedula' => 'required',
-            'ruc' => 'string|max:255|nullable',
+            'ruc' => 'required',
+            'dv',
             'direccion' => 'required|string|max:255',
             'barrio' => 'string|max:255|nullable',
             'callelateral' => 'string|max:255|nullable',
@@ -38,9 +39,10 @@ class ProveedorController extends Controller
         ]);
 
         Proveedor::create([
+            'empresa' => $request->empresa,
             'name' => $request->name,
-            'cedula' => $request->cedula,
             'ruc' => $request->ruc,
+            'dv' => $request->dv,
             'direccion' => $request->direccion,
             'barrio' => $request->barrio,
             'callelateral' => $request->callelateral,
@@ -72,19 +74,19 @@ class ProveedorController extends Controller
     {
         request()->validate([
             'name' => ['required'],
-            'cedula' =>['required'],
             'ruc' =>['required'],
+            'dv' =>['required'],
             'direccion' =>['required'],
-            'referencia' =>['required'],
+            'referencia',
             'telefono' =>['required'],
-            'email' =>['required'],
+            'email',
             
         ]);
 
         $proveedor->update([
             'name' => request('name'),
-            'cedula' => request('cedula'),
             'ruc' => request('ruc'),
+            'dv' => request('dv'),
             'direccion' => request('direccion'),
             'referencia' => request('referencia'),
             'telefono' => request('telefono'),

@@ -64,6 +64,7 @@ cliente: Object
                                     <th>Nombre</th>
                                     <th>Cédula</th>
                                     <th>RUC</th>
+                                    <th>DV</th>
                                     <th>Dirección</th>
                                     <th>Acciones</th>
                                 </tr>
@@ -75,6 +76,7 @@ cliente: Object
                                     <td class="text-gray-700 py-4">{{clientes.cedula}}</td>
 
                                     <td class="text-gray-700 py-4">{{clientes.ruc}}</td>
+                                    <td class="text-gray-700 py-4">{{clientes.dv}}</td>
                                     <td class="py-4 inline-flex">{{clientes.direccion}}</td>
                                     <td class="py-4">
                                         <div class="inline-flex">          

@@ -7,6 +7,8 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import {ArrowLeftIcon} from "@heroicons/vue/outline";
+import { ref, onBeforeUpdate } from 'vue';
+import { calcularDigitoVerificador } from '@/dv';
 //import TopBar from '@/Layouts/TopBar.vue';
 
 const props = defineProps({
@@ -17,12 +19,27 @@ const form = useForm({
     name: props.cliente.name,
     cedula: props.cliente.cedula,
     ruc: props.cliente.ruc,
+    dv: props.cliente.dv,
     direccion: props.cliente.direccion,
     referencia: props.cliente.referencia,
     barrio: props.cliente.barrio,
     callelateral: props.cliente.callelateral,
     telefono: props.cliente.telefono,
     email: props.cliente.email,
+});
+
+const calculatedDV = ref(null);
+
+const calculateDV = () => {
+    const ruc = form.ruc;
+    const dv = calcularDigitoVerificador(ruc);
+    form.dv = dv;
+};
+
+calculateDV();
+
+onBeforeUpdate(() => {
+    calculateDV();
 });
 
 const submit = () => {
@@ -91,18 +108,36 @@ const submit = () => {
                             </div>
 
                             <div class="mt-4">
-                                <InputLabel for="ruc" value="Ruc" class="text-gray-600"/>
+                                <InputLabel for="ruc" value="Ruc Opcional" class="text-gray-600"/>
 
                                 <TextInput
                                     id="ruc"
                                     type="text"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.ruc"
-                                    required
                                     autocomplete="ruc"
+                                    @input="calculateDV"
                                 />
 
+                                <div v-if="calculatedDV !== null" class="text-gray-600 mt-1">DV: {{ calculatedDV }}</div>
+
                                 <InputError class="mt-2" :message="form.errors.ruc" />
+                            </div>
+
+                            <div class="mt-4">
+                                <InputLabel for="dv" value="dv" class="text-gray-600"/>
+
+                                <TextInput
+                                    id="dv"
+                                    type="number"
+                                    class="mt-1 block w-full bg-gray-200 text-gray-600"
+                                    v-model="form.dv"
+                                    autocomplete="dv"
+                                    placeholder="se genera al guardar"
+                                    readonly
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.dv" />
                             </div>
 
                             <div class="mt-4">
@@ -124,11 +159,10 @@ const submit = () => {
                                 <InputLabel for="callelateral" value="Calle lateral" class="text-gray-600"/>
 
                                 <TextInput
-                                    id="direccion"
+                                    id="callelateral"
                                     type="text"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.callelateral"
-                                    required
                                     autocomplete="callelateral"
                                 />
 
@@ -143,7 +177,7 @@ const submit = () => {
                                     type="text"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.barrio"
-                                    required
+                                   
                                     autocomplete="barrio"
                                 />
 
@@ -158,7 +192,6 @@ const submit = () => {
                                     type="text"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.referencia"
-                                    required
                                     autocomplete="referencia"
                                 />
 
@@ -188,7 +221,7 @@ const submit = () => {
                                     type="email"
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.email"
-                                    required
+                                    
                                     autocomplete="email"
                                 />
 

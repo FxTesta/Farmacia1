@@ -25,7 +25,6 @@ proveedor: Object
             <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8 ml-16">
                 <div class="-mt-10">
                     <div class="flex justify-end">
-                       <!-- <span class="pt-2 pr-6">hola</span>-->
                        <div class="inline-flex space-x-2 mb-2 mt-2 mr-2">
                             <div class="mt-1">
                                 <Link 
@@ -61,21 +60,24 @@ proveedor: Object
                             <thead>
                                 <tr class="border-b border-slate-300 text-gray-700 text-left">
                                     <th>ID</th>
-                                    <th>Nombre</th>
-                                    <th>Cédula</th>
+                                    <th>Empresa</th>
                                     <th>RUC</th>
+                                    <th>DV</th>
+                                    <th>Nombre</th>
                                     <th>Dirección</th>
+                                    <th>Contacto</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-400 divide-opacity-30">
                                 <tr v-for="proveedores in proveedor">
                                     <td class="text-gray-700 py-4">{{proveedores.id}}</td>
-                                    <td class="text-gray-700 py-4">{{proveedores.name}}</td>
-                                    <td class="text-gray-700 py-4">{{proveedores.cedula}}</td>
-
+                                    <td class="text-gray-700 py-4">{{proveedores.empresa}}</td>
                                     <td class="text-gray-700 py-4">{{proveedores.ruc}}</td>
+                                    <td class="text-gray-700 py-4">{{proveedores.dv}}</td>
+                                    <td class="text-gray-700 py-4">{{proveedores.name}}</td>
                                     <td class="py-4 inline-flex">{{proveedores.direccion}}</td>
+                                    <td class="text-gray-700 py-4">{{proveedores.telefono}}</td>
                                     <td class="py-4">
                                         <div class="inline-flex">          
                                             <Link 

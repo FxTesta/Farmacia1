@@ -7,17 +7,35 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import {ArrowLeftIcon} from "@heroicons/vue/outline";
+import { ref, onBeforeUpdate } from 'vue';
+import { calcularDigitoVerificador } from '@/dv';
+
 
 const form = useForm({
     name: '',
     cedula: '',
     ruc: '',
+    dv: '',
     direccion: '',
     barrio: '',
     callelateral: '',
     referencia: '',
     telefono: '',
     email: '',
+});
+
+const calculatedDV = ref(null);
+
+const calculateDV = () => {
+    const ruc = form.ruc;
+    const dv = calcularDigitoVerificador(ruc);
+    form.dv = dv;
+};
+
+calculateDV();
+
+onBeforeUpdate(() => {
+    calculateDV();
 });
 
 const submit = () => {
@@ -92,9 +110,29 @@ const submit = () => {
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.ruc"
                                     autocomplete="ruc"
+                                    placeholder="cargar sin guion ni dv"
+                                    @input="calculateDV"
                                 />
 
+                                <div v-if="calculatedDV !== null" class="text-gray-600 mt-1">DV: {{ calculatedDV }}</div>
+
                                 <InputError class="mt-2" :message="form.errors.ruc" />
+                            </div>
+
+                            <div class="mt-4">
+                                <InputLabel for="dv" value="DV" class="text-gray-600"/>
+
+                                <TextInput
+                                    id="dv"
+                                    type="text"
+                                    class="mt-1 block w-full bg-gray-200 text-gray-600"
+                                    autocomplete="dv"
+                                    readonly
+                                    placeholder="se genera al guardar"
+                                    
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.dv" />
                             </div>
 
                             <div class="mt-4">
