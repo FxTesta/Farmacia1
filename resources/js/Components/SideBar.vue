@@ -19,23 +19,31 @@ export default {
           icon: 'fa-solid fa-house-chimney-medical'
                  
         },
-        {
+        /*{
           href: '/cliente',
           title: 'Clientes',
           icon: 'fa fa-user',
-          /*child: [
+          ---> /*child: [
             {
               href: '/charts/sublink',
               title: 'Sub Link',
               icon: 'fa fa-user',
             }
-          ]*/
+          ]--no olvidar que acá estaba cerrado el comentario <---
         },
+        */
 
         
         {
           href: '/producto',
           title: 'Productos',
+          icon: 'fa-sharp fa-solid fa-cart-shopping'
+          
+        },
+
+                {
+          href: '/compras',
+          title: 'Compras',
           icon: 'fa-sharp fa-solid fa-cart-shopping'
           
         },

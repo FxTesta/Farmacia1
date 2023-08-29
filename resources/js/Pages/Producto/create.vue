@@ -310,7 +310,6 @@ function mindate(){
                                         type="number"
                                         class="mt-1 block w-full bg-gray-200 text-gray-600"
                                         v-model="form.stock"
-                                        required
                                         autocomplete="stock"
                                     />
                                     <InputError class="mt-2" :message="form.errors.stock" />
@@ -324,7 +323,6 @@ function mindate(){
                                         type="number"
                                         class="mt-1 block w-full bg-gray-200 text-gray-600"
                                         v-model="form.stockmin"
-                                        required
                                         autocomplete="stockmin"
                                     />
                                     <InputError class="mt-2" :message="form.errors.stockmin" />
