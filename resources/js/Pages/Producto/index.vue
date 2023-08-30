@@ -6,18 +6,22 @@ import {PencilIcon, SearchIcon} from "@heroicons/vue/outline";
 import Delete from '@/Pages/Producto/delete.vue';
 import { ref, watch } from "vue"; 
 import Pagination from '@/Components/Pagination.vue';
+import _ from 'lodash';
 
 const props = defineProps({
-producto: Object
+producto: Object,
+filters: Object,
 });
 
-let search = ref('');
+let search = ref(props.filters.search);
 
-watch(search, value => {
+watch(search, _.debounce(function (value) {
+    console.log('disparado');
     router.get('/producto', { search: value}, {
-        preserveState: true
+        preserveState: true,
+        replace: true
     });
-});
+}, 300));
 
 </script>
 <template>

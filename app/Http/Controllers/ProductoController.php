@@ -31,12 +31,17 @@ class ProductoController extends Controller
 
 
         $producto = Producto::when($request->search, function($query, $search){
-            $query->where('marca', 'LIKE', "%{$search}%" );
+            // filtra la busqueda por marca del producto o codigo de barras
+            $query->where('marca', 'LIKE', "%{$search}%" )->orWhere('codigo', 'LIKE', "%{$search}%");;
         })
-        ->paginate(4);
+        ->paginate(3)
+        ->withQueryString();
+
+        $filters = $request->only('search');
 
         return Inertia::render('Producto/index',[
             'producto' => $producto,
+            'filters' => $filters,
         ]);
     }
 
