@@ -34,7 +34,7 @@ class ProductoController extends Controller
             // filtra la busqueda por marca del producto o codigo de barras
             $query->where('marca', 'LIKE', "%{$search}%" )->orWhere('codigo', 'LIKE', "%{$search}%");;
         })
-        ->paginate(3)
+        ->paginate(15)
         ->withQueryString();
 
         $filters = $request->only('search');
