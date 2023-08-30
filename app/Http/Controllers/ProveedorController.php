@@ -73,6 +73,7 @@ class ProveedorController extends Controller
     public function update(Proveedor $proveedor)
     {
         request()->validate([
+            'empresa' => ['required'],
             'name' => ['required'],
             'ruc' =>['required'],
             'dv' =>['required'],
@@ -84,6 +85,7 @@ class ProveedorController extends Controller
         ]);
 
         $proveedor->update([
+            'empresa' => request('empresa'),
             'name' => request('name'),
             'ruc' => request('ruc'),
             'dv' => request('dv'),
