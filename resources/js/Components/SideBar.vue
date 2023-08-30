@@ -51,9 +51,19 @@ export default {
               icon: 'fa fa-user',
             }
           ]*/
-        }
+        },
+      
+        {
+          href: '/configuracion',
+          title: 'Configuración',
+          icon: 'fa-sharp fa-solid fa-gear',
+        
+          
+        },
+
 
       ],
+      
       collapsed: {
         type: Boolean,
         default: false

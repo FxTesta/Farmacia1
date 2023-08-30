@@ -97,7 +97,14 @@ class ProductoController extends Controller
             'producto' => $producto,
         ]);
     }
+    public function updatestock(Producto $stock){
+        
+        $stock->update([
+            'stock' => request('stock'),
+        ]);
+        return redirect()->back();
 
+    }
     public function update(Producto $producto)
     {
         request()->validate([

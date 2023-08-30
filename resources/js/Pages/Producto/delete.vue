@@ -86,6 +86,7 @@ import {
 import {TrashIcon} from "@heroicons/vue/outline";
 import { router } from '@inertiajs/vue3'
 
+
 const props = defineProps({
     producto: Object
     });

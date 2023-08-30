@@ -4,10 +4,12 @@ import { Head, Link } from '@inertiajs/vue3';
 import SideBar from '@/Components/SideBar.vue';
 import {PencilIcon, UserAddIcon, SearchIcon} from "@heroicons/vue/outline";
 import Delete from '@/Pages/Producto/delete.vue';
-
+import stock from '@/Pages/Producto/venta.vue';
 const props = defineProps({
 producto: Object
 });
+     
+
 
 </script>
 <template>
@@ -27,6 +29,7 @@ producto: Object
                     <div class="flex justify-end">
                        <!-- <span class="pt-2 pr-6">hola</span>-->
                        <div class="inline-flex space-x-2 mb-2 mt-2 mr-2">
+                        
                             <div class="mt-1">
                                 <Link 
                                     :href="`/crear-producto/`"
@@ -97,10 +100,12 @@ producto: Object
                                                 as="button"
                                                 class="w-8 h-8 t hover:bg-black/30 rounded-md grid place-content-center">
                                                 <PencilIcon class="w-6 h-6"/>
-                                            </Link>
-                                        
+                                            </Link>                                        
                                             <div>
                                                 <Delete :producto="productos" :key="productos.id"/>
+                                            </div>
+                                            <div>
+                                                <stock :productos="productos" :key="productos.id"/>                                                    
                                             </div>
                                         </div>
                                                     
@@ -114,4 +119,6 @@ producto: Object
             </div>
         </div>
     </AuthenticatedLayout>
+
+
 </template>
