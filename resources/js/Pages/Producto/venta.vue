@@ -2,17 +2,16 @@
 import { Head, useForm, Link } from '@inertiajs/vue3';
 import { Popover, PopoverButton, PopoverPanel, PopoverOverlay } from '@headlessui/vue';
 import {RefreshIcon} from "@heroicons/vue/outline";
-//import { props } from '@syncfusion/ej2-vue-calendars/src/calendar/calendar.component';
 const props = defineProps({
-productos: Object
+    productos: Object
 });
 
 const form = useForm({
-    stock: props.productos.stock,
+    stock: props.productos.stock
 });
 
 function onSubmit(closePopover) {
-    form.put(route('producto.updatestock',{productos: props.productos.id}),{
+    form.put(route('productos.updatestock',{productos: props.productos.id}),{
         onSuccess: () => {
             closePopover();
         },
@@ -25,7 +24,7 @@ function onSubmit(closePopover) {
 <template>
     <Popover v-slot="{ open }" class="">
                                 <PopoverButton
-                                    :class="open "
+                                    :class="open ? 'bg-white/30 text-blue-600' : ''"
                                     class="w-8 h-8 text-black hover:bg-black/30 rounded-md grid place-content-center"
                                 >
                                     <RefreshIcon  class="w-6 h-6"/>
@@ -50,17 +49,18 @@ function onSubmit(closePopover) {
                                         >
 
                                         <form @submit.prevent="onSubmit(close)">
-                                            <label 
-                                                class="block text-sm text-gray-800 mb-2 font-bold" 
+                                            <label class="block text-sm text-gray-800 mb-2 font-bold" 
                                                 for="stock">Cantidad vendida: </label>
-                                                
+                                            
                                             <div>
                                                 <input 
+                                                    name="stock"
+                                                    id="stock"
+                                                    type="number" 
                                                     v-model="form.stock"
                                                     class="border border-gray-300 placeholder-gray-400 rounded-md mt-1 block w-full bg-white text-black text-sm shadow-sm" 
-                                                    type="number" 
-                                                    name="stock" 
-                                                    id="stock" 
+                                                     
+                                                     
                                                     placeholder="cantidad">
                                             </div>
                                             

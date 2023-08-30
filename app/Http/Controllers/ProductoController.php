@@ -102,7 +102,7 @@ class ProductoController extends Controller
         $stock->update([
             'stock' => request('stock'),
         ]);
-        return redirect()->back();
+        return redirect()->route('producto');
 
     }
     public function update(Producto $producto)
