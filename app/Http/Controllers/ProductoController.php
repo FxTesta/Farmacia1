@@ -2,18 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categoria;
-use App\Models\Producto;
 use Inertia\Inertia;
+use App\Models\Producto;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
+
 
 class ProductoController extends Controller
 {
     
 
-    public function index()
+    public function index(Request $request)
     {
-        $producto = Producto::all();
+        //$producto = Producto::all();
+
+
+        /*$producto = Producto::query()
+        ->when($request->search, function ($query, $search) {
+            $query->where('marca', 'like', "%{$search}%");
+        })
+        ->
+        //through sirve para traer campos en especifico de la base de datos, pero por alguna razón "through" no funciona, al parecer se cambio la sintaxis
+        through(fn($producto) => [
+            'marca' => $producto->marca,
+        ])
+        ;*/
+
+
+
+        $producto = Producto::when($request->search, function($query, $search){
+            $query->where('marca', 'LIKE', "%{$search}%" );
+        })
+        ->paginate(4);
+
         return Inertia::render('Producto/index',[
             'producto' => $producto,
         ]);
