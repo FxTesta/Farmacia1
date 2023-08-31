@@ -104,6 +104,18 @@ class ProductoController extends Controller
             $productos->update([
             'stock' => $productos->stock-$cantidad,
             ]);
+
+
+            StockAudit::create([
+                              
+                'user'=>j,
+                'id_articulo'=>$productos->id,
+                'articulo'=>$productos->marca,
+                'stockanterior'=>$productos->stock + $cantidad,
+                'stockactual'=>$productos->stock,
+            ]);
+
+
             return redirect()->route('producto');
         }
      
