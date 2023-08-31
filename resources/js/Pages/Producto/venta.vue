@@ -63,6 +63,7 @@ function onSubmit(closePopover) {
                                                     placeholder="cantidad">
                                                     <p v-if="form.stock > productos.stock" class="text-red-600">La cantidad vendida no puede superar el stock
                                                       Cantidad disponible  {{ productos.stock }}</p>
+                                                    <p v-if="form.stock < 0" class="text-red-600">La cantidad no puede ser negativa</p>
                                                     
                                             </div>
                                             

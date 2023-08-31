@@ -100,7 +100,7 @@ class ProductoController extends Controller
 
     public function updatestock(Producto $productos){
         $cantidad = request('stock');
-        if($productos->stock >= $cantidad){
+        if(($productos->stock >= $cantidad ) and ($cantidad > 0)){
             $productos->update([
             'stock' => $productos->stock-$cantidad,
             ]);
