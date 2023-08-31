@@ -1,13 +1,27 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, router } from '@inertiajs/vue3';
 import SideBar from '@/Components/SideBar.vue';
-import {PencilIcon, UserAddIcon, SearchIcon} from "@heroicons/vue/outline";
+import {PencilIcon, SearchIcon} from "@heroicons/vue/outline";
 import Delete from '@/Pages/Producto/delete.vue';
+import { ref, watch } from "vue"; 
+import Pagination from '@/Components/Pagination.vue';
+import _ from 'lodash';
 
 const props = defineProps({
-producto: Object
+producto: Object,
+filters: Object,
 });
+
+let search = ref(props.filters.search);
+
+watch(search, _.debounce(function (value) {
+    console.log('disparado');
+    router.get('/producto', { search: value}, {
+        preserveState: true,
+        replace: true
+    });
+}, 300));
 
 </script>
 <template>
@@ -25,7 +39,6 @@ producto: Object
             <div class="max-w-screen-2xl mx-auto sm:px-6  ml-16">
                 <div class="-mt-10">
                     <div class="flex justify-end">
-                       <!-- <span class="pt-2 pr-6">hola</span>-->
                        <div class="inline-flex space-x-2 mb-2 mt-2 mr-2">
                             <div class="mt-1">
                                 <Link 
@@ -44,6 +57,7 @@ producto: Object
                                     class="w-5 h-5 absolute ml-3 pointer-events-none"
                                 />
                                 <input
+                                    v-model="search"
                                     type="text"
                                     placeholder="Buscar Productos"
                                     autocomplete="off"
@@ -77,7 +91,7 @@ producto: Object
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-400 divide-opacity-30">
-                                <tr v-for="productos in producto">
+                                <tr v-for="productos in producto.data" :key="productos.id">
                                     <td class="text-gray-700 py-4 px-2">{{productos.id}}</td>
                                     <td class="text-gray-700 py-4 px-2">{{productos.categoria}}</td>
                                     <td class="text-gray-700 py-4 px-2">{{productos.descripcion}}</td>
@@ -107,10 +121,16 @@ producto: Object
                                     </td>
                                 </tr>
                             </tbody>
+                            
                         </table>
                         
+                        
                     </div>
+                    
                 </div>
+                <!--PAGINACION-->
+                <Pagination :links="producto.links" class="mt-6" />
+                
             </div>
         </div>
     </AuthenticatedLayout>
