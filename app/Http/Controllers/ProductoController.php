@@ -2,46 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
-use App\Models\Producto;
 use App\Models\Categoria;
+use App\Models\Producto;
+use Inertia\Inertia;
 use Illuminate\Http\Request;
-
 
 class ProductoController extends Controller
 {
     
 
-    public function index(Request $request)
+    public function index()
     {
-        //$producto = Producto::all();
-
-
-        /*$producto = Producto::query()
-        ->when($request->search, function ($query, $search) {
-            $query->where('marca', 'like', "%{$search}%");
-        })
-        ->
-        //through sirve para traer campos en especifico de la base de datos, pero por alguna razón "through" no funciona, al parecer se cambio la sintaxis
-        through(fn($producto) => [
-            'marca' => $producto->marca,
-        ])
-        ;*/
-
-
-
-        $producto = Producto::when($request->search, function($query, $search){
-            // filtra la busqueda por marca del producto o codigo de barras
-            $query->where('marca', 'LIKE', "%{$search}%" )->orWhere('codigo', 'LIKE', "%{$search}%");;
-        })
-        ->paginate(15)
-        ->withQueryString();
-
-        $filters = $request->only('search');
-
+        $producto = Producto::all();
         return Inertia::render('Producto/index',[
             'producto' => $producto,
-            'filters' => $filters,
         ]);
     }
 
@@ -132,7 +106,7 @@ class ProductoController extends Controller
             ]);
 
 
-            StockAudit::create([
+           /* StockAudit::create([
                               
                 'user'=>j,
                 'id_articulo'=>$productos->id,
@@ -140,7 +114,7 @@ class ProductoController extends Controller
                 'stockanterior'=>$productos->stock + $cantidad,
                 'stockactual'=>$productos->stock,
             ]);
-
+*/
 
             return redirect()->route('producto');
         }

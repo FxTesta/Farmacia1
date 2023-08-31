@@ -7,6 +7,7 @@ import Delete from '@/Pages/Producto/delete.vue';
 import { ref, watch } from "vue"; 
 import Pagination from '@/Components/Pagination.vue';
 import _ from 'lodash';
+import venta from './venta.vue';
 
 const props = defineProps({
 producto: Object,
@@ -119,7 +120,7 @@ watch(search, _.debounce(function (value) {
                                                 <Delete :producto="productos" :key="productos.id"/>
                                             </div>
                                             <div>
-                                                <stock :productos="productos" :key="productos.id"/>                                                    
+                                                <venta :productos="productos" :key="productos.id"/>                                                    
                                             </div>
                                         </div>
                                                     
