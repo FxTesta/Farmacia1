@@ -11,7 +11,7 @@ class ProductoController extends Controller
 {
     
 
-    public function index()
+    public function index(Request $request)
     {
         //$producto = Producto::all();
 
@@ -40,6 +40,7 @@ class ProductoController extends Controller
 
         return Inertia::render('Producto/index',[
             'producto' => $producto,
+            'filters' => $filters,
         ]);
     }
 
