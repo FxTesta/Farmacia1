@@ -13,7 +13,31 @@ class ProductoController extends Controller
 
     public function index()
     {
-        $producto = Producto::all();
+        //$producto = Producto::all();
+
+
+        /*$producto = Producto::query()
+        ->when($request->search, function ($query, $search) {
+            $query->where('marca', 'like', "%{$search}%");
+        })
+        ->
+        //through sirve para traer campos en especifico de la base de datos, pero por alguna razón "through" no funciona, al parecer se cambio la sintaxis
+        through(fn($producto) => [
+            'marca' => $producto->marca,
+        ])
+        ;*/
+
+
+        //hola
+        $producto = Producto::when($request->search, function($query, $search){
+            // filtra la busqueda por marca del producto o codigo de barras
+            $query->where('marca', 'LIKE', "%{$search}%" )->orWhere('codigo', 'LIKE', "%{$search}%");;
+        })
+        ->paginate(15)
+        ->withQueryString();
+
+        $filters = $request->only('search');
+
         return Inertia::render('Producto/index',[
             'producto' => $producto,
         ]);
@@ -42,7 +66,7 @@ class ProductoController extends Controller
             'categoria' => 'required',
             'descripcion' => 'required',
             'marca' => 'string|required',
-            'venta' => 'required',
+            'venta' => 'reqsuired',
             'laboratorio' => 'string|nullable',
             'vencimiento' => 'nullable',
             'alerta' => 'nullable|before_or_equal:vencimiento',
