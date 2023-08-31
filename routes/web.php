@@ -61,9 +61,7 @@ Route::controller(ProductoController::class)->middleware('auth')->group(function
     Route::post('/producto', 'store')->name('producto.store');
     Route::get('/editar-producto/{producto_id}', 'edit')->name('producto.edit');
     Route::put('/editar-producto/{producto}', 'update')->name('producto.update');
-
     Route::put('/producto/{productos}', 'updatestock')->name('producto.updatestock');
-
     Route::delete('/producto/delete/{producto}', 'destroy')->name('producto.destroy');
 
 });
