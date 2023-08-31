@@ -99,13 +99,14 @@ class ProductoController extends Controller
     }
 
     public function updatestock(Producto $productos){
-
-        
-        
-        $productos->update([
-            'stock' => request('stock'),
-        ]);
-        return redirect()->route('producto');
+        $cantidad = request('stock');
+        if($productos->stock >= $cantidad){
+            $productos->update([
+            'stock' => $productos->stock-$cantidad,
+            ]);
+            return redirect()->route('producto');
+        }
+     
 
     }
     public function update(Producto $producto)

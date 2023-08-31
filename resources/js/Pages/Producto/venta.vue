@@ -2,6 +2,7 @@
 import { Head, useForm, Link } from '@inertiajs/vue3';
 import { Popover, PopoverButton, PopoverPanel, PopoverOverlay } from '@headlessui/vue';
 import {RefreshIcon} from "@heroicons/vue/outline";
+
 const props = defineProps({
     productos: Object
 });
@@ -11,7 +12,7 @@ const form = useForm({
 });
 
 function onSubmit(closePopover) {
-    form.put(route('productos.updatestock',{productos: props.productos.id}),{
+    form.put(route('producto.updatestock',{productos: props.productos.id}),{
         onSuccess: () => {
             closePopover();
         },
@@ -58,11 +59,13 @@ function onSubmit(closePopover) {
                                                     id="stock"
                                                     type="number" 
                                                     v-model="form.stock"
-                                                    class="border border-gray-300 placeholder-gray-400 rounded-md mt-1 block w-full bg-white text-black text-sm shadow-sm" 
-                                                     
-                                                     
+                                                    class="border border-gray-300 placeholder-gray-400 rounded-md mt-1 block w-full bg-white text-black text-sm shadow-sm"                                                    
                                                     placeholder="cantidad">
+                                                    <p v-if="form.stock > productos.stock" class="text-red-600">La cantidad vendida no puede superar el stock
+                                                      Cantidad disponible  {{ productos.stock }}</p>
+                                                    
                                             </div>
+                                            
                                             
                                             <div class="flex justify-end mt-5">
                                                 <button 
