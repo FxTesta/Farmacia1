@@ -9,6 +9,6 @@ class StockAudit extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $table = 'stockaudits';
-
+    
+    protected $fillable = ['stockanterior','id_articulo','articulo','stockactual','codigo','usuario'];
 }

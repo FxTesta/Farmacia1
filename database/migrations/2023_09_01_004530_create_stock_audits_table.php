@@ -13,20 +13,20 @@ return new class extends Migration
     {
         Schema::create('stock_audits', function (Blueprint $table) {
             $table->id();
-            $table->usuario();
-            $table->id_articulo();
-            $table->articulo();
-            $table->stockanterior();
-            $table->stockactual();
+            $table->string('usuario')->nullable();
+            $table->integer('id_articulo');
+            $table->integer('codigo');
+            $table->string('articulo');
+            $table->integer('stockanterior');
+            $table->integer('stockactual');
             $table->timestamps();
-
         });
     }
 
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down(): void 
     {
         Schema::dropIfExists('stock_audits');
     }

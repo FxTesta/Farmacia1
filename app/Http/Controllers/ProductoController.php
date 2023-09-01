@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categoria;
-use App\Models\Producto;
 use Inertia\Inertia;
+use App\Models\Producto;
+use App\Models\Categoria;
+use App\Models\StockAudit;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
@@ -31,7 +32,7 @@ class ProductoController extends Controller
         //hola
         $producto = Producto::when($request->search, function($query, $search){
             // filtra la busqueda por marca del producto o codigo de barras
-            $query->where('marca', 'LIKE', "%{$search}%" )->orWhere('codigo', 'LIKE', "%{$search}%");;
+            $query->where('marca', 'LIKE', "%{$search}%" )->orWhere('codigo', 'LIKE', "{$search}%");;
         })
         ->paginate(15)
         ->withQueryString();
@@ -67,7 +68,7 @@ class ProductoController extends Controller
             'categoria' => 'required',
             'descripcion' => 'required',
             'marca' => 'string|required',
-            'venta' => 'reqsuired',
+            'venta' => 'required',
             'laboratorio' => 'string|nullable',
             'vencimiento' => 'nullable',
             'alerta' => 'nullable|before_or_equal:vencimiento',
@@ -125,21 +126,25 @@ class ProductoController extends Controller
 
     public function updatestock(Producto $productos){
         $cantidad = request('stock');
+        $user = auth()->user();
+        $userName = $user->name;    
         if(($productos->stock >= $cantidad ) and ($cantidad > 0)){
             $productos->update([
             'stock' => $productos->stock-$cantidad,
             ]);
+            
+           // $sprint1 = Sprint::where('project_id', $project->id)->get()->pluck('id');
 
-
-           /* StockAudit::create([
+           StockAudit::create([
                               
-                'user'=>j,
+                'usuario'=> $userName,
                 'id_articulo'=>$productos->id,
+                'codigo'=>$productos->codigo,
                 'articulo'=>$productos->marca,
                 'stockanterior'=>$productos->stock + $cantidad,
                 'stockactual'=>$productos->stock,
             ]);
-*/
+
 
             return redirect()->route('producto');
         }

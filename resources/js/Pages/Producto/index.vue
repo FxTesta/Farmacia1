@@ -14,8 +14,6 @@ producto: Object,
 filters: Object,
 });
      
-
-
 let search = ref(props.filters.search);
 
 watch(search, _.debounce(function (value) {
