@@ -72,7 +72,7 @@ class ProductoController extends Controller
             'laboratorio' => 'string|nullable',
             'vencimiento' => 'nullable',
             'alerta' => 'nullable|before_or_equal:vencimiento',
-            'codigo' => 'nullable',
+            'codigo' => 'required',
             'precioventa' => 'required',
             'preciocompra' => 'nullable',
             'stock' => 'nullable',
@@ -172,7 +172,8 @@ class ProductoController extends Controller
             
             
         ]);
-
+        $ven = request('vencimiento');
+        $aler = request('alerta');
         $producto->update([
             
             'categoria' => request('categoria'),
@@ -181,7 +182,7 @@ class ProductoController extends Controller
             'venta' => request('venta'),
             'laboratorio' => request('laboratorio'),
             'vencimiento' => request('vencimiento'),
-            'alerta' => request('alerta'),
+            
             'codigo' => request('codigo'),
             'precioventa' => request('precioventa'),
             'preciocompra' => request('preciocompra'),
@@ -192,7 +193,13 @@ class ProductoController extends Controller
             'estante' => request('estante'),
             
         ]);
-        return redirect()->route('producto');
+        if($ven > $aler){
+            $producto->update([
+             'alerta' => request('alerta'),
+            ]);
+            return redirect()->route('producto');
+         };
+        
     }
 
     

@@ -74,7 +74,7 @@ const submit = () => {
                                     required
                                     autocomplete="codigo"
                                 />
-
+                                
                                 <InputError class="mt-2" :message="form.errors.codigo" />
                             </div>
 
@@ -176,10 +176,11 @@ const submit = () => {
                                             class="mt-1 w-full bg-gray-200 text-gray-600 rounded-md"
                                         >
                                     </div>
+                                    
                                 </div>
                             </div>
                             <p v-if="form.alerta>form.vencimiento" class="text-red-600">*La fecha de alerta no puede ser mayor que la fecha de vencimiento</p>                         
-
+                            <p v-if="form.alerta==form.vencimiento" class="text-red-600">La alerta tiene que ser menor a la fecha de vencimiento</p>
                             <div class="mt-4">
                                 <InputLabel for="presentacion" value="Presentación" class="text-gray-600"/>
                                 <select type="text" v-model="form.presentacion"   class=" w-full bg-gray-200 text-gray-600 sm:rounded-lg">

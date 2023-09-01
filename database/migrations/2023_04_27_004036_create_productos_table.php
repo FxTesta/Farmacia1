@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('laboratorio')->nullable();
             $table->date('vencimiento');
             $table->date('alerta');
-            $table->bigInteger('codigo');
+            $table->bigInteger('codigo')->unique();
             $table->integer('precioventa');            
             $table->integer('preciocompra');
             $table->integer('stock')->nullable();
