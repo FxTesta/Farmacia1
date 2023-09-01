@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Producto;
 use App\Models\Categoria;
+use App\Models\StockAudit;
 use Illuminate\Http\Request;
-
 
 class ProductoController extends Controller
 {
@@ -29,10 +29,10 @@ class ProductoController extends Controller
         ;*/
 
 
-
+        //hola
         $producto = Producto::when($request->search, function($query, $search){
             // filtra la busqueda por marca del producto o codigo de barras
-            $query->where('marca', 'LIKE', "%{$search}%" )->orWhere('codigo', 'LIKE', "%{$search}%");;
+            $query->where('marca', 'LIKE', "%{$search}%" )->orWhere('codigo', 'LIKE', "{$search}%");;
         })
         ->paginate(15)
         ->withQueryString();
@@ -72,7 +72,8 @@ class ProductoController extends Controller
             'laboratorio' => 'string|nullable',
             'vencimiento' => 'nullable',
             'alerta' => 'nullable|before_or_equal:vencimiento',
-            'codigo' => 'nullable',
+            'codigo' => 'required',
+            'codigo' => 'required|unique:'.Producto::class,
             'precioventa' => 'required',
             'preciocompra' => 'nullable',
             'stock' => 'nullable',
@@ -124,6 +125,33 @@ class ProductoController extends Controller
         ]);
     }
 
+    public function updatestock(Producto $productos){
+        $cantidad = request('stock');
+        $user = auth()->user();
+        $userName = $user->name;    
+        if(($productos->stock >= $cantidad ) and ($cantidad > 0)){
+            $productos->update([
+            'stock' => $productos->stock-$cantidad,
+            ]);
+            
+           // $sprint1 = Sprint::where('project_id', $project->id)->get()->pluck('id');
+
+           StockAudit::create([
+                              
+                'usuario'=> $userName,
+                'id_articulo'=>$productos->id,
+                'codigo'=>$productos->codigo,
+                'articulo'=>$productos->marca,
+                'stockanterior'=>$productos->stock + $cantidad,
+                'stockactual'=>$productos->stock,
+            ]);
+
+
+            return redirect()->route('producto');
+        }
+     
+
+    }
     public function update(Producto $producto)
     {
         request()->validate([
@@ -145,7 +173,8 @@ class ProductoController extends Controller
             
             
         ]);
-
+        $ven = request('vencimiento');
+        $aler = request('alerta');
         $producto->update([
             
             'categoria' => request('categoria'),
@@ -154,7 +183,7 @@ class ProductoController extends Controller
             'venta' => request('venta'),
             'laboratorio' => request('laboratorio'),
             'vencimiento' => request('vencimiento'),
-            'alerta' => request('alerta'),
+            
             'codigo' => request('codigo'),
             'precioventa' => request('precioventa'),
             'preciocompra' => request('preciocompra'),
@@ -165,7 +194,13 @@ class ProductoController extends Controller
             'estante' => request('estante'),
             
         ]);
-        return redirect()->route('producto');
+        if($ven > $aler){
+            $producto->update([
+             'alerta' => request('alerta'),
+            ]);
+            return redirect()->route('producto');
+         };
+        
     }
 
     

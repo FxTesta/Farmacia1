@@ -64,7 +64,7 @@ const submit = () => {
                         <form @submit.prevent="submit">
 
                             <div class="mt-4">
-                                <InputLabel for="codigo" value="Codigo" class="text-gray-600"/>
+                                <InputLabel for="codigo" value="Codigo de Barras" class="text-gray-600"/>
 
                                 <TextInput
                                     id="codigo"
@@ -74,7 +74,7 @@ const submit = () => {
                                     required
                                     autocomplete="codigo"
                                 />
-
+                                
                                 <InputError class="mt-2" :message="form.errors.codigo" />
                             </div>
 
@@ -176,10 +176,11 @@ const submit = () => {
                                             class="mt-1 w-full bg-gray-200 text-gray-600 rounded-md"
                                         >
                                     </div>
+                                    
                                 </div>
                             </div>
                             <p v-if="form.alerta>form.vencimiento" class="text-red-600">*La fecha de alerta no puede ser mayor que la fecha de vencimiento</p>                         
-
+                            <p v-if="form.alerta==form.vencimiento" class="text-red-600">La alerta tiene que ser menor a la fecha de vencimiento</p>
                             <div class="mt-4">
                                 <InputLabel for="presentacion" value="Presentación" class="text-gray-600"/>
                                 <select type="text" v-model="form.presentacion"   class=" w-full bg-gray-200 text-gray-600 sm:rounded-lg">
@@ -223,6 +224,7 @@ const submit = () => {
                                         v-model="form.preciocompra"
                                         required
                                         autocomplete="preciocompra"
+                                        disabled
                                     />
                                     <InputError class="mt-2" :message="form.errors.preciocompra" />
                                 </div>
@@ -236,7 +238,7 @@ const submit = () => {
                                         type="number"
                                         class="mt-1 block w-full bg-gray-200 text-gray-600"
                                         v-model="form.descuento"
-                                        required
+                                        
                                         autocomplete="descuento"
                                     />
                                     <InputError class="mt-2" :message="form.errors.descuento" />
@@ -248,7 +250,7 @@ const submit = () => {
                                         type="text"
                                         class="mt-1 w-full bg-gray-200 text-gray-600"
                                         v-model="form.estante"
-                                        required
+                                        
                                         autocomplete="estante"
                                     />
                                 </div>
@@ -263,9 +265,9 @@ const submit = () => {
                                         type="number"
                                         class="mt-1 block w-full bg-gray-200 text-gray-600"
                                         v-model="form.stock"
-                                        readonly
-                                        autocomplete="stock"
                                         
+                                        autocomplete="stock"
+                                        disabled
                                     />
                                     <InputError class="mt-2" :message="form.errors.stock" />
                                 </div>

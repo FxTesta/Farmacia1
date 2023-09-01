@@ -87,7 +87,7 @@ function mindate(){
 
                             <!--PROBANDO -->
                             <div class="mt-4">
-                                <InputLabel for="codigo" value="Codigo" class="text-gray-600"/>
+                                <InputLabel for="codigo" value="Codigo de Barras" class="text-gray-600"/>
                                 <TextInput
                                     id="codigo"
                                     type="number"
@@ -283,10 +283,9 @@ function mindate(){
                                         type="number"
                                         class="mt-1 block w-full bg-gray-200 text-gray-600"
                                         v-model="form.descuento"
-                                        required
                                         autocomplete="descuento"
                                     />
-                                    <InputError class="mt-2" :message="form.errors.descuento" />
+                                    
                                 </div>
                                 <div>
                                     <InputLabel for="Estante" value="Estante" class="text-gray-600 " />
@@ -295,7 +294,7 @@ function mindate(){
                                         type="text"
                                         class="mt-1 w-full bg-gray-200 text-gray-600"
                                         v-model="form.estante"
-                                        required
+                                        
                                         autocomplete="estante"
                                     />
                                 </div>

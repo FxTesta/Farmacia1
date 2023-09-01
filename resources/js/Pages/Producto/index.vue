@@ -7,12 +7,13 @@ import Delete from '@/Pages/Producto/delete.vue';
 import { ref, watch } from "vue"; 
 import Pagination from '@/Components/Pagination.vue';
 import _ from 'lodash';
+import venta from './venta.vue';
 
 const props = defineProps({
 producto: Object,
 filters: Object,
 });
-
+     
 let search = ref(props.filters.search);
 
 watch(search, _.debounce(function (value) {
@@ -40,6 +41,7 @@ watch(search, _.debounce(function (value) {
                 <div class="-mt-10">
                     <div class="flex justify-end">
                        <div class="inline-flex space-x-2 mb-2 mt-2 mr-2">
+                        
                             <div class="mt-1">
                                 <Link 
                                     :href="`/crear-producto/`"
@@ -111,10 +113,12 @@ watch(search, _.debounce(function (value) {
                                                 as="button"
                                                 class="w-8 h-8 t hover:bg-black/30 rounded-md grid place-content-center">
                                                 <PencilIcon class="w-6 h-6"/>
-                                            </Link>
-                                        
+                                            </Link>                                        
                                             <div>
                                                 <Delete :producto="productos" :key="productos.id"/>
+                                            </div>
+                                            <div>
+                                                <venta :productos="productos" :key="productos.id"/>                                                    
                                             </div>
                                         </div>
                                                     
@@ -134,4 +138,6 @@ watch(search, _.debounce(function (value) {
             </div>
         </div>
     </AuthenticatedLayout>
+
+
 </template>
