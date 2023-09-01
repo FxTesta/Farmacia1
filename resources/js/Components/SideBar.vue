@@ -51,14 +51,7 @@ export default {
         {
           href: '/proveedor',
           title: 'Proveedores',
-          icon: 'fa-solid fa-truck-field',
-          /*child: [
-            {
-              href: '/charts/sublink',
-              title: 'Sub Link',
-              icon: 'fa fa-user',
-            }
-          ]*/
+          icon: 'fa-solid fa-truck-field'
         }
 
       ],

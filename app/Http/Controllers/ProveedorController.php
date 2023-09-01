@@ -2,19 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Proveedor;
 use Inertia\Inertia;
+use App\Models\Proveedor;
 use Illuminate\Http\Request;
 
 class ProveedorController extends Controller
 {
     
 
-    public function index()
+    public function index(Request $request)
     {
-        $proveedor = Proveedor::all();
+        $proveedor = Proveedor::when($request->search, function($query, $search){
+            // filtra la busqueda por nombre de la empresa ,ruc o nombre del proveedor
+            $query->where('empresa', 'LIKE', "%{$search}%" )->orWhere('ruc', 'LIKE', "%{$search}%");
+        })
+        ->paginate(15)
+        ->withQueryString();
+
+        $filters = $request->only('search');
+
         return Inertia::render('Proveedor/index',[
             'proveedor' => $proveedor,
+            'filters' => $filters,
         ]);
     }
 
@@ -35,7 +44,7 @@ class ProveedorController extends Controller
             'callelateral' => 'string|max:255|nullable',
             'referencia' => 'string|max:255|nullable',
             'telefono' => 'required|max:255',
-            'email' => 'nullable|string|email|max:255|unique:'.Proveedor::class,
+            'email' => 'nullable|string|email|max:255|unique:',
         ]);
 
         Proveedor::create([

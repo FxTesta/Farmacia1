@@ -24,7 +24,7 @@ return new class extends Migration
             $table->bigInteger('codigo');
             $table->integer('precioventa');            
             $table->integer('preciocompra');
-            $table->integer('stock');
+            $table->integer('stock')->nullable();
             $table->integer('stockmin')->nullable();
             $table->integer('descuento')->nullable();
             $table->string('presentacion')->nullable();
