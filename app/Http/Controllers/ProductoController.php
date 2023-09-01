@@ -73,6 +73,7 @@ class ProductoController extends Controller
             'vencimiento' => 'nullable',
             'alerta' => 'nullable|before_or_equal:vencimiento',
             'codigo' => 'required',
+            'codigo' => 'required|unique:'.Producto::class,
             'precioventa' => 'required',
             'preciocompra' => 'nullable',
             'stock' => 'nullable',
