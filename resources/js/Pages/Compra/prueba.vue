@@ -1,14 +1,22 @@
 <script setup>
 //import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import prueba from '@/Layouts/prueba.vue';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, useForm } from '@inertiajs/vue3';
 import {XIcon} from "@heroicons/vue/outline";
+import TextInput from '@/Components/TextInput.vue';
+import InputError from '@/Components/InputError.vue';
+import InputLabel from '@/Components/InputLabel.vue';
 
 
+const form = useForm({
+    usuario: '',
+    codigo: '',
+
+});
 
 </script>
 <template>
-    <Head title="Usuarios" />   
+    <Head title="Comprar" />   
     <prueba>     
         <template #header>
             <h2 class="flex uppercase font-bold text-xl text-gray-800 leading-tight">Compras</h2>
@@ -16,9 +24,39 @@ import {XIcon} from "@heroicons/vue/outline";
         <div class="flex flex-col h-full ml-16">
             
                 <div class="px-4 pt-4">
-                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg h-72">
+                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg h-72 ">
                         <div class="overflow-y-auto">
-                            <span>div pa campos de compra y cargar productos</span>
+                            <form @submit.prevent="submit">
+                                <div class="mt-4 inline-flex space-x-10">
+
+                                    <div>
+                                        <InputLabel for="usuario" value="Usuario" class="text-gray-600"/>
+
+                                    <TextInput
+                                        
+                                        id="usuario"
+                                        type="text"
+                                        class="mt-1  bg-gray-200 text-gray-600"
+                                        v-model="form.usuario"
+                                        required
+                                        autocomplete="usuario"
+                                    />
+
+
+                                    <!--<InputError class="mt-2" :message="form.errors.marca" />--> 
+                                    </div>
+
+                                    <div>
+                                        <InputLabel for="codigo" value="Codigo" class="text-gray-600"/>
+                                    <select type="text" v-model="form.codigo"   class="mt-1  bg-gray-200 text-gray-600 sm:rounded-lg">
+                                        <option disabled value="">codigo</option>
+                                    </select>
+
+
+                                        <!--<InputError class="mt-2" :message="form.errors.venta" />-->
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

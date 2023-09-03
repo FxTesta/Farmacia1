@@ -49,7 +49,7 @@ function mindate(){
 
 <template>
     
-    <Head title="Dashboard" />
+    <Head title="Nuevo Producto" />
 
     <SideBar />
     <AuthenticatedLayout>
