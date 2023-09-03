@@ -1,49 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>PDF de ejemplo</title>
+
+
+    <style>
+        .cabecera{
+            background-color:grey;
+            color:white;
+        }
+        .centrar-tabla {
+        text-align: center;
+    }
+    </style>
 </head>
 <body>
-    <h1>Contenido del PDF</h1>
-    <p>Este es un ejemplo de archivo PDF generado desde Laravel y Vue.js.</p>
-    <!-- Agrega el contenido que desees mostrar en el PDF -->
-    
-    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                   
-                    <div class="px-10 pb-10 pt-2 overflow-y-auto">
-                        <table class="table" style="text-align: center">
-                            <thead>
-                                <tr class="border-b border-slate-300 text-gray-700 text-left">
-                                    <th class="text-gray-700 py-4 px-2">ID</th>
-                                    <th class="px-2">USUARIO</th>
-                                    <th class="px-2">ID ARTICULO</th>
-                                    <th class="px-2">CODIGO</th>
-                                    <th class="px-2">ARTICULO</th>
-                                    <th class="px-2">STOCK ANTERIOR</th>
-                                    <th class="px-2">STOCK ACTUAL</th>
-                                   
+    <div class="centrar-tabla">
+        <h1 >Auditoria De Productos</h1><br>
+    </div>   
+                        <table class="table centrar-tabla"style="font-size:15px" >
+                            <thead class="cabecera">
+                                <tr >
+                                    <th >ID</th>
+                                    <th >USUARIO</th>
+                                    <th >ID ARTICULO</th>
+                                    <th >CODIGO</th>
+                                    <th >ARTICULO</th>
+                                    <th >STOCK ANTERIOR</th>
+                                    <th >STOCK ACTUAL</th>
+                                    <th >FECHA</th>
+                                    <th >HORA</th>                                 
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-gray-400 divide-opacity-30">
-                            @forelse($productos as $producto)
-                        <tr>
-                                    <td class="text-gray-700 py-4 px-2">{{$producto->id}}</td>
-                                    <td class="text-gray-700 py-4 px-2">{{$producto->usuario}}</td>
-                                    <td class="text-gray-700 py-4 px-2">{{$producto->id_articulo}}</td>
-                                    <td class="text-gray-700 py-4 px-2">{{$producto->codigo}}</td>
-                                    <td class="text-gray-700 py-4 px-2">{{$producto->articulo}}</td>
-                                    <td class="text-gray-700 py-4 px-2">{{$producto->stockanterior}}</td>
-                                    <td class="text-gray-700 py-4 px-2">{{$producto->stockactual}}</td>
-                        </tr>
-                        @empty
-                        <tr>
-                            <td colspan="7">No existen cambios</td>
-                        </tr>
-                        @endforelse
-                                
+                            <tbody >
+                                @forelse($productos as $producto)
+                                    <tr>
+                                        <td >{{$producto->id}}</td>
+                                        <td>{{$producto->usuario}}</td>
+                                        <td >{{$producto->id_articulo}}</td>
+                                        <td >{{$producto->codigo}}</td>
+                                        <td >{{$producto->articulo}}</td>
+                                        <td >{{$producto->stockanterior}}</td>
+                                        <td>{{$producto->stockactual}}</td>
+                                        <td>{{$producto->fecha}}</td>
+                                        <td>{{$producto->hora}}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="7">No existen cambios</td>
+                                    </tr>
+                                @endforelse                                
                             </tbody>
                             
                         </table> 
-</div>
+                        
 </body>
 </html>

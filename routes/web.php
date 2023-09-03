@@ -105,7 +105,7 @@ Route::get('/generar-pdf' , function () {
     $dompdf->loadHtml($html);
 
     // (Opcional) Configurar opciones de Dompdf, como tamaño de papel y orientación
-    $dompdf->setPaper('A4', 'landscape');
+    $dompdf->setPaper('a5', 'landscape');
 
     // Renderizar el contenido HTML a PDF
     $dompdf->render();

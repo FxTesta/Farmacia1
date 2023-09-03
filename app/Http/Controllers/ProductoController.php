@@ -8,6 +8,7 @@ use App\Models\Categoria;
 use App\Models\StockAudit;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class ProductoController extends Controller
 {
@@ -138,9 +139,13 @@ class ProductoController extends Controller
         $cantidad = request('stock');
         $user = auth()->user();
         $userName = $user->name;    
+        date_default_timezone_set('America/Asuncion'); 
+        $hora = date('H:i:s');
+        $fecha = Carbon::now();
         if(($productos->stock >= $cantidad ) and ($cantidad > 0)){
             $productos->update([
             'stock' => $productos->stock-$cantidad,
+            
             ]);
             
            // $sprint1 = Sprint::where('project_id', $project->id)->get()->pluck('id');
@@ -153,6 +158,8 @@ class ProductoController extends Controller
                 'articulo'=>$productos->marca,
                 'stockanterior'=>$productos->stock + $cantidad,
                 'stockactual'=>$productos->stock,
+                'hora'=>$hora,
+                'fecha'=>$fecha,
             ]);
 
 

@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('articulo');
             $table->integer('stockanterior');
             $table->integer('stockactual');
+            $table->time('hora');
+            $table->date('fecha');
             $table->timestamps();
         });
     }
