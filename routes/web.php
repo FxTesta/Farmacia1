@@ -98,7 +98,7 @@ Route::get('/generar-pdf' , function () {
 
     $productos= StockAudit::all();
     // Renderizar la vista Blade que deseas convertir a PDF
-    //aca cambie
+    //aca cambieeee
     $html = view('template',compact('productos'))->render();
 
     // Cargar el contenido HTML en Dompdf
