@@ -86,29 +86,29 @@ Route::controller(ProveedorController::class)->middleware('auth')->group(functio
 Route::controller(StockAuditController::class)->middleware('auth')->group(function () {
 
     Route::get('/auditoria', 'index')->name('auditoria');
+    Route::get('/generar-pdf','index', function () {
+    
+      
+        // Crear una instancia de Dompdf
+        $dompdf = new Dompdf();
+    
+        // Renderizar la vista Blade que deseas convertir a PDF
+        $html = view('template')->render();
+    
+        // Cargar el contenido HTML en Dompdf
+        $dompdf->loadHtml($html);
+    
+        // (Opcional) Configurar opciones de Dompdf, como tamaño de papel y orientación
+        $dompdf->setPaper('A4', 'landscape');
+    
+        // Renderizar el contenido HTML a PDF
+        $dompdf->render();
+    
+        // Generar y mostrar el PDF en el navegador
+        $dompdf->stream('archivo.pdf', ['Attachment' => false]);
+        
+    });
 
 });
 //Route::get('/auditoria', function(){ $products=StockAudit::query('id', 'DESC')->get(); return view('template', compact('products')); })
 //para qie funcione instalar composer require dompdf/dompdf
-Route::get('/generar-pdf', function () {
-    
-      
-    // Crear una instancia de Dompdf
-    $dompdf = new Dompdf();
-
-    // Renderizar la vista Blade que deseas convertir a PDF
-    $html = view('template')->render();
-
-    // Cargar el contenido HTML en Dompdf
-    $dompdf->loadHtml($html);
-
-    // (Opcional) Configurar opciones de Dompdf, como tamaño de papel y orientación
-    $dompdf->setPaper('A4', 'landscape');
-
-    // Renderizar el contenido HTML a PDF
-    $dompdf->render();
-
-    // Generar y mostrar el PDF en el navegador
-    $dompdf->stream('archivo.pdf', ['Attachment' => false]);
-    
-});

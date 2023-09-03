@@ -14,7 +14,6 @@
                         <table class="table" style="text-align: center">
                             <thead>
                                 <tr class="border-b border-slate-300 text-gray-700 text-left">
-                                    <th>ID</th>
                                     <th class="text-gray-700 py-4 px-2">ID</th>
                                     <th class="px-2">USUARIO</th>
                                     <th class="px-2">ID ARTICULO</th>
@@ -27,14 +26,20 @@
                             </thead>
                             <tbody class="divide-y divide-gray-400 divide-opacity-30">
                             @forelse($productos as $producto)
-                                    <td class="text-gray-700 py-4 px-2">{{productos->id}}</td>
-                                    <td class="text-gray-700 py-4 px-2">{{productos->usuario}}</td>
-                                    <td class="text-gray-700 py-4 px-2">{{productos->id_articulo}}</td>
-                                    <td class="text-gray-700 py-4 px-2">{{productos->codigo}}</td>
-                                    <td class="text-gray-700 py-4 px-2">{{productos->articulo}}</td>
-                                    <td class="text-gray-700 py-4 px-2">{{productos->stockanterior}}</td>
-                                    <td class="text-gray-700 py-4 px-2">{{productos->stockactual}}</td>                                    
-                            @endforelse
+                        <tr>
+                                    <td class="text-gray-700 py-4 px-2">{{$producto->id}}</td>
+                                    <td class="text-gray-700 py-4 px-2">{{$producto->usuario}}</td>
+                                    <td class="text-gray-700 py-4 px-2">{{$producto->id_articulo}}</td>
+                                    <td class="text-gray-700 py-4 px-2">{{$producto->codigo}}</td>
+                                    <td class="text-gray-700 py-4 px-2">{{$producto->articulo}}</td>
+                                    <td class="text-gray-700 py-4 px-2">{{$producto->stockanterior}}</td>
+                                    <td class="text-gray-700 py-4 px-2">{{$producto->stockactual}}</td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="7">No existen cambios</td>
+                        </tr>
+                        @endforelse
                                 
                             </tbody>
                             

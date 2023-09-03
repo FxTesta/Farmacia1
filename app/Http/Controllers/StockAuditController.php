@@ -13,6 +13,6 @@ class StockAuditController extends Controller
         $productos= StockAudit::all();
       // $productos = StockAudit::with('id', 'usuario', 'id_articulo', 'articulo','stockanterior','stockactual')->get();
        // return view('template');
-        return view('template');
+       return view('template',compact('productos'));
     }
 }
