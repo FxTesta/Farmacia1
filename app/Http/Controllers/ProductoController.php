@@ -7,6 +7,7 @@ use App\Models\Producto;
 use App\Models\Categoria;
 use App\Models\StockAudit;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ProductoController extends Controller
 {
@@ -44,6 +45,12 @@ class ProductoController extends Controller
             'filters' => $filters,
         ]);
     }
+ //   public function pdf(){
+      /*  $auditoria=StockAudit::all();
+        $pdf = Pdf::loadView('productos.pdf', compact('auditoria'));
+        return $pdf->stream();*/
+  //      return view('productos.pdf');
+  //  }
 
     public function create()
     {    
@@ -109,6 +116,8 @@ class ProductoController extends Controller
         return redirect()->route('producto');
         
     }
+
+   
 
     public function destroy(Producto $producto)
     {

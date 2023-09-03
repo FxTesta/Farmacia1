@@ -24,6 +24,18 @@ watch(search, _.debounce(function (value) {
     });
 }, 300));
 
+
+</script>
+<script>
+
+export default {
+  methods: {
+    generarPDF() {
+        const url = '/generar-pdf';
+        window.open(url, '_blank');
+    },
+  },
+};
 </script>
 <template>
     <Head title="Dashboard" />
@@ -41,7 +53,7 @@ watch(search, _.debounce(function (value) {
                 <div class="-mt-10">
                     <div class="flex justify-end">
                        <div class="inline-flex space-x-2 mb-2 mt-2 mr-2">
-                        
+                        <button @click="generarPDF">Reporte Auditoria</button>
                             <div class="mt-1">
                                 <Link 
                                     :href="`/crear-producto/`"
