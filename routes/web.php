@@ -89,7 +89,7 @@ Route::controller(StockAuditController::class)->middleware('auth')->group(functi
 
 });
 //Route::get('/auditoria', function(){ $products=StockAudit::query('id', 'DESC')->get(); return view('template', compact('products')); })
-
+//para qie funcione instalar composer require dompdf/dompdf
 Route::get('/generar-pdf', function () {
     
       
