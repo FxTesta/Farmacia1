@@ -20,6 +20,13 @@ export default {
                  
         },
         {
+          href: '/compra',
+          title: 'Compras',
+          icon: 'fa-sharp fa-solid fa-shop'
+          
+        },
+        /*
+        {
           href: '/cliente',
           title: 'Clientes',
           icon: 'fa fa-user',
@@ -29,14 +36,14 @@ export default {
               title: 'Sub Link',
               icon: 'fa fa-user',
             }
-          ]*/
-        },
+          ]
+        },*/
 
         
         {
           href: '/producto',
           title: 'Productos',
-          icon: 'fa-sharp fa-solid fa-cart-shopping'
+          icon: 'fa-sharp fa-solid fa-flask'
           
         },
 

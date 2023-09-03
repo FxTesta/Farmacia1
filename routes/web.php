@@ -4,6 +4,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\CompraController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductoController;
@@ -78,3 +79,16 @@ Route::controller(ProveedorController::class)->middleware('auth')->group(functio
     Route::delete('/proveedor/delete/{proveedor}', 'destroy')->name('proveedor.destroy');
 
 });
+
+//COMPRAS
+Route::controller(CompraController::class)->middleware('auth')->group(function () {
+
+    Route::get('/compra', 'index')->name('compra');
+    //Route::get('/crear-proveedor', 'create')->name('proveedor.create');
+    //Route::post('/proveedor', 'store')->name('proveedor.store');
+    //Route::get('/editar-proveedor/{proveedor_id}', 'edit')->name('proveedor.edit');
+    //Route::put('/editar-proveedor/{proveedor}', 'update')->name('proveedor.update');
+    //Route::delete('/proveedor/delete/{proveedor}', 'destroy')->name('proveedor.destroy');
+
+});
+

@@ -3,11 +3,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head,useForm } from '@inertiajs/vue3';
 import SideBar from '@/Components/SideBar.vue';
 
-const form = useForm({
-    name: '',
-    lala: '',
 
-});
 </script>
 
 <template>
