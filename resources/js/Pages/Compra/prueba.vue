@@ -38,7 +38,7 @@ function mindate(){
         <div class="flex flex-col h-full ml-16">
             
                 <div class="px-4 pt-4">
-                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg max-w-screen-2xl">
                         <div class="overflow-y-auto">
                             <form @submit.prevent="submit">
                                 <div class="mt-2 ml-4 inline-flex space-x-2">
