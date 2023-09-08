@@ -14,6 +14,7 @@
     </style>
 </head>
 <body>
+    
     <div class="centrar-tabla">
         <h1 >Auditoria De Productos</h1><br>
     </div>   

@@ -8,6 +8,7 @@ import { ref, watch } from "vue";
 import Pagination from '@/Components/Pagination.vue';
 import _ from 'lodash';
 import venta from './venta.vue';
+import buscar from './buscar.vue';
 
 const props = defineProps({
 producto: Object,
@@ -31,7 +32,7 @@ watch(search, _.debounce(function (value) {
 export default {
   methods: {
     generarPDF() {
-        const url = '/generar-pdf';
+        const url = '/auditoria';
         window.open(url, '_blank');
     },
   },
@@ -54,6 +55,7 @@ export default {
                     <div class="flex justify-end">
                        <div class="inline-flex space-x-2 mb-2 mt-2 mr-2">
                         <button @click="generarPDF">Reporte Auditoria</button>
+                        <buscar/>
                             <div class="mt-1">
                                 <Link 
                                     :href="`/crear-producto/`"
