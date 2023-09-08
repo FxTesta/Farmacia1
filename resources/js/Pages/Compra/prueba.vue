@@ -38,7 +38,7 @@ function mindate(){
         <div class="flex flex-col h-full ml-16">
             
                 <div class="px-4 pt-4">
-                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg ">
+                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="overflow-y-auto">
                             <form @submit.prevent="submit">
                                 <div class="mt-2 ml-4 inline-flex space-x-2">
@@ -235,8 +235,8 @@ function mindate(){
                                                     />
                                                     <!--<InputError class="mt-2" :message="form.errors.venta" />-->
                                                 </div>
-                                                <div class="ml-8 -mt-1">
-                                                    <input for="total" value="Total" class="uppercase font-bold"/>
+                                                <div class="ml-8">
+                                                    <InputLabel for="total" value="TOTAL" />
                                                     <TextInput 
                                                         
                                                         type="number" 
@@ -247,7 +247,7 @@ function mindate(){
                                                     />
                                                     <!--<InputError class="mt-2" :message="form.errors.venta" />-->
                                                 </div>
-                                                <div class="mt-7 mr-10">
+                                                <div class="mt-7 ml-3">
                                                     <Link 
                                                         href="#"
                                                         as="button"
