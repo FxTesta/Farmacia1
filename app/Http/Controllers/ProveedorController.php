@@ -44,7 +44,7 @@ class ProveedorController extends Controller
             'callelateral' => 'string|max:255|nullable',
             'referencia' => 'string|max:255|nullable',
             'telefono' => 'required|max:255',
-            'email' => 'nullable|string|email|max:255|unique:',
+            'email' => 'nullable|string|email|max:255|unique:'.Proveedor::class,
         ]);
 
         Proveedor::create([
