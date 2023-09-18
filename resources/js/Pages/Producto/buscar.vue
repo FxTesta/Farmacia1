@@ -5,34 +5,53 @@ import {DocumentSearchIcon} from "@heroicons/vue/outline";
 
 
 
-const form = useForm({
-    fecha: ''
-});
+
 
 
 </script>
 <script>
 
 export default {
+    
+    data() {
+    return {
+      fecha: ''
+    };
+  },
   methods: {
+    
+    
+    enviarDatos() {
+        const fecha = this.fecha; // Variable que deseas pasar
+       // const fecha = new Date(this.fecha).toISOString().slice(0, 10);
+       // const url = `auditoria?fecha=${fecha}`;
+        //console.log(this.fecha);
+        console.log(fecha);
+        //console.log(url);
+        axios.post('auditoria', { valor: this.fecha })
+        .then(response => {
+          // Maneja la respuesta del backend si es necesario
+          console.log('Respuesta del servidor:', response.data);
+        })
+        .catch(error => {
+          // Maneja cualquier error que ocurra durante la solicitud
+          console.error('Error:', error);
+        });
+
+
+      //  axios.get(url)
+      //  .then(data => {
+           
+          // Manejar la respuesta del servidor si es necesario
+     //   })
+     //   .catch(error => {
+            // Manejar errores si ocurren
+      //   });
+    },
     generarPDF() {
         const url = '/generar-pdf';
         window.open(url, '_blank');
     },
-    enviarDatos() {
-      // Enviar los datos al servidor Laravel
-      this.$axios.get('auditoria', {
-        fecha: this.fecha,
-        // Otros campos del modal
-      });
-    },
-  },
-
-  data() {
-    return {
-      fecha: '',
-      // Otros datos del modal
-    };
   },
   
 };
@@ -67,14 +86,14 @@ export default {
 
                                         <form @submit.prevent="generarPDF()">
                                             <label class="block text-sm text-gray-800 mb-2 font-bold" 
-                                                for="fecha">Fecha desde: </label>
+                                                for="fechaa">Fecha desde: </label>
                                             
                                             <div>
                                                 <input 
-                                                    name="fechadesde"
-                                                    id="fechadesde"
+                                                    name="fecha"
+                                                    id="fecha"
                                                     type="date" 
-                                                    v-model="form.fechadesde"
+                                                    v-model="fecha"
                                                     class="border border-gray-300 placeholder-gray-400 rounded-md mt-1 block w-full bg-white text-black text-sm shadow-sm"                                                    
                                                     >
                                                    

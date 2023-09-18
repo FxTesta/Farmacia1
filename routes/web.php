@@ -85,7 +85,7 @@ Route::controller(ProveedorController::class)->middleware('auth')->group(functio
 });
 Route::controller(StockAuditController::class)->middleware('auth')->group(function () {
 
-    Route::get('/auditoria', 'index')->name('auditoria');
+    Route::post('/auditoria', 'index')->name('auditoria');
     
 
 });
