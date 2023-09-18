@@ -6,19 +6,46 @@ import {XIcon, SearchIcon, PlusCircleIcon, SaveIcon} from "@heroicons/vue/outlin
 import TextInput from '@/Components/TextInput.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
+import Combobox from "@/Pages/Compra/Combobox copy.vue"
+import BuscarProducto from "@/Pages/Compra/BuscarProducto.vue"
+import {ref} from "vue";
+
+//const proveedores = ref();
+
+function loadProveedor(query, setOptions) {
+  fetch("http://127.0.0.1:8000/proveedores?query=" + query)
+  .then(response => response.json())
+  .then(results => {
+    setOptions(
+      results.map( proveedores => {
+        return{
+        value: proveedores.id,
+        label: proveedores.empresa,
+        };
+      })
+    );
+  });
+}
+
+const props = defineProps({
+user: Object,
+proveedor: Object,
+});
+
+
 
 
 const form = useForm({
-    usuario: 'ADMIN',
-    codigo: '2',
+    usuario: props.user.name,
+    codigo: props.user.id   ,
     codigobarra: '727372133333',
     stock: '999',
     precio: '10000',
     cantidad: '2',
     total: '20000',
     preciototal: '40000',
-    proveedor: 'Lasca',
-    nrofactura: '21312321',
+    proveedor: '',
+    nrofactura: '',
     descripcion: 'DOLANET',
     fechafactura: mindate(),
     
@@ -38,7 +65,7 @@ function mindate(){
         <div class="flex flex-col h-full ml-16">
             
                 <div class="px-4 pt-4">
-                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg max-w-screen-2xl">
+                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="overflow-y-auto">
                             <form @submit.prevent="submit">
                                 <div class="mt-2 ml-4 inline-flex space-x-2">
@@ -79,6 +106,8 @@ function mindate(){
                                 <div class="mt-4 ml-4">
 
                                     <div class="inline-flex space-x-2">
+                                        <!-- ANTERIOR CAMPO DE PROVEEDOR
+
                                         <div class="flex space-x-2">
                                                 <InputLabel for="proveedor" value="Proveedor:" class="text-gray-600 mt-2 "/>
 
@@ -94,17 +123,44 @@ function mindate(){
                                             />
 
 
-                                            <!--<InputError class="mt-2" :message="form.errors.marca" />--> 
+                                            <InputError class="mt-2" :message="form.errors.marca" />
+                                        </div> -->
+
+                                        <!--<div class="flex space-x-2">
+                                            <InputLabel for="proveedor" value="Proveedor:" class="text-gray-600 mt-2 "/>
+
+                                            <select 
+                                                v-for="proveedores in proveedor"
+                                                id="proveedor"
+                                                type="text"
+                                                class="mt-1 w-40 h-8 pt-1 bg-gray-200 text-gray-600 rounded-md"
+                                                v-model="form.proveedor"
+                                                required
+                                                autocomplete="proveedor"
+                                            >
+                                            <option class="text-gray-400" disabled value="">Selecciona El proveedor</option>
+                                            <option class="bg-green-200 font-bold" :value="proveedores.id">
+                                                {{ proveedores.empresa }}
+                                            </option>
+                                            </select>
+                                            
+                                        </div>
+                                        -->
+                                        <div class="flex space-x-2">
+                                                <InputLabel for="proveedor" value="Proveedor:" class="text-gray-600 mt-2 "/>
+                                            <Combobox 
+                                                :load-options="loadProveedor" 
+                                                v-model="form.proveedor"/>
                                         </div>
 
-                                        <div class="mt-1">
+                                        <!--<div class="mt-1">
                                             <Link 
                                                 href="#"
                                                 as="button"
                                                 class="w-8 h-8 hover:text-blue-700 text-blue-400 rounded-md grid place-content-center">
                                                 <SearchIcon class="w-6 h-6"/>
                                             </Link>
-                                        </div>
+                                        </div>-->
 
                                         <div class="flex space-x-2">
                                                 <InputLabel for="nrofactura" value="Nro Factura:" class="text-gray-600 mt-2 "/>
@@ -117,7 +173,6 @@ function mindate(){
                                                 v-model="form.nrofactura"
                                                 required
                                                 autocomplete="nrofactura"
-                                                disabled
                                             />
 
 
@@ -168,12 +223,7 @@ function mindate(){
                                         <div class="p-2 pt-4 pb-4">
                                             <div class="inline-flex">
                                                 <div class="mt-7">
-                                                    <Link 
-                                                        href="#"
-                                                        as="button"
-                                                        class="w-8 h-8 hover:bg-blue-300 hover:text-blue-700 text-blue-400 ring-2 focus:ring-set-2 ring-gray-400 rounded-full grid place-content-center">
-                                                        <SearchIcon class="w-6 h-6"/>
-                                                    </Link>
+                                                    <BuscarProducto/>
                                                 </div>
                                                 <div class="ml-2">
                                                     <InputLabel for="codigo" value="Codigo de Barras" class="text-gray-600 "/>

@@ -8,6 +8,8 @@ use App\Http\Controllers\CompraController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\PruebacomboController;
+
 //hola prueba
 /*
 |--------------------------------------------------------------------------
@@ -84,6 +86,10 @@ Route::controller(ProveedorController::class)->middleware('auth')->group(functio
 Route::controller(CompraController::class)->middleware('auth')->group(function () {
 
     Route::get('/compra', 'index')->name('compra');
+
+    Route::get('/proveedores', 'buscarProveedor')->name('buscarproveedor');
+    Route::get('/buscarproducto', 'buscarProducto')->name('buscarproducto');
+
     //Route::get('/crear-proveedor', 'create')->name('proveedor.create');
     //Route::post('/proveedor', 'store')->name('proveedor.store');
     //Route::get('/editar-proveedor/{proveedor_id}', 'edit')->name('proveedor.edit');
@@ -92,3 +98,20 @@ Route::controller(CompraController::class)->middleware('auth')->group(function (
 
 });
 
+
+//PRUEBA COMBOBOX RELLENAR OTROS CAMPOS Y GUARDAR EN BASE DE DATOS
+
+Route::controller(PruebacomboController::class)->middleware('auth')->group(function () {
+
+    Route::get('/prueba', 'index')->name('prueba');
+
+    Route::get('/searchproduct', 'buscarProducto')->name('buscarproducto');
+
+    Route::post('/crearprueba', 'store')->name('prueba.store');
+    //Route::get('/crear-proveedor', 'create')->name('proveedor.create');
+    //Route::post('/proveedor', 'store')->name('proveedor.store');
+    //Route::get('/editar-proveedor/{proveedor_id}', 'edit')->name('proveedor.edit');
+    //Route::put('/editar-proveedor/{proveedor}', 'update')->name('proveedor.update');
+    //Route::delete('/proveedor/delete/{proveedor}', 'destroy')->name('proveedor.destroy');
+
+});
