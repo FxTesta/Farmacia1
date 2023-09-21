@@ -19,20 +19,13 @@ export default {
           icon: 'fa-solid fa-house-chimney-medical'
                  
         },
-        /*{
+
+        {
           href: '/cliente',
           title: 'Clientes',
-          icon: 'fa fa-user',
-          ---> /*child: [
-            {
-              href: '/charts/sublink',
-              title: 'Sub Link',
-              icon: 'fa fa-user',
-            }
-          ]--no olvidar que acá estaba cerrado el comentario <---
+          icon: 'fa fa-user'
         },
-        */
-
+        
         
         {
           href: '/producto',

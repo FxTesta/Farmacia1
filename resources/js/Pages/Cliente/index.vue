@@ -1,13 +1,27 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, router } from '@inertiajs/vue3';
 import SideBar from '@/Components/SideBar.vue';
 import {PencilIcon, UserAddIcon, SearchIcon} from "@heroicons/vue/outline";
 import Delete from '@/Pages/Cliente/delete.vue';
+import { ref, watch } from "vue"; 
+import Pagination from '@/Components/Pagination.vue';
+import _ from 'lodash';
 
 const props = defineProps({
-cliente: Object
+cliente: Object,
+filters: Object,
 });
+
+let search = ref(props.filters.search);
+
+watch(search, _.debounce(function (value) {
+    console.log('disparado');
+    router.get('/cliente', { search: value}, {
+        preserveState: true,
+        replace: true
+    });
+}, 300));
 
 </script>
 <template>
@@ -43,6 +57,7 @@ cliente: Object
                                     class="w-5 h-5 absolute ml-3 pointer-events-none"
                                 />
                                 <input
+                                    v-model="search"
                                     type="text"
                                     placeholder="Buscar Clientes"
                                     autocomplete="off"
@@ -70,7 +85,7 @@ cliente: Object
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-400 divide-opacity-30">
-                                <tr v-for="clientes in cliente">
+                                <tr v-for="clientes in cliente.data">
                                     <td class="text-gray-700 py-4">{{clientes.id}}</td>
                                     <td class="text-gray-700 py-4">{{clientes.name}}</td>
                                     <td class="text-gray-700 py-4">{{clientes.cedula}}</td>
@@ -98,6 +113,9 @@ cliente: Object
                         </table>
                     </div>
                 </div>
+                <!--PAGINACION-->
+                <Pagination :links="cliente.links" class="mt-6" />
+                
             </div>
         </div>
     </AuthenticatedLayout>
