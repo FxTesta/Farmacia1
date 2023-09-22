@@ -2,43 +2,43 @@
 import { Head, useForm, Link } from '@inertiajs/vue3';
 import { Popover, PopoverButton, PopoverPanel, PopoverOverlay } from '@headlessui/vue';
 import {SearchIcon} from "@heroicons/vue/outline";
-import Combobox from "@/Pages/Compra/Combobox copy.vue"
+import Combobox from "@/Pages/Compra/Combobox copy.vue";
+import { ref } from "vue";
 
-/*
-const props = defineProps({
-    productos: Object
-});*/
+//variable que recibe los detalles del producto buscado
+let producto = ref();
 
+//variable que envia los detalles del producto buscado
+const enviarProducto = (close) => {
 
+    //cierra el popover
+    close();
+
+  // Emite un evento personalizado para enviar la variable al componente padre
+  const event = new CustomEvent('enviar-producto', { detail: producto.value });
+  window.dispatchEvent(event);
+
+//reseteo cuadro de busqueda al seleccionar producto
+  producto.value = null;
+};
+
+//funcion, busca el producto y retorna en un objeto con los campos deseados
 function loadProducto(query, setOptions) {
-  fetch("http://127.0.0.1:8000/buscarproducto?query=" + query)
-  .then(response => response.json())
-  .then(results => {
-    setOptions(
-      results.map( producto => {
-        return{
-        value: producto.id,
-        label: producto.marca,
-        codigo: producto.codigo,
-        };
-      })
-    );
-  });
+    fetch("http://127.0.0.1:8000/searchproduct?query=" + query)
+        .then(response => response.json())
+        .then(results => {
+            setOptions(
+                results.map(producto => {
+                    return {
+                        value: producto.id,
+                        label: producto.marca,
+                        codigo: producto.codigo,
+                        stock: producto.stock,
+                    };
+                })
+            );
+        });
 }
-
-const form = useForm({
-    producto: '',
-});
-
-/*
-function onSubmit(closePopover) {
-    form.put(route('producto.updatestock',{productos: props.productos.id}),{
-        onSuccess: () => {
-            closePopover();
-        },
-    });
-    
-}*/
 
 </script>
 
@@ -69,35 +69,23 @@ function onSubmit(closePopover) {
                                             class="p-3 bg-cyan-100 border border-gray-100 overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5"
                                         >
 
-                                        <form @submit.prevent="onSubmit(close)">
-                                            <!--<label class="block text-sm text-gray-800 mb-2 font-bold" 
-                                                for="stock">Buscar Producto: </label>
-                                            
-                                            <div>
-                                                <input 
-                                                    name="stock"
-                                                    id="stock"
-                                                    type="text" 
-                                                    v-model="form.stock"
-                                                    class="border border-gray-300 placeholder-gray-400 rounded-md mt-1 block w-full bg-white text-black text-sm shadow-sm"                                                    
-                                                    placeholder="cantidad">                                                    
-                                            </div>-->
-
-                                            <label class="block text-sm text-gray-800 mb-2 font-bold" 
-                                                for="producto">Buscar   Producto: </label>
+                                        
+                                            <span class="block text-sm text-gray-800 mb-2 font-bold" 
+                                                >Buscar Producto: </span>
                                             <Combobox   
                                                 :load-options="loadProducto" 
-                                                v-model="form.producto"
+                                                v-model="producto"
                                             />
                                             
                                             <div class="flex justify-end mt-5">
                                                 <button 
+                                                    @click="enviarProducto(close)"
                                                     class="px-4 py-2 font-medium shadow-sm text-black rounded-md text-sm bg-green-400 hover:bg-green-500 focus:ring-1 focus:ring-offset-1 focus:ring-gray-200 focus:outline-none "
                                                     >Seleccionar Producto
                                                 </button>
                                                 
                                             </div>
-                                        </form>
+                                        
                                         
                                         </div>
                                     </PopoverPanel>

@@ -12,14 +12,10 @@ class CompraController extends Controller
 {
     public function index(Request $request)
     {
-        $compra = Compra::all();
         $user = auth()->user();
-        $proveedor = Proveedor::all();
 
         return Inertia::render('Compra/prueba',[
-            'compra' => $compra,
             'user' => $user,
-            'proveedor' => $proveedor,
         ]);
     }
 

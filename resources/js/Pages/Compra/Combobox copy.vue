@@ -81,7 +81,7 @@ let filteredOptions = computed(() =>
           >
             <ComboboxInput
               class="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
-              :displayValue="(option) => option.label"
+              :displayValue="(option) => option?.label"
               @change="query = $event.target.value"
             />
             <ComboboxButton

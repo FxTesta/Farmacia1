@@ -1,27 +1,8 @@
 <script setup>
 import BuscarProducto from "@/Pages/prueba/BuscarProducto.vue"
 import { useForm, Link, router } from '@inertiajs/vue3';
-//import Combobox from "@/Pages/prueba/Combobox copy.vue"
-import Combobox from "@/Pages/prueba/Combobox copy.vue"
 import { ref, computed, onMounted } from "vue";
 
-
-/*function loadProducto(query, setOptions) {
-    fetch("http://127.0.0.1:8000/searchproduct?query=" + query)
-        .then(response => response.json())
-        .then(results => {
-            setOptions(
-                results.map(producto => {
-                    return {
-                        value: producto.id,
-                        label: producto.marca,
-                        codigo: producto.codigo,
-                        stock: producto.stock,
-                    };
-                })
-            );
-        });
-}*/
 
 let producto = ref('');
 
@@ -59,19 +40,17 @@ let stock = computed(() => {
 
 
 })
-//constante que asigna el valor en caso
-//const nada = ref('Seleccionar Producto');
 
-//form que guarda las cosas en la bd
 
 
 //PRUEBA PARA AGREGAR DINAMICAMENTE A UNA LISTA LOS PRODUCTOSS
 
-
+//variables campo del arrayProductos
 const cantidad = ref('');
 const total = ref('');
 
 const arrayProductos = ref([]);
+
 
 let form = useForm({
     /*marca: marca,
@@ -101,25 +80,9 @@ const agregarProducto = () => {
     
   };
 
-  //const miArray = arrayProductos.value;
-
   const eliminarProducto = (index) => {
     arrayProductos.value.splice(index, 1);
   };
-
-
-/*
-//function para guardar lo contenido en el array
-function submit() {
-  router.post('/crearprueba', {miArray}, {
-    onSuccess: () => {
-        arrayProductos.value = []; //resetea el array que contiene los productos
-        miArray.splice(0);
-        miArray.push(...arrayProductos.value);
-    },
-  });
-}*/
-
 
 
 

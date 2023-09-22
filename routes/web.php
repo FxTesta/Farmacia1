@@ -89,12 +89,7 @@ Route::controller(CompraController::class)->middleware('auth')->group(function (
 
     Route::get('/proveedores', 'buscarProveedor')->name('buscarproveedor');
     Route::get('/buscarproducto', 'buscarProducto')->name('buscarproducto');
-
-    //Route::get('/crear-proveedor', 'create')->name('proveedor.create');
-    //Route::post('/proveedor', 'store')->name('proveedor.store');
-    //Route::get('/editar-proveedor/{proveedor_id}', 'edit')->name('proveedor.edit');
-    //Route::put('/editar-proveedor/{proveedor}', 'update')->name('proveedor.update');
-    //Route::delete('/proveedor/delete/{proveedor}', 'destroy')->name('proveedor.destroy');
+    
 
 });
 
@@ -108,10 +103,6 @@ Route::controller(PruebacomboController::class)->middleware('auth')->group(funct
     Route::get('/searchproduct', 'buscarProducto')->name('buscarproducto');
 
     Route::post('/crearprueba', 'store')->name('prueba.store');
-    //Route::get('/crear-proveedor', 'create')->name('proveedor.create');
-    //Route::post('/proveedor', 'store')->name('proveedor.store');
-    //Route::get('/editar-proveedor/{proveedor_id}', 'edit')->name('proveedor.edit');
-    //Route::put('/editar-proveedor/{proveedor}', 'update')->name('proveedor.update');
-    //Route::delete('/proveedor/delete/{proveedor}', 'destroy')->name('proveedor.destroy');
+
 
 });

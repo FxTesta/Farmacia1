@@ -10,6 +10,7 @@ let producto = ref();
 
 const enviarProducto = (close) => {
 
+    //cierra el popover
     close();
 
   // Emite un evento personalizado para enviar la variable al componente padre
