@@ -138,7 +138,7 @@ const agregarProducto = () => {
 
     if (productoid.value !== null && codigobarra.value !== null && marca.value !== null && total.value !== 0 && precio.value !== null && cantidad.value !== null
         && productoid.value !== undefined && codigobarra.value !== undefined && marca.value !== undefined && precio.value !== undefined && cantidad.value !== undefined
-        && productoid.value !== '' && codigobarra.value !== '' && marca.value !== '' && precio.value !== '' && cantidad.value !== '') {
+        && productoid.value !== '' && codigobarra.value !== '' && marca.value !== '' && precio.value !== '' && cantidad.value !== '' && cantidad.value > 0) {
 
         //se cargan los datos en el array
         arrayProductos.value.push({
@@ -333,12 +333,14 @@ const formatearNumero = (numero) => {
                                             <InputLabel for="precio" value="Precio" class="text-gray-600 " />
                                             <TextInput id="precio" type="number" v-model="precio"
                                                 class="mt-1 bg-gray-200 text-gray-600 sm:rounded-lg w-32" />
+                                                
                                             <!--<InputError class="mt-2" :message="form.errors.venta" />-->
                                         </div>
                                         <div class="ml-4">
                                             <InputLabel for="cantidad" value="Cantidad" class="text-gray-600 " />
                                             <TextInput id="cantidad" type="number" v-model="cantidad"
                                                 class="mt-1 bg-gray-200 text-gray-600 sm:rounded-lg w-20" />
+                                                <p v-if="cantidad < 0" class="text-red-600">Ingrese cantidad positiva</p>
                                             <!--<InputError class="mt-2" :message="form.errors.venta" />-->
                                         </div>
                                         <div class="ml-8">
