@@ -17,7 +17,7 @@ const props = defineProps({
 });
 
 //variable que recibe los datos del proveedor
-const proveedor = ref();
+let proveedor = ref();
 
 //variable que va a recibir los detalles del producto seleccionado
 let producto = ref('');
@@ -109,6 +109,28 @@ let codigobarra = computed(() => {
 
 })
 
+//variable retorna id que extrae de proveedor
+let proveedorid = computed(() => {
+    return proveedor.value === ""
+        ? null
+        :
+
+        proveedor.value?.value;
+
+
+})
+
+//variable retorna id que extrae de proveedor
+let proveedornombre = computed(() => {
+    return proveedor.value === ""
+        ? null
+        :
+
+        proveedor.value?.label;
+
+
+})
+
 
 
 
@@ -182,18 +204,7 @@ function mindate() {
     return new Date().toISOString().split('T')[0]
 }
 
-//función que guarda la comra realizada en la base de datos
-function onSubmit() {
-    form.post(route('prueba.store'), {
-        onSuccess: () => {
-            //form.reset();
-            arrayProductos.value.splice(0); //resetea el array después de guardar en la BD
-            producto.value = null;//resetea la variable reactiva (let producto = ref();) después de guardar los campos en la bd
-            //form.cantidad = '',//resetea
-            //  form.total = '';//resetea
-        },
-    });
-}
+
 
 //cuenta lo contenido en arrayProductos para verificar si es nulo
 const contarProductos = () => {
@@ -205,7 +216,8 @@ const contarProductos = () => {
 let form = useForm({
     usuario: props.user.name,
     codigo: props.user.id,
-    proveedor: '', //estirar el valor de el combobox
+    proveedorid: proveedorid,
+    proveedornombre: proveedornombre,
     nrofactura: '',
     fechafactura: mindate(),
     total: preciototal,
@@ -217,6 +229,20 @@ let form = useForm({
 const formatearNumero = (numero) => {
     return numero.toLocaleString();
 };
+
+//función que guarda la comra realizada en la base de datos
+function onSubmit() {
+    form.post(route('compra.store'), {
+        onSuccess: () => {
+            //form.reset();
+            arrayProductos.value.splice(0); //resetea el array después de guardar en la BD
+            producto.value = null;//resetea la variable reactiva (let producto = ref();) después de guardar los campos en la bd
+            proveedor.value = null;//resetea la variable reactiva (let proveedor = ref();) después de guardar los campos en la bd
+            form.nrofactura = ''; //resetea
+            form.fechafactura = mindate(); //resetea a la fecha del día después de guardar los campos en la bd
+        },
+    });
+}
 
 </script>
 <template>
@@ -230,9 +256,8 @@ const formatearNumero = (numero) => {
             <div class="px-4 pt-4">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="overflow-y-auto">
-                        <form @submit.prevent="">
+                        <form @submit.prevent="onSubmit()">
                             <div class="mt-2 ml-4 inline-flex space-x-2">
-
                                 <div class="flex space-x-2">
                                     <InputLabel for="usuario" value="Usuario:" class="text-gray-600 mt-2 " />
 

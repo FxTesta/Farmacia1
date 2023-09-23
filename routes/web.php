@@ -89,6 +89,7 @@ Route::controller(CompraController::class)->middleware('auth')->group(function (
 
     Route::get('/proveedores', 'buscarProveedor')->name('buscarproveedor');
     Route::get('/buscarproducto', 'buscarProducto')->name('buscarproducto');
+    Route::post('/guardarcompra', 'store')->name('compra.store');
     
 
 });
