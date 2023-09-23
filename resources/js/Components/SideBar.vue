@@ -39,14 +39,14 @@ export default {
           title: 'Productos',
           icon: 'fa-sharp fa-solid fa-flask'
           
-        },
+        },/*
 
                 {
           href: '/compras',
           title: 'Compras',
           icon: 'fa-sharp fa-solid fa-cart-shopping'
           
-        },
+        },*/
 
         {
           href: '/proveedor',
