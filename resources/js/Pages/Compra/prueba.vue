@@ -130,7 +130,7 @@ function loadProveedor(query, setOptions) {
         });
 }
 
-//AGREGAR CMAPOS FALTANTES
+
 //se establecen los campos del array y el valor que van a tomar
 const agregarProducto = () => {
 
@@ -210,8 +210,6 @@ let form = useForm({
     fechafactura: mindate(),
     total: preciototal,
     arrayProductos: arrayProductos.value, //array con la lista de productos comprados
-
-    
 
 });
 

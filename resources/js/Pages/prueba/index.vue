@@ -49,7 +49,7 @@ let stock = computed(() => {
 const cantidad = ref('');
 const total = ref('');
 
-const arrayProductos = ref([]);
+const arrayProductos = ref([]); //carga los productos en el array
 
 
 let form = useForm({
