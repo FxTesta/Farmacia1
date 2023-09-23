@@ -116,3 +116,8 @@ Route::get('/generar-pdf' , function () {
 });
 //Route::get('/auditoria', function(){ $products=StockAudit::query('id', 'DESC')->get(); return view('template', compact('products')); })
 //para qie funcione instalar composer require dompdf/dompdf
+
+
+
+
+//dominio:farmauno.rf.gd
