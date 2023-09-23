@@ -11,8 +11,9 @@ class FacturaCompra extends Model
     use HasFactory;
     protected $guarded = [];
 
+    /*
     public function proveedor(): HasOne
     {
         return $this->hasOne(Proveedor::class);
-    }
+    }*/
 }
