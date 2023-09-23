@@ -10,11 +10,20 @@ class ClienteController extends Controller
 {
     
 
-    public function index()
+    public function index(Request $request)
     {
-        $cliente = Cliente::all();
+        $cliente = Cliente::when($request->search, function($query, $search){
+            // filtra la busqueda por nombre o cedula o nombre del cliente
+            $query->where('name', 'LIKE', "%{$search}%" )->orWhere('cedula', 'LIKE', "%{$search}%");
+        })
+        ->paginate(15)
+        ->withQueryString();
+
+        $filters = $request->only('search');
+
         return Inertia::render('Cliente/index',[
             'cliente' => $cliente,
+            'filters' => $filters,
         ]);
     }
 

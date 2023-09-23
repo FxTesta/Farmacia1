@@ -10,5 +10,5 @@ class StockAudit extends Model
     use HasFactory;
     protected $guarded = [];
     
-    protected $fillable = ['stockanterior','id_articulo','articulo','stockactual','codigo','usuario'];
+    protected $fillable = ['stockanterior','id_articulo','articulo','stockactual','codigo','usuario','hora','fecha'];
 }

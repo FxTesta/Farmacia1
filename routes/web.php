@@ -1,6 +1,8 @@
 <?php
 
+use Dompdf\Dompdf;
 use Inertia\Inertia;
+use App\Models\StockAudit;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\ClienteController;
@@ -9,7 +11,7 @@ use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PruebacomboController;
-
+use App\Http\Controllers\StockAuditController;
 //hola prueba
 /*
 |--------------------------------------------------------------------------
@@ -58,14 +60,16 @@ Route::controller(ClienteController::class)->middleware('auth')->group(function 
 
 //Productos
 Route::controller(ProductoController::class)->middleware('auth')->group(function () {
-
+   
     Route::get('/producto', 'index')->name('producto');
+  //  Route::get('/producto/pdf', 'pdf')->name('producto.pdf');
     Route::get('/crear-producto', 'create')->name('producto.create');
     Route::post('/producto', 'store')->name('producto.store');
     Route::get('/editar-producto/{producto_id}', 'edit')->name('producto.edit');
     Route::put('/editar-producto/{producto}', 'update')->name('producto.update');
     Route::put('/producto/{productos}', 'updatestock')->name('producto.updatestock');
     Route::delete('/producto/delete/{producto}', 'destroy')->name('producto.destroy');
+
 
 });
 
@@ -89,6 +93,12 @@ Route::controller(CompraController::class)->middleware('auth')->group(function (
 
     Route::get('/proveedores', 'buscarProveedor')->name('buscarproveedor');
     Route::get('/buscarproducto', 'buscarProducto')->name('buscarproducto');
+
+});
+
+Route::controller(StockAuditController::class)->middleware('auth')->group(function () {
+
+    Route::get('/auditoria', 'index')->name('auditoria');
     
 
 });
@@ -106,3 +116,29 @@ Route::controller(PruebacomboController::class)->middleware('auth')->group(funct
 
 
 });
+Route::get('/generar-pdf' , function () {
+    
+      
+    // Crear una instancia de Dompdf
+    $dompdf = new Dompdf();
+
+    $productos= StockAudit::all();
+    // Renderizar la vista Blade que deseas convertir a PDF
+    //aca cambieeee
+    $html = view('template',compact('productos'))->render();
+
+    // Cargar el contenido HTML en Dompdf
+    $dompdf->loadHtml($html);
+
+    // (Opcional) Configurar opciones de Dompdf, como tamaño de papel y orientación
+    $dompdf->setPaper('a5', 'landscape');
+
+    // Renderizar el contenido HTML a PDF
+    $dompdf->render();
+
+    // Generar y mostrar el PDF en el navegador
+    $dompdf->stream('archivo.pdf', ['Attachment' => false]);
+    
+});
+//Route::get('/auditoria', function(){ $products=StockAudit::query('id', 'DESC')->get(); return view('template', compact('products')); })
+//para qie funcione instalar composer require dompdf/dompdf
