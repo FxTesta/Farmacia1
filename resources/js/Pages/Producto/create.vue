@@ -1,4 +1,3 @@
-
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, useForm, Link } from '@inertiajs/vue3';
@@ -49,7 +48,7 @@ function mindate(){
 
 <template>
     
-    <Head title="Dashboard" />
+    <Head title="Nuevo Producto" />
 
     <SideBar />
     <AuthenticatedLayout>
@@ -310,6 +309,7 @@ function mindate(){
                                         class="mt-1 block w-full bg-gray-200 text-gray-600"
                                         v-model="form.stock"
                                         autocomplete="stock"
+                                        readonly
                                     />
                                     <InputError class="mt-2" :message="form.errors.stock" />
                                 </div>
@@ -322,8 +322,8 @@ function mindate(){
                                         type="number"
                                         class="mt-1 block w-full bg-gray-200 text-gray-600"
                                         v-model="form.stockmin"
-                                        required
                                         autocomplete="stockmin"
+                                        
                                     />
                                     <InputError class="mt-2" :message="form.errors.stockmin" />
                                 </div>

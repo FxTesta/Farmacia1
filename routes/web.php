@@ -6,9 +6,11 @@ use App\Models\StockAudit;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\CompraController;
+use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductoController;
-use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\PruebacomboController;
 use App\Http\Controllers\StockAuditController;
 //hola prueba
 /*
@@ -83,6 +85,17 @@ Route::controller(ProveedorController::class)->middleware('auth')->group(functio
     Route::delete('/proveedor/delete/{proveedor}', 'destroy')->name('proveedor.destroy');
 
 });
+
+//COMPRAS
+Route::controller(CompraController::class)->middleware('auth')->group(function () {
+
+    Route::get('/compra', 'index')->name('compra');
+
+    Route::get('/proveedores', 'buscarProveedor')->name('buscarproveedor');
+    Route::get('/buscarproducto', 'buscarProducto')->name('buscarproducto');
+
+});
+
 Route::controller(StockAuditController::class)->middleware('auth')->group(function () {
 
     Route::post('/auditoria', 'index')->name('auditoria');
@@ -90,6 +103,19 @@ Route::controller(StockAuditController::class)->middleware('auth')->group(functi
 
 });
 
+
+//PRUEBA COMBOBOX RELLENAR OTROS CAMPOS Y GUARDAR EN BASE DE DATOS
+
+Route::controller(PruebacomboController::class)->middleware('auth')->group(function () {
+
+    Route::get('/prueba', 'index')->name('prueba');
+
+    Route::get('/searchproduct', 'buscarProducto')->name('buscarproducto');
+
+    Route::post('/crearprueba', 'store')->name('prueba.store');
+
+
+});
 Route::get('/generar-pdf' , function () {
     
       

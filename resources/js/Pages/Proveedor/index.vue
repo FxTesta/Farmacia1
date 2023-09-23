@@ -1,13 +1,27 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, router } from '@inertiajs/vue3';
 import SideBar from '@/Components/SideBar.vue';
 import {PencilIcon, UserAddIcon, SearchIcon} from "@heroicons/vue/outline";
 import Delete from '@/Pages/Proveedor/delete.vue';
+import { ref, watch } from "vue"; 
+import Pagination from '@/Components/Pagination.vue';
+import _ from 'lodash';
 
 const props = defineProps({
-proveedor: Object
+proveedor: Object,
+filters: Object,
 });
+
+let search = ref(props.filters.search);
+
+watch(search, _.debounce(function (value) {
+    console.log('disparado');
+    router.get('/proveedor', { search: value}, {
+        preserveState: true,
+        replace: true
+    });
+}, 300));
 
 </script>
 <template>
@@ -42,6 +56,7 @@ proveedor: Object
                                     class="w-5 h-5 absolute ml-3 pointer-events-none"
                                 />
                                 <input
+                                    v-model="search"
                                     type="text"
                                     placeholder="Buscar Proveedores"
                                     autocomplete="off"
@@ -70,7 +85,7 @@ proveedor: Object
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-400 divide-opacity-30">
-                                <tr v-for="proveedores in proveedor">
+                                <tr v-for="proveedores in proveedor.data">
                                     <td class="text-gray-700 py-4">{{proveedores.id}}</td>
                                     <td class="text-gray-700 py-4">{{proveedores.empresa}}</td>
                                     <td class="text-gray-700 py-4">{{proveedores.ruc}}</td>
@@ -98,6 +113,9 @@ proveedor: Object
                         </table>
                     </div>
                 </div>
+                <!--PAGINACION-->
+                <Pagination :links="proveedor.links" class="mt-6" />
+                
             </div>
         </div>
     </AuthenticatedLayout>
