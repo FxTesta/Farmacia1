@@ -8,7 +8,7 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import Combobox from "@/Pages/Compra/Combobox copy.vue"
 import BuscarProducto from "@/Pages/Compra/BuscarProducto.vue"
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, onBeforeUnmount } from "vue";
 
 
 //para obtener el usuario logueado, name y id
@@ -160,7 +160,7 @@ const agregarProducto = () => {
 
     if (productoid.value !== null && codigobarra.value !== null && marca.value !== null && total.value !== 0 && precio.value !== null && cantidad.value !== null
         && productoid.value !== undefined && codigobarra.value !== undefined && marca.value !== undefined && precio.value !== undefined && cantidad.value !== undefined
-        && productoid.value !== '' && codigobarra.value !== '' && marca.value !== '' && precio.value !== '' && cantidad.value !== '' && cantidad.value > 0) {
+        && productoid.value !== '' && codigobarra.value !== '' && marca.value !== '' && precio.value !== '' && cantidad.value !== '' && cantidad.value > 0 && precio.value > 0) {
 
         //se cargan los datos en el array
         arrayProductos.value.push({
@@ -181,7 +181,12 @@ const agregarProducto = () => {
 
 //elimina lo contenido en el array
 const eliminarProducto = (index) => {
-    arrayProductos.value.splice(index, 1);
+    const productoEliminado = arrayProductos.value[index];
+    const mensaje = 'Remover '+ productoEliminado.marca + '?';
+
+    if (window.confirm(mensaje)) {
+        arrayProductos.value.splice(index, 1);
+    }
 };
 
 
@@ -232,9 +237,15 @@ const formatearNumero = (numero) => {
 
 //función que guarda la comra realizada en la base de datos
 function onSubmit() {
+    // Verificar si arrayProductos es nulo o vacío
+    if (!arrayProductos.value || arrayProductos.value.length === 0) {
+        // Realizar alguna acción en caso de que arrayProductos sea nulo o vacío
+        console.error('El array de productos está vacío o nulo');
+        return; // Salir de la función onSubmit sin hacer la solicitud POST
+    }
+
     form.post(route('compra.store'), {
         onSuccess: () => {
-            //form.reset();
             arrayProductos.value.splice(0); //resetea el array después de guardar en la BD
             producto.value = null;//resetea la variable reactiva (let producto = ref();) después de guardar los campos en la bd
             proveedor.value = null;//resetea la variable reactiva (let proveedor = ref();) después de guardar los campos en la bd
@@ -243,6 +254,25 @@ function onSubmit() {
         },
     });
 }
+
+/*
+//SEGURO QUE QUIERE RECARGAR LA PAGINA?
+// Función para mostrar un mensaje de confirmación personalizado al recargar la página
+const confirmReload = (event) => {
+  event.preventDefault(); // Prevenir la recarga inmediata
+  event.returnValue = "Se perderán los cambios no guardados. ¿Estás seguro?"; // No muestra el mensaje personalizado por politicas de los Navegadores
+};
+
+// Agregar el evento beforeunload cuando se monta el componente
+onMounted(() => {
+  window.addEventListener('beforeunload', confirmReload);
+});
+
+// Eliminar el evento beforeunload cuando el componente se desmonta
+onBeforeUnmount(() => {
+  window.removeEventListener('beforeunload', confirmReload);
+});
+*/
 
 </script>
 <template>
@@ -283,7 +313,7 @@ function onSubmit() {
 
                                     <div class="flex space-x-2">
                                         <span class="block font-medium text-sm text-gray-700 mt-2">Proveedor</span>
-                                        <Combobox :load-options="loadProveedor" v-model="proveedor" />
+                                        <Combobox placeholder="Buscar Proveedor..." :load-options="loadProveedor" v-model="proveedor" />
                                     </div>
 
                                     <div class="flex space-x-2">
@@ -332,45 +362,47 @@ function onSubmit() {
                             <span class="uppercase font-bold text-base p-3">producto</span>
                             <div class="border-4 border-blue-500 rounded-md">
                                 <div class="p-2 pt-4 pb-4">
+                                    <form action="#">
                                     <div class="inline-flex">
                                         <div class="mt-7">
                                             <BuscarProducto />
                                         </div>
                                         <div class="ml-2">
                                             <InputLabel for="codigobarra" value="Codigo de Barras" class="text-gray-600 " />
-                                            <TextInput id="codigobarra" type="number" v-model="codigobarra"
-                                                class="mt-1 bg-gray-200 text-gray-600 sm:rounded-lg w-36" disabled />
+                                            <TextInput required placeholder="Seleccione Pr..." id="codigobarra" type="number" v-model="codigobarra"
+                                                class="placeholder-slate-400  uppercase mt-1 bg-gray-200 text-gray-600 sm:rounded-lg w-36" readonly />
                                             <!--<InputError class="mt-2" :message="form.errors.venta" />-->
                                         </div>
                                         <div class="ml-4">
                                             <InputLabel for="descripcion" value="Descripción" class="text-gray-600 " />
-                                            <TextInput id="descripcion" type="text" v-model="marca"
-                                                class="mt-1 bg-gray-200 text-gray-600 sm:rounded-lg w-96" disabled />
+                                            <TextInput required placeholder="Seleccione Producto..." id="descripcion" type="text" v-model="marca"
+                                                class="placeholder-slate-400 uppercase mt-1 bg-gray-200 text-gray-600 sm:rounded-lg w-96" readonly />
                                             <!--<InputError class="mt-2" :message="form.errors.venta" />-->
                                         </div>
                                         <div class="ml-4">
                                             <InputLabel for="stock" value="Stock" class="text-gray-600 " />
-                                            <TextInput id="stock" type="number" v-model="stock"
-                                                class="mt-1 bg-gray-200 text-gray-600 sm:rounded-lg w-20" disabled />
+                                            <TextInput required id="stock" type="number" v-model="stock"
+                                                class="mt-1 bg-gray-200 text-gray-600 sm:rounded-lg w-20" readonly />
                                             <!--<InputError class="mt-2" :message="form.errors.venta" />-->
                                         </div>
                                         <div class="ml-4">
                                             <InputLabel for="precio" value="Precio" class="text-gray-600 " />
-                                            <TextInput id="precio" type="number" v-model="precio"
+                                            <TextInput required id="precio" type="number" v-model="precio"
                                                 class="mt-1 bg-gray-200 text-gray-600 sm:rounded-lg w-32" />
+                                                <p v-if="precio < 0" class="text-red-600">Ingrese valor positivo</p>
                                                 
                                             <!--<InputError class="mt-2" :message="form.errors.venta" />-->
                                         </div>
                                         <div class="ml-4">
                                             <InputLabel for="cantidad" value="Cantidad" class="text-gray-600 " />
-                                            <TextInput id="cantidad" type="number" v-model="cantidad"
+                                            <TextInput required id="cantidad" type="number" v-model="cantidad"
                                                 class="mt-1 bg-gray-200 text-gray-600 sm:rounded-lg w-20" />
                                                 <p v-if="cantidad < 0" class="text-red-600">Ingrese cantidad positiva</p>
                                             <!--<InputError class="mt-2" :message="form.errors.venta" />-->
                                         </div>
                                         <div class="ml-8">
                                             <InputLabel for="total" value="TOTAL" />
-                                            <TextInput id="total" type="number" v-model="total"
+                                            <TextInput required id="total" type="number" v-model="total"
                                                 class="mt-1 bg-gray-200 text-gray-600 sm:rounded-lg" disabled />
                                             <!--<InputError class="mt-2" :message="form.errors.venta" />-->
                                         </div>
@@ -381,6 +413,7 @@ function onSubmit() {
                                             </button>
                                         </div>
                                     </div>
+                                </form>
                                 </div>
                             </div>
                         </div>
