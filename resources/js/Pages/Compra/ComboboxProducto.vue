@@ -73,6 +73,10 @@ let filteredOptions = computed(() =>
         
       )
 )
+
+const formatearNumero = (numero) => {
+    return numero.toLocaleString();
+};
 </script>
 
 <template>
@@ -87,7 +91,7 @@ let filteredOptions = computed(() =>
             <ComboboxInput
               autoComplete="off"
               :placeholder="placeholder"
-              class="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
+              class="w-full uppercase border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
               :displayValue="(option) => option?.label"
               @change="query = $event.target.value"
             />
@@ -132,18 +136,43 @@ let filteredOptions = computed(() =>
                   v-slot="{ selected, active }"
                 >
                   <li
-                    class="relative cursor-default select-none py-2 pl-10 pr-4"
+                    class="relative cursor-default select-none py-2 pl-10 pr-4 border-b border-slate-300"
                     :class="{
                       'bg-teal-600 text-white': active,
                       'text-gray-900': !active,
                     }"
                   >
-                    <span
-                      class="block truncate"
-                      :class="{ 'font-medium': selected, 'font-normal': !selected }"
-                    >
+                  <div class="inline-flex space-x-3">
+                    <div class="flex space-x-2">
+                      <span class=" font-serif underline uppercase">Nombre:</span>
+                      <span
+                        class="block truncate uppercase -mt-1"
+                        :class="{ 'font-medium text-green-400 text-base': selected, 'font-bold text-base': !selected }"
+                      >
                       {{ option.label }}
-                    </span>
+                      </span>
+                      <span class="text-blue-400 ">││</span>
+                    </div>
+                    <div class="flex space-x-2">
+                        <span class=" font-serif underline uppercase">Presentacion:</span>
+                        <span
+                          class="block truncate uppercase -mt-1"
+                          :class="{ 'font-medium text-green-400 text-base': selected, 'font-bold text-base': !selected }"
+                        >
+                        {{ option.presentacion }}
+                        </span>
+                        <span class="text-blue-400 ">││</span>
+                    </div>
+                    <div class="flex space-x-2">
+                        <span class=" font-serif underline uppercase">Precio Publico:</span>
+                        <span
+                          class="block truncate uppercase -mt-1"
+                          :class="{ 'font-medium text-green-400 text-base': selected, 'font-bold text-base': !selected }"
+                        >
+                        {{ formatearNumero(option.precioventa) }}
+                        </span>
+                    </div>
+                  </div>
                     <span
                       v-if="selected"
                       class="absolute inset-y-0 left-0 flex items-center pl-3"

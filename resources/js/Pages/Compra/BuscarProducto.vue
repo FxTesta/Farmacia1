@@ -2,7 +2,7 @@
 import { Head, useForm, Link } from '@inertiajs/vue3';
 import { Popover, PopoverButton, PopoverPanel, PopoverOverlay } from '@headlessui/vue';
 import {SearchIcon} from "@heroicons/vue/outline";
-import Combobox from "@/Pages/Compra/Combobox copy.vue";
+import ComboboxProducto from "@/Pages/Compra/ComboboxProducto.vue";
 import { ref } from "vue";
 
 //variable que recibe los detalles del producto buscado
@@ -34,6 +34,8 @@ function loadProducto(query, setOptions) {
                         label: producto.marca,
                         codigo: producto.codigo,
                         stock: producto.stock,
+                        presentacion: producto.presentacion,
+                        precioventa: producto.precioventa,
                     };
                 })
             );
@@ -45,6 +47,7 @@ function loadProducto(query, setOptions) {
 <template>
     <Popover v-slot="{ open }" class="">
                                 <PopoverButton
+                                    
                                     :class="open ? 'bg-blue-400 text-blue-600' : ''"
                                     class="w-8 h-8 hover:bg-blue-300 hover:text-blue-700 text-blue-400 ring-2 focus:ring-set-2 ring-gray-400 rounded-full grid place-content-center"
                                 >
@@ -63,18 +66,20 @@ function loadProducto(query, setOptions) {
                                     <PopoverPanel
                                     :focus="true"
                                     v-slot="{close}"
-                                    class="absolute left-1/2 z-10 w-screen max-w-lg -translate-x-1/2 top-2 transform px-4 sm:px-0 "
+                                    class="absolute left-2/4 ml-8 z-10 w-screen max-w-7xl -translate-x-1/2 top-2 transform px-4 sm:px-0 "
                                     >
                                         <div
-                                            class="p-3 bg-cyan-100 border border-gray-100 overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5"
+                                            class="p-3 bg-cyan-100 border border-gray-100 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5"
                                         >
 
                                         
-                                            <span class="block text-sm text-gray-800 mb-2 font-bold" 
+                                            <span class="uppercase block text-gray-800 mb-2 font-bold" 
                                                 >Buscar Producto: </span>
-                                            <Combobox   
+                                            <ComboboxProducto
+                                                placeholder="Ingrese Nombre o Codigo de barra ..."
                                                 :load-options="loadProducto" 
                                                 v-model="producto"
+                                                
                                             />
                                             
                                             <div class="flex justify-end mt-5">

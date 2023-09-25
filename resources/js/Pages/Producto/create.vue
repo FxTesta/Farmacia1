@@ -309,7 +309,6 @@ function mindate(){
                                         class="mt-1 block w-full bg-gray-200 text-gray-600"
                                         v-model="form.stock"
                                         autocomplete="stock"
-                                        readonly
                                     />
                                     <InputError class="mt-2" :message="form.errors.stock" />
                                 </div>

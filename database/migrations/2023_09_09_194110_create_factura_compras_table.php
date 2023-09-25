@@ -10,12 +10,13 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
+    {   //a
         Schema::create('factura_compras', function (Blueprint $table) {
             $table->id();
             $table->foreignId('proveedores_id')->constrained('proveedores')->onDelete('cascade');
+            $table->string('proveedor_nombre');
             $table->foreignId('users_id')->constrained('users')->onDelete('cascade');
-            $table->bigInteger('username')->unique();
+            $table->string('username');
             $table->bigInteger('nrofactura')->unique();
             $table->date('fechafactura');
             $table->integer('preciototal'); 
