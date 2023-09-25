@@ -255,7 +255,7 @@ function onSubmit() {
     });
 }
 
-/*
+
 //SEGURO QUE QUIERE RECARGAR LA PAGINA?
 // Función para mostrar un mensaje de confirmación personalizado al recargar la página
 const confirmReload = (event) => {
@@ -272,7 +272,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('beforeunload', confirmReload);
 });
-*/
 
 </script>
 <template>
@@ -370,35 +369,32 @@ onBeforeUnmount(() => {
                                         <div class="ml-2">
                                             <InputLabel for="codigobarra" value="Codigo de Barras" class="text-gray-600 " />
                                             <TextInput required placeholder="Seleccione Pr..." id="codigobarra" type="number" v-model="codigobarra"
-                                                class="placeholder-slate-400  uppercase mt-1 bg-gray-200 text-gray-600 sm:rounded-lg w-36" readonly />
+                                                class="placeholder-slate-400  uppercase mt-1 bg-gray-200 text-gray-600 sm:rounded-lg w-36" disabled />
                                             <!--<InputError class="mt-2" :message="form.errors.venta" />-->
                                         </div>
                                         <div class="ml-4">
                                             <InputLabel for="descripcion" value="Descripción" class="text-gray-600 " />
                                             <TextInput required placeholder="Seleccione Producto..." id="descripcion" type="text" v-model="marca"
-                                                class="placeholder-slate-400 uppercase mt-1 bg-gray-200 text-gray-600 sm:rounded-lg w-96" readonly />
+                                                class="placeholder-slate-400 uppercase mt-1 bg-gray-200 text-gray-600 sm:rounded-lg w-96" disabled />
                                             <!--<InputError class="mt-2" :message="form.errors.venta" />-->
                                         </div>
                                         <div class="ml-4">
                                             <InputLabel for="stock" value="Stock" class="text-gray-600 " />
                                             <TextInput required id="stock" type="number" v-model="stock"
-                                                class="mt-1 bg-gray-200 text-gray-600 sm:rounded-lg w-20" readonly />
+                                                class="mt-1 bg-gray-200 text-gray-600 sm:rounded-lg w-20" disabled />
                                             <!--<InputError class="mt-2" :message="form.errors.venta" />-->
                                         </div>
                                         <div class="ml-4">
                                             <InputLabel for="precio" value="Precio" class="text-gray-600 " />
                                             <TextInput required id="precio" type="number" v-model="precio"
-                                                class="mt-1 bg-gray-200 text-gray-600 sm:rounded-lg w-32" />
-                                                <p v-if="precio < 0" class="text-red-600">Ingrese valor positivo</p>
-                                                
-                                            <!--<InputError class="mt-2" :message="form.errors.venta" />-->
+                                                class="mt-1 bg-gray-200 text-gray-600 sm:rounded-lg w-32" /> 
+                                            <InputError v-if="precio < 0" class="mt-2" message="Ingrese Valor Positivo" />
                                         </div>
                                         <div class="ml-4">
                                             <InputLabel for="cantidad" value="Cantidad" class="text-gray-600 " />
                                             <TextInput required id="cantidad" type="number" v-model="cantidad"
                                                 class="mt-1 bg-gray-200 text-gray-600 sm:rounded-lg w-20" />
-                                                <p v-if="cantidad < 0" class="text-red-600">Ingrese cantidad positiva</p>
-                                            <!--<InputError class="mt-2" :message="form.errors.venta" />-->
+                                            <InputError v-if="cantidad < 0" class="mt-2" message="Ingrese Valor Positivo" />
                                         </div>
                                         <div class="ml-8">
                                             <InputLabel for="total" value="TOTAL" />
@@ -406,6 +402,8 @@ onBeforeUnmount(() => {
                                                 class="mt-1 bg-gray-200 text-gray-600 sm:rounded-lg" disabled />
                                             <!--<InputError class="mt-2" :message="form.errors.venta" />-->
                                         </div>
+                                        
+
                                         <div class="mt-7 ml-3">
                                             <button @click="agregarProducto"
                                                 class="w-8 h-8 hover:bg-green-300  hover:text-green-700 text-green-500 ring-2 focus:ring-set-2 ring-blue-400 rounded-md grid place-content-center">

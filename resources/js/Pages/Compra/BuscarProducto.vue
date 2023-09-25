@@ -47,7 +47,7 @@ function loadProducto(query, setOptions) {
 <template>
     <Popover v-slot="{ open }" class="">
                                 <PopoverButton
-                                    @keydown.enter.prevent
+                                    
                                     :class="open ? 'bg-blue-400 text-blue-600' : ''"
                                     class="w-8 h-8 hover:bg-blue-300 hover:text-blue-700 text-blue-400 ring-2 focus:ring-set-2 ring-gray-400 rounded-full grid place-content-center"
                                 >
@@ -79,7 +79,7 @@ function loadProducto(query, setOptions) {
                                                 placeholder="Ingrese Nombre o Codigo de barra ..."
                                                 :load-options="loadProducto" 
                                                 v-model="producto"
-                                                @keyup.enter="enviarProducto(close)"
+                                                
                                             />
                                             
                                             <div class="flex justify-end mt-5">
