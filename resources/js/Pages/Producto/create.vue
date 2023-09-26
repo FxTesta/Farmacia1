@@ -309,6 +309,7 @@ function mindate(){
                                         class="mt-1 block w-full bg-gray-200 text-gray-600"
                                         v-model="form.stock"
                                         autocomplete="stock"
+                                        
                                     />
                                     <InputError class="mt-2" :message="form.errors.stock" />
                                 </div>
@@ -322,6 +323,7 @@ function mindate(){
                                         class="mt-1 block w-full bg-gray-200 text-gray-600"
                                         v-model="form.stockmin"
                                         autocomplete="stockmin"
+                                       
                                         
                                     />
                                     <InputError class="mt-2" :message="form.errors.stockmin" />

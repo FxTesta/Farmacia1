@@ -12,6 +12,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PruebacomboController;
 use App\Http\Controllers\StockAuditController;
+use App\Http\Controllers\ListaController;
 //hola prueba
 /*
 |--------------------------------------------------------------------------
@@ -94,9 +95,17 @@ Route::controller(CompraController::class)->middleware('auth')->group(function (
     Route::get('/proveedores', 'buscarProveedor')->name('buscarproveedor');
     Route::get('/buscarproducto', 'buscarProducto')->name('buscarproducto');
     Route::post('/guardarcompra', 'store')->name('compra.store');
-
 });
 
+
+//LISTAS
+Route::controller(ListaController::class)->middleware('auth')->group(function () {
+
+    Route::get('/lista', 'index')->name('lista');
+});
+
+
+//AUDITORIA
 Route::controller(StockAuditController::class)->middleware('auth')->group(function () {
 
     Route::get('/auditoria', 'index')->name('auditoria');

@@ -101,4 +101,5 @@ class CompraController extends Controller
             return redirect('/compra');
         }
     }
+
 }
