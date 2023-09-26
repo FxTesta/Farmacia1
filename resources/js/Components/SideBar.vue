@@ -24,24 +24,18 @@ export default {
           href: '/compra',
           title: 'Compras',
           icon: 'fa-sharp fa-solid fa-shop',
-          /*child: [
+          child: [
             {
-              href: '/compra/listar-compras',
+              href: '/lista',
               title: 'Listar Compras',
               icon: 'fa fa-list'
             }
-          ]*/
+          ]
         },
         
         {
           href: '/cliente',
           title: 'Clientes',
-          icon: 'fa fa-user'
-        },
-        
-        {
-          href: '/lista',
-          title: 'Listas',
           icon: 'fa fa-user'
         },
         
