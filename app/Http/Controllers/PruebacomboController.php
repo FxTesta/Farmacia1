@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Models\Producto;
 use App\Models\pruebacombo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PruebacomboController extends Controller
 {
@@ -69,6 +70,16 @@ class PruebacomboController extends Controller
 
         return redirect('/prueba');
         
+    }
+
+    public function detallefact()
+    {
+        $detalles = DB::table('detalle_factura_compras')->get();
+
+       return view('detalle');
+
+      // return $detalles;
+       
     }
 
 

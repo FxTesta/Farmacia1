@@ -111,9 +111,13 @@ Route::controller(PruebacomboController::class)->middleware('auth')->group(funct
 
     Route::get('/prueba', 'index')->name('prueba');
 
+    Route::get('/detalle', 'detallefact')->name('detalle');
+    
     Route::get('/searchproduct', 'buscarProducto')->name('buscarproducto');
 
     Route::post('/crearprueba', 'store')->name('prueba.store');
+
+ 
 
 
 });

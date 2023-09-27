@@ -62,7 +62,7 @@ export default {
         },
       
         {
-          href: '#',
+          href: '/detalle',
           title: 'Configuración',
           icon: 'fa-sharp fa-solid fa-gear',
         
