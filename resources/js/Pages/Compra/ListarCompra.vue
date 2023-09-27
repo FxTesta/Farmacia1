@@ -1,8 +1,8 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link, router } from '@inertiajs/vue3';
+import { Head, router } from '@inertiajs/vue3';
 import SideBar from '@/Components/SideBar.vue';
-import {PencilIcon, UserAddIcon, SearchIcon} from "@heroicons/vue/outline";
+import {SearchIcon} from "@heroicons/vue/outline";
 import { ref, watch } from "vue"; 
 import Pagination from '@/Components/Pagination.vue';
 import _ from 'lodash';
@@ -16,7 +16,7 @@ let search = ref(props.filters.search);
 
 watch(search, _.debounce(function (value) {
     console.log('disparado');
-    router.get('/lista', { search: value}, {
+    router.get('/compra/listar', { search: value}, {
         preserveState: true,
         replace: true
     });

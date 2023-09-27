@@ -26,7 +26,7 @@ export default {
           icon: 'fa-sharp fa-solid fa-shop',
           child: [
             {
-              href: '/lista',
+              href: '/compra/listar',
               title: 'Listar Compras',
               icon: 'fa fa-list'
             }

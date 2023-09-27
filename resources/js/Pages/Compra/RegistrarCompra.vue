@@ -1,12 +1,12 @@
 <script setup>
 //import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import prueba from '@/Layouts/prueba.vue';
+import Layout from '@/Layouts/Layout.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import { XIcon, SearchIcon, PlusCircleIcon, SaveIcon } from "@heroicons/vue/outline";
 import TextInput from '@/Components/TextInput.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
-import Combobox from "@/Pages/Compra/Combobox copy.vue"
+import BuscarProveedor from "@/Pages/Compra/BuscarProveedor.vue"
 import BuscarProducto from "@/Pages/Compra/BuscarProducto.vue"
 import { ref, computed, onMounted, onBeforeUnmount } from "vue";
 
@@ -276,7 +276,7 @@ onBeforeUnmount(() => {
 </script>
 <template>
     <Head title="Comprar" />
-    <prueba>
+    <Layout>
         <template #header>
             <h2 class="flex uppercase font-bold text-xl text-gray-800 leading-tight">Compras</h2>
         </template>
@@ -312,7 +312,7 @@ onBeforeUnmount(() => {
 
                                     <div class="flex space-x-2">
                                         <span class="block font-medium text-sm text-gray-700 mt-2">Proveedor</span>
-                                        <Combobox placeholder="Buscar Proveedor..." :load-options="loadProveedor" v-model="proveedor" />
+                                        <BuscarProveedor placeholder="Buscar Proveedor..." :load-options="loadProveedor" v-model="proveedor" />
                                     </div>
 
                                     <div class="flex space-x-2">
@@ -470,5 +470,5 @@ onBeforeUnmount(() => {
                 </div>
             </div>
         </div>
-    </prueba>
+    </Layout>
 </template>
