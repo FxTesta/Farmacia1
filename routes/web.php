@@ -12,6 +12,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PruebacomboController;
 use App\Http\Controllers\StockAuditController;
+use App\Http\Controllers\ListaController;
 //hola prueba
 /*
 |--------------------------------------------------------------------------
@@ -89,14 +90,19 @@ Route::controller(ProveedorController::class)->middleware('auth')->group(functio
 //COMPRAS
 Route::controller(CompraController::class)->middleware('auth')->group(function () {
 
-    Route::get('/compra', 'index')->name('compra');
+    Route::get('/compra', 'registarCompra')->name('compra');
 
     Route::get('/proveedores', 'buscarProveedor')->name('buscarproveedor');
     Route::get('/buscarproducto', 'buscarProducto')->name('buscarproducto');
     Route::post('/guardarcompra', 'store')->name('compra.store');
 
+    //Listar compras
+    Route::get('/compra/listar', 'listarCompras')->name('listarcompras');
 });
 
+
+
+//AUDITORIA
 Route::controller(StockAuditController::class)->middleware('auth')->group(function () {
 
     Route::post('/auditoria', 'index')->name('auditoria');
@@ -105,6 +111,7 @@ Route::controller(StockAuditController::class)->middleware('auth')->group(functi
 });
 
 
+<<<<<<< HEAD
 //PRUEBA COMBOBOX RELLENAR OTROS CAMPOS Y GUARDAR EN BASE DE DATOS
 
 Route::controller(PruebacomboController::class)->middleware('auth')->group(function () {
@@ -121,6 +128,8 @@ Route::controller(PruebacomboController::class)->middleware('auth')->group(funct
 
 
 });
+=======
+>>>>>>> master
 Route::get('/generar-pdf' , function () {
     
       

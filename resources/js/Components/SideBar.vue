@@ -23,8 +23,14 @@ export default {
         {
           href: '/compra',
           title: 'Compras',
-          icon: 'fa-sharp fa-solid fa-shop'
-          
+          icon: 'fa-sharp fa-solid fa-shop',
+          child: [
+            {
+              href: '/compra/listar',
+              title: 'Listar Compras',
+              icon: 'fa fa-list'
+            }
+          ]
         },
         
         {
@@ -32,7 +38,6 @@ export default {
           title: 'Clientes',
           icon: 'fa fa-user'
         },
-        
         
         {
           href: '/producto',

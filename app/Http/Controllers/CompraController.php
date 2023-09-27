@@ -12,11 +12,12 @@ use Illuminate\Http\Request;
 
 class CompraController extends Controller
 {
-    public function index(Request $request)
+    //vista para registrar compra
+    public function registarCompra(Request $request)
     {
         $user = auth()->user();
 
-        return Inertia::render('Compra/prueba', [
+        return Inertia::render('Compra/RegistrarCompra', [
             'user' => $user,
         ]);
     }
@@ -91,7 +92,7 @@ class CompraController extends Controller
                     'total' => $producto['total'],
                 ]);
 
-                //FALTA actualizar stock del producto, sumar la cantidad.
+                
                 $productos = Producto::where('id', $producto['productoid'])->first();
                 $productos->update([
                     'stock' => $productos->stock + $producto['cantidad'],
@@ -101,4 +102,27 @@ class CompraController extends Controller
             return redirect('/compra');
         }
     }
+
+
+    //LISTAR COMPRAS
+    public function listarCompras(Request $request)
+    {
+        
+        $lista = FacturaCompra::when($request->search, function($query, $search){
+            //filtra la busqueda por nombre proveedor o nrofactura
+            $query->where('proveedor_nombre', 'LIKE', "%{$search}%" )->orWhere('nrofactura', 'LIKE', "{$search}%");
+        })
+        ->paginate(15)
+        ->withQueryString();
+
+        $filters = $request->only('search');
+        
+
+        return Inertia::render('Compra/ListarCompra',[
+            'lista' => $lista,
+            'filters' => $filters,
+        ]);
+    }
+
+
 }
