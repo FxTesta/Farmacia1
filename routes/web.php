@@ -137,3 +137,15 @@ Route::get('/generar-pdf' , function () {
 });
 //Route::get('/auditoria', function(){ $products=StockAudit::query('id', 'DESC')->get(); return view('template', compact('products')); })
 //para qie funcione instalar composer require dompdf/dompdf
+
+
+/*
+//prueba de notificaciones de "toast" que se encuentra en handleinertiarequest
+Route::post('/test', function(){
+    return redirect()->back()->with('toast', 'Toast endpoint');
+});
+
+//prueba de notificaciones de "error" que se encuentra en handleinertiarequest
+Route::post('/deletee', function(){
+    return redirect()->back()->with('error', 'Usuario Eliminado');
+});*/

@@ -2,11 +2,14 @@
 import { Link } from '@inertiajs/vue3';
 import {Menu, MenuButton, MenuItem, MenuItems} from '@headlessui/vue';
 import {UserIcon} from "@heroicons/vue/outline";
+import ToastError from '@/Components/Notification/Error/ToastError.vue'
+import ToastCheck from '@/Components/Notification/Success/ToastCheck.vue'
 </script>
 
 <template>
     <div>
-
+        <ToastCheck/>
+        <ToastError/>
         <div class="min-h-screen bg-cyan-100">
            
             <!-- Page Heading -->

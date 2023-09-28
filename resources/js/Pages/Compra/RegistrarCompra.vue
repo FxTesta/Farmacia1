@@ -9,6 +9,7 @@ import InputLabel from '@/Components/InputLabel.vue';
 import BuscarProveedor from "@/Pages/Compra/BuscarProveedor.vue"
 import BuscarProducto from "@/Pages/Compra/BuscarProducto.vue"
 import { ref, computed, onMounted, onBeforeUnmount } from "vue";
+import error from '@/Stores/error'
 
 
 //para obtener el usuario logueado, name y id
@@ -175,7 +176,7 @@ const agregarProducto = () => {
         producto.value = null;
     }
     else {
-        console.log('No entro')
+        console.log('No entro');
     }
 };
 
@@ -238,9 +239,16 @@ const formatearNumero = (numero) => {
 //función que guarda la comra realizada en la base de datos
 function onSubmit() {
     // Verificar si arrayProductos es nulo o vacío
+
+    if( !proveedor.value){
+
+        addError('Seleccionar Proveedor');
+    }
+
     if (!arrayProductos.value || arrayProductos.value.length === 0) {
         // Realizar alguna acción en caso de que arrayProductos sea nulo o vacío
         console.error('El array de productos está vacío o nulo');
+        addError('No hay productos');
         return; // Salir de la función onSubmit sin hacer la solicitud POST
     }
 
@@ -272,6 +280,12 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('beforeunload', confirmReload);
 });
+
+function addError(message) {
+    error.add1({
+        message1: message
+    })
+}
 
 </script>
 <template>
@@ -361,7 +375,7 @@ onBeforeUnmount(() => {
                             <span class="uppercase font-bold text-base p-3">producto</span>
                             <div class="border-4 border-blue-500 rounded-md">
                                 <div class="p-2 pt-4 pb-4">
-                                    <form action="#">
+                                    <form @submit.prevent="">
                                     <div class="inline-flex">
                                         <div class="mt-7">
                                             <BuscarProducto />

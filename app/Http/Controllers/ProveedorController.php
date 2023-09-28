@@ -60,14 +60,14 @@ class ProveedorController extends Controller
             'email' => $request->email,
         ]);
 
-        return redirect()->route('proveedor');
+        return redirect()->route('proveedor')->with('toast', 'Proveedor Creado');
         
     }
 
     public function destroy(Proveedor $proveedor)
     {
         $proveedor->delete();
-        return redirect()->back()->with('toast', 'Proveedor Eliminado');
+        return redirect()->back()->with('error', 'Proveedor Eliminado');
     }
 
     public function edit($proveedor_id)
@@ -104,7 +104,7 @@ class ProveedorController extends Controller
             'email' => request('email'),
             
         ]);
-        return redirect()->route('proveedor');
+        return redirect()->route('proveedor')->with('toast', 'Proveedor Editado');
     }
     
 }

@@ -114,7 +114,7 @@ class ProductoController extends Controller
         ]);
         
 
-        return redirect()->route('producto');
+        return redirect()->route('producto')->with('toast', 'Producto Creado');
         
     }
 
@@ -123,7 +123,7 @@ class ProductoController extends Controller
     public function destroy(Producto $producto)
     {
         $producto->delete();
-        return redirect()->back()->with('toast', 'Producto Eliminado');
+        return redirect()->back()->with('error', 'Producto Eliminado');
     }
     
     public function edit($producto_id)
@@ -163,7 +163,7 @@ class ProductoController extends Controller
             ]);
 
 
-            return redirect()->route('producto');
+            return redirect()->route('producto')->with('toast', 'Stock Actualizado');
         }
      
 
@@ -214,7 +214,7 @@ class ProductoController extends Controller
             $producto->update([
              'alerta' => request('alerta'),
             ]);
-            return redirect()->route('producto');
+            return redirect()->route('producto')->with('toast', 'Producto Editado');
          };
         
     }

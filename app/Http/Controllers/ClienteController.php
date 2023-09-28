@@ -60,14 +60,14 @@ class ClienteController extends Controller
             'email' => $request->email,
         ]);
 
-        return redirect()->route('cliente');
+        return redirect()->route('cliente')->with('toast', 'Cliente Creado');
         
     }
 
     public function destroy(Cliente $cliente)
     {
         $cliente->delete();
-        return redirect()->back()->with('toast', 'Usuario Eliminado');
+        return redirect()->back()->with('error', 'Cliente Eliminado');
     }
 
     public function edit($cliente_id)
@@ -104,7 +104,7 @@ class ClienteController extends Controller
             'email' => request('email'),
             
         ]);
-        return redirect()->route('cliente');
+        return redirect()->route('cliente')->with('toast', 'Cliente Editado');
     }
     
 }

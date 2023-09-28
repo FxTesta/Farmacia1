@@ -99,7 +99,7 @@ class CompraController extends Controller
                 ]);
             }
 
-            return redirect('/compra');
+            return redirect('/compra')->with('toast', 'Compra Registrada');
         }
     }
 
