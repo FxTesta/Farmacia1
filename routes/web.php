@@ -98,6 +98,8 @@ Route::controller(CompraController::class)->middleware('auth')->group(function (
 
     //Listar compras
     Route::get('/compra/listar', 'listarCompras')->name('listarcompras');
+
+    Route::get('/compra/listar/detalle/{detallefact}', 'detalles')->name('detalle');
 });
 
 
@@ -111,25 +113,7 @@ Route::controller(StockAuditController::class)->middleware('auth')->group(functi
 });
 
 
-<<<<<<< HEAD
-//PRUEBA COMBOBOX RELLENAR OTROS CAMPOS Y GUARDAR EN BASE DE DATOS
 
-Route::controller(PruebacomboController::class)->middleware('auth')->group(function () {
-
-    Route::get('/prueba', 'index')->name('prueba');
-
-    Route::get('/detalle', 'detallefact')->name('detalle');
-    
-    Route::get('/searchproduct', 'buscarProducto')->name('buscarproducto');
-
-    Route::post('/crearprueba', 'store')->name('prueba.store');
-
- 
-
-
-});
-=======
->>>>>>> master
 Route::get('/generar-pdf' , function () {
     
       

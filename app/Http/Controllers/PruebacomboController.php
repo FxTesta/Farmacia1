@@ -72,15 +72,7 @@ class PruebacomboController extends Controller
         
     }
 
-    public function detallefact()
-    {
-        $detalles = DB::table('detalle_factura_compras')->get();
-
-       return view('detalle');
-
-      // return $detalles;
-       
-    }
+   
 
 
 }
