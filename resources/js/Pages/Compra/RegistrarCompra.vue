@@ -474,9 +474,12 @@ function addError(message) {
                                         </td>
                                     </tr>
                                     <!--div se muestra en caso que no hayan registros-->
-                                    <div class="py-4 font-bold" v-if="!contarProductos()">
-                                        SIN REGISTROS
+                                    <div v-if="!contarProductos()" class="p-5">
+                                    <div class="absolute left-2/4 -translate-x-1/2 -mt-2"
+                                        >
+                                        <span class="font-serif text-xl text-slate-500 uppercase">sin registros</span>
                                     </div>
+                                </div>
                                 </tbody>
                             </table>
                         </div>

@@ -138,6 +138,12 @@ export default {
                                                     
                                     </td>
                                 </tr>
+                                <div v-if="producto.data.length <= 0" class="p-4">
+                                    <div class="absolute left-2/4 -translate-x-1/2"
+                                        >
+                                        <span class="font-serif text-xl text-slate-500 uppercase">no hay productos</span>
+                                    </div>
+                                </div>
                             </tbody>
                             
                         </table>
