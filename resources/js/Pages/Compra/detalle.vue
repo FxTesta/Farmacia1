@@ -6,7 +6,8 @@ import TextInput from '@/Components/TextInput.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 
 const props = defineProps({
-    detallefact: Object,
+    detallefact : Object,
+    cabecera : Object,
 });
 </script>
 <template>
@@ -22,7 +23,15 @@ const props = defineProps({
                     <div class="overflow-y-auto">
                         
                         
+                        <div class="flex space-x-2">
+                                    <InputLabel for="usuario" value="Usuario:" class="text-gray-600 mt-2 " />
 
+                                    <TextInput id="usuario" type="text" class="mt-1 w-40 h-8 bg-gray-200 text-gray-600"
+                                          disabled />
+
+
+                                    <!--<InputError class="mt-2" :message="form.errors.marca" />-->
+                                </div>
 
                     </div>
                 </div>
@@ -43,6 +52,7 @@ const props = defineProps({
                                     <th>Precio</th>
                                     <th>Cantidad</th>
                                     <th>Importe</th>
+                                    <th>prueba</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-400 divide-opacity-30">
@@ -54,6 +64,7 @@ const props = defineProps({
                                     <td class="text-gray-700 py-4">{{ factura_compras.cantidad }}</td>
                                     <td class="text-gray-700 py-4">{{ factura_compras.total }}</td>
                                 </tr>
+                                <td class="text-gray-700 py-4">{{ cabecera.username }}</td>
                             </tbody>
                         </table>
                     </div>
