@@ -126,15 +126,11 @@ class CompraController extends Controller
 
     public function detalles(FacturaCompra $detallefact)
     {
-
-
-       // $cabecera= FacturaCompra::all();
-       
         $detallefact->load('detallefactura');    
         return Inertia::render('Compra/detalle',[
-          'detallefact' => $detallefact,  
-          'cabecera'=>$cabecera,        
+          'detallefact' => $detallefact,         
         ]);
+       
        
     }
 }
