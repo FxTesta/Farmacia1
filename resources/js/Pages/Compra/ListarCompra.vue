@@ -1,10 +1,11 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, router } from '@inertiajs/vue3';
+import { Head, router, Link } from '@inertiajs/vue3';
 import SideBar from '@/Components/SideBar.vue';
-import {SearchIcon} from "@heroicons/vue/outline";
+import {SearchIcon,EyeIcon } from "@heroicons/vue/outline";
 import { ref, watch } from "vue"; 
 import Pagination from '@/Components/Pagination.vue';
+
 import _ from 'lodash';
 
 const props = defineProps({
@@ -82,12 +83,12 @@ watch(search, _.debounce(function (value) {
                                     <td class="py-3">{{ factura_compras.preciototal }}</td>
                                     <td class="py-3">{{ factura_compras.fechafactura }}</td>
                                     <td class="py-4">
-                                        <div class="inline-flex">          
-                                            <!-- referenciar aquí para ver los detalles de la facutura, reemplazar el hash (#) en el href del elemento a o del Link -->
-                                            <a href="#" class="text-blue-500 hover:underline">
-                                                Ver Detalles
-                                            </a>
-                                        </div>            
+                                        <Link :href="`/compra/listar/detalle/${factura_compras.id}`" as="button"
+                                                    class="text-white font-bold bg-cyan-500 hover:bg-cyan-600 rounded-xl grid place-content-center">
+                                                <button class="px-2 py-1">
+                                                    Detalle
+                                                </button>
+                                                </Link>
                                     </td>
                                 </tr>
                             </tbody>

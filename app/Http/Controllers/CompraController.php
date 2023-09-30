@@ -9,7 +9,7 @@ use App\Models\FacturaCompra;
 use App\Models\Producto;
 use App\Models\Proveedor;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class CompraController extends Controller
 {
     //vista para registrar compra
@@ -124,5 +124,13 @@ class CompraController extends Controller
         ]);
     }
 
-
+    public function detalles(FacturaCompra $detallefact)
+    {
+        $detallefact->load('detallefactura');    
+        return Inertia::render('Compra/detalle',[
+          'detallefact' => $detallefact,         
+        ]);
+       
+       
+    }
 }
