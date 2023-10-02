@@ -98,6 +98,8 @@ Route::controller(CompraController::class)->middleware('auth')->group(function (
 
     //Listar compras
     Route::get('/compra/listar', 'listarCompras')->name('listarcompras');
+
+    Route::get('/compra/listar/detalle/{detallefact}', 'detalles')->name('detalle');
 });
 
 
@@ -105,10 +107,11 @@ Route::controller(CompraController::class)->middleware('auth')->group(function (
 //AUDITORIA
 Route::controller(StockAuditController::class)->middleware('auth')->group(function () {
 
-    Route::get('/auditoria', 'index')->name('auditoria');
+    Route::post('/auditoria', 'index')->name('auditoria');
     
 
 });
+
 
 
 Route::get('/generar-pdf' , function () {
@@ -139,13 +142,6 @@ Route::get('/generar-pdf' , function () {
 //para qie funcione instalar composer require dompdf/dompdf
 
 
-/*
-//prueba de notificaciones de "toast" que se encuentra en handleinertiarequest
-Route::post('/test', function(){
-    return redirect()->back()->with('toast', 'Toast endpoint');
-});
 
-//prueba de notificaciones de "error" que se encuentra en handleinertiarequest
-Route::post('/deletee', function(){
-    return redirect()->back()->with('error', 'Usuario Eliminado');
-});*/
+
+//dominio:farmauno.rf.gd

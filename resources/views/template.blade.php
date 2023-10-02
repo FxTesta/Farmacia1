@@ -34,20 +34,22 @@
                             </thead>
                             <tbody >
                                 @forelse($productos as $producto)
-                                    <tr>
-                                        <td >{{$producto->id}}</td>
-                                        <td>{{$producto->usuario}}</td>
-                                        <td >{{$producto->id_articulo}}</td>
-                                        <td >{{$producto->codigo}}</td>
-                                        <td >{{$producto->articulo}}</td>
-                                        <td >{{$producto->stockanterior}}</td>
-                                        <td>{{$producto->stockactual}}</td>
-                                        <td>{{$producto->fecha}}</td>
-                                        <td>{{$producto->hora}}</td>
-                                    </tr>
+                                   
+                                        <tr>
+                                            <td >{{$producto->id}}</td>
+                                            <td>{{$producto->usuario}}</td>
+                                            <td >{{$producto->id_articulo}}</td>
+                                            <td >{{$producto->codigo}}</td>
+                                            <td >{{$producto->articulo}}</td>
+                                            <td >{{$producto->stockanterior}}</td>
+                                            <td>{{$producto->stockactual}}</td>
+                                            <td>{{$producto->fecha}}</td>
+                                            <td>{{$producto->hora}}</td>
+                                        </tr>
+                                   
                                 @empty
                                     <tr>
-                                        <td colspan="7">No existen cambios</td>
+                                        <td colspan="7">Auditoria vacia</td>
                                     </tr>
                                 @endforelse                                
                             </tbody>
