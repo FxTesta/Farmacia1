@@ -122,12 +122,12 @@ const submit = () => {
                             <div class="mt-4">
                                 <InputLabel for="dv" value="DV" class="text-gray-600"/>
 
-                                <TextInput
+                                <input
                                     id="dv"
                                     type="text"
-                                    class="mt-1 block w-full bg-gray-200 text-gray-600"
+                                    class="rounded-md shadow-sm mt-1 block w-full bg-gray-200 text-gray-600"
                                     autocomplete="dv"
-                                    readonly
+                                    disabled
                                     placeholder="se genera al guardar"
                                     
                                 />
@@ -201,7 +201,6 @@ const submit = () => {
                                     class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.telefono"
                                     required
-                                    autocomplete="telefono"
                                 />
 
                                 <InputError class="mt-2" :message="form.errors.telefono" />

@@ -49,6 +49,7 @@ watch(search, _.debounce(function (value) {
                                     class="w-5 h-5 absolute ml-3 pointer-events-none"
                                 />
                                 <input
+                                    id="searchcompra"
                                     v-model="search"
                                     type="text"
                                     placeholder="Buscar Compras"
