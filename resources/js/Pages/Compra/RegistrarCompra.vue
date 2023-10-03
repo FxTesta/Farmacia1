@@ -191,20 +191,6 @@ const eliminarProducto = (index) => {
 };
 
 
-
-//let form = useForm({
-//   /*marca: marca,
-//   stock: stock,
-//   cantidad: '',
-//   total: '',*/
-//   arrayProductos: arrayProductos.value,
-//});
-
-
-
-
-
-
 //función que obtiene el día de la fecha
 function mindate() {
     return new Date().toISOString().split('T')[0]
