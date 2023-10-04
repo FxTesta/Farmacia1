@@ -22,10 +22,18 @@ let proveedor = ref();
 //variable que va a recibir los detalles del producto seleccionado
 let producto = ref('');
 
+//ref para enfocar al siguiente campo presionando Enter hasta cargar el producto 
+const primero = ref();
+const segundo = ref();
+const miBoton = ref();
+
 //evento recibe el producto buscado del componente "BuscarProducto"
 const recibirProducto = (event) => {
     // La variable 'producto' del componente hijo se recibe aquí
     producto.value = event.detail;
+
+    //enfoca al campo "Precio" después de seleccionar Producto
+    primero.value.focus();
 };
 
 onMounted(() => {
@@ -171,8 +179,12 @@ const agregarProducto = () => {
         //una vez cargado los datos se reestablecen los campos para la siguiente carga.
         precio.value = null;
         cantidad.value = null;
-        //total.value = null;
         producto.value = null;
+
+        //después de agregar el producto envia un evento a "BuscarProducto" para enfocar nuevamente el boton para buscar Producto
+        const event1 = new CustomEvent('enviar-ref');
+        window.dispatchEvent(event1);
+
     }
     else {
         console.log('No entro');
@@ -272,6 +284,37 @@ function addError(message) {
     })
 }
 
+
+  const focusNext = (inputNumber) => {
+  if (inputNumber === 2 && segundo.value && precio.value !== '' && precio.value !== null) {
+    segundo.value.focus();
+  } else if (inputNumber === 3 && miBoton.value && cantidad.value !== '' && cantidad.value !== null) {
+    miBoton.value.focus();
+  }else if (precio.value === '' || precio.value === null) {
+    showError.value = true;
+  }else if (cantidad.value === '' || cantidad.value === null) {
+    showError2.value = true;
+  }
+  
+};
+
+//validación si campo "Precio" y "Cantidad" están vacios
+const showError = ref(false);
+const showError2 = ref(false);
+
+const validateInput = () => {
+  if (precio.value.trim() === '') {
+  } else {
+    showError.value = false;
+  }
+};
+const validateInput2 = () => {
+  if (cantidad.value.trim() === '') {
+  } else {
+    showError2.value = false;
+  }
+};
+
 </script>
 <template>
     <Head title="Comprar" />
@@ -284,6 +327,20 @@ function addError(message) {
             <div class="px-4 pt-4">
                 <div class="bg-white shadow-sm sm:rounded-lg">
                     <div>
+                      <!--  <form @submit.prevent="">
+                            <Popover>
+                            <PopoverButton as="div" class="border w-fit border-blue-300 hover:bg-blue-500" >
+                                <button ref="primero" >botoncito pa</button>
+                                
+                            </PopoverButton>
+                            </Popover>-->
+                        <!--<BuscarProducto ref="primero"/>
+                        <TextInput ref="inputField" @keyup.enter="focusNextInput(2)" type="text"/>
+                        <TextInput ref="inputField2" @keyup.enter="focusButton" type="text"/>
+                        <button ref="boton" @click="focusInput" >Hola</button>
+                        </form>-->
+
+
                         <form @submit.prevent="onSubmit()">
                             <div class="mt-2 ml-4 inline-flex space-x-2">
                                 <div class="flex space-x-2">
@@ -390,21 +447,23 @@ function addError(message) {
                                             </div>
                                             <div class="ml-4">
                                                 <InputLabel for="precio" value="Precio" class="text-gray-600 " />
-                                                <TextInput required id="precio" type="number" v-model="precio" 
-                                                    class="mt-1 bg-gray-200 text-gray-600 sm:rounded-lg w-32" />
+                                                <TextInput ref="primero" @keydown.enter="focusNext(2)"  id="precio" type="number" v-model="precio" 
+                                                class="mt-1 bg-gray-200 text-gray-600 sm:rounded-lg w-32" @input="validateInput" />
                                                 <InputError v-if="precio < 0" class="mt-2"
                                                     message="Ingrese Valor Positivo" />
+                                                    <p v-if="showError" class="text-red-600">Por favor, rellena este campo.</p>
                                             </div>
                                             <div class="ml-4">
-                                                <InputLabel for="cantidad" value="Cantidad" class="text-gray-600 " />
-                                                <TextInput required id="cantidad" type="number" v-model="cantidad"
-                                                    class="mt-1 bg-gray-200 text-gray-600 sm:rounded-lg w-20" />
+                                                <InputLabel  for="cantidad" value="Cantidad" class="text-gray-600 " />
+                                                <TextInput ref="segundo" @keydown.enter="focusNext(3)"  id="cantidad" type="number" v-model="cantidad"
+                                                    class="mt-1 bg-gray-200 text-gray-600 sm:rounded-lg w-20" @input="validateInput2"/>
                                                 <InputError v-if="cantidad < 0" class="mt-2"
                                                     message="Ingrese Valor Positivo" />
+                                                <p v-if="showError2" class="text-red-600">Por favor, rellena este campo.</p>
                                             </div>
                                             <div class="ml-8">
                                                 <InputLabel for="total" value="TOTAL" />
-                                                <TextInput required id="total" type="number" v-model="total"
+                                                <TextInput  id="total" type="number" v-model="total"
                                                     class="mt-1 bg-gray-200 text-gray-600 sm:rounded-lg" disabled />
                                                 <!--<InputError class="mt-2" :message="form.errors.venta" />-->
                                             </div>
@@ -412,6 +471,7 @@ function addError(message) {
 
                                             <div class="mt-7 ml-3">
                                                 <button @click="agregarProducto"
+                                                    ref="miBoton"
                                                     class="w-8 h-8 hover:bg-green-300  hover:text-green-700 text-green-500 ring-2 focus:ring-set-2 ring-blue-400 rounded-md grid place-content-center">
                                                     <PlusCircleIcon class="w-7 h-7" />
                                                 </button>
