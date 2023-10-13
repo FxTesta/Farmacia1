@@ -32,6 +32,19 @@ export default {
             }
           ]
         },
+        {
+          href: '/venta',
+          title: 'Ventas',
+          icon: 'fa-sharp fa-solid fa-cart-shopping',
+          /*
+          child: [
+            {
+              href: '/compra/listar',
+              title: 'Listar Compras',
+              icon: 'fa fa-list'
+            }
+          ]*/
+        },
         
         {
           href: '/cliente',
