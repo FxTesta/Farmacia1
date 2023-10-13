@@ -71,6 +71,7 @@ watch(search, _.debounce(function (value) {
                                     <th>RUC</th>
                                     <th>DV</th>
                                     <th>Dirección</th>
+                                    <th>Estado</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -79,10 +80,10 @@ watch(search, _.debounce(function (value) {
                                     <td class="text-gray-700 py-4">{{ clientes.id }}</td>
                                     <td class="text-gray-700 py-4">{{ clientes.name }}</td>
                                     <td class="text-gray-700 py-4">{{ clientes.cedula }}</td>
-
                                     <td class="text-gray-700 py-4">{{ clientes.ruc }}</td>
                                     <td class="text-gray-700 py-4">{{ clientes.dv }}</td>
-                                    <td class="py-4 inline-flex">{{ clientes.direccion }}</td>
+                                    <td class="text-gray-700 py-4">{{ clientes.direccion }}</td>
+                                    <td class="py-4 inline-flex">{{ clientes.estado }}</td>
                                     <td class="py-4">
                                         <div class="inline-flex">
                                             <Link :href="`/editar-cliente/${clientes.id}`" as="button"

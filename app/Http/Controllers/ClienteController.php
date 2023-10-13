@@ -44,6 +44,7 @@ class ClienteController extends Controller
             'callelateral' => 'string|max:255|nullable',
             'referencia' => 'string|max:255|nullable',
             'telefono' => 'required|max:255',
+            'estado' => 'max:255',
             'email' => 'nullable|string|email|max:255|unique:'.Cliente::class,
         ]);
 
@@ -57,6 +58,7 @@ class ClienteController extends Controller
             'callelateral' => $request->callelateral,
             'referencia' => $request->referencia,
             'telefono' => $request->telefono,
+            'estado' => $request->estado,
             'email' => $request->email,
         ]);
 
@@ -89,6 +91,7 @@ class ClienteController extends Controller
             'direccion' =>['required'],
             'referencia',
             'telefono' =>['required'],
+            'estado' ,
             'email' ,
             
         ]);
@@ -101,6 +104,7 @@ class ClienteController extends Controller
             'direccion' => request('direccion'),
             'referencia' => request('referencia'),
             'telefono' => request('telefono'),
+            'estado' => request('estado'),
             'email' => request('email'),
             
         ]);

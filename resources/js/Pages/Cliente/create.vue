@@ -20,6 +20,7 @@ const form = useForm({
     callelateral: '',
     referencia: '',
     telefono: '',
+    estado: 'Cliente Fiel',
     email: '',
 });
 
@@ -150,6 +151,15 @@ const submit = () => {
                                     v-model="form.email" autocomplete="email" />
 
                                 <InputError class="mt-2" :message="form.errors.email" />
+                            </div>
+
+                            <div class="mt-4">
+                                <InputLabel for="estado" value="Estado" class="text-gray-600" />
+
+                                <TextInput id="estado" type="estado" class="mt-1 block w-full bg-gray-200 text-gray-600"
+                                    v-model="form.estado" autocomplete="Cliente Fiel" />
+
+                                <InputError class="mt-2" :message="form.errors.estado" />
                             </div>
 
                             <div class="flex items-center justify-end mt-6">

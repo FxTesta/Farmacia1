@@ -13,16 +13,21 @@ lista: Object,
 filters: Object,
 });
 
+
+
 let search = ref(props.filters.search);
 
-watch(search, _.debounce(function (value) {
+const handleSearch = _.debounce(value => {
     console.log('disparado');
-    router.get('/compra/listar', { search: value}, {
+    router.get('/compra/listarProveedor', { search: value }, {
         preserveState: true,
         replace: true
     });
-}, 300));
+}, 100);
 
+watch(search, handleSearch);
+
+handleSearch(search.value);
 </script>
 <template>
     <Head title="Dashboard" />
@@ -31,7 +36,7 @@ watch(search, _.debounce(function (value) {
     <AuthenticatedLayout>
 
         <template #header>
-            <h2 class="flex uppercase font-bold text-xl text-gray-800 leading-tight">Compras realizadas</h2>
+            <h2 class="flex uppercase font-bold text-xl text-gray-800 leading-tight">Compras realizadas por el proveedor </h2>
         </template>
 
         <div class="py-12">
@@ -43,11 +48,8 @@ watch(search, _.debounce(function (value) {
                        <div class="inline-flex space-x-2 mb-2 mt-2 mr-2">
                             
                             <div
-                                class="relative flex items-center  focus-within:text-gray-400"
+                                class="relative flex items-center  focus-within:text-gray-400 hidden" 
                                 >
-                                <SearchIcon
-                                    class="w-5 h-5 absolute ml-3 pointer-events-none"
-                                />
                                 <input
                                     id="searchcompra"
                                     v-model="search"
@@ -89,7 +91,7 @@ watch(search, _.debounce(function (value) {
                                                 <button class="px-2 py-1">
                                                     Detalle
                                                 </button>
-                                        </Link>
+                                                </Link>
                                     </td>
                                 </tr>
                             </tbody>

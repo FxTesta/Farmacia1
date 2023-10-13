@@ -23,7 +23,9 @@ const form = useForm({
     barrio: props.cliente.barrio,
     callelateral: props.cliente.callelateral,
     telefono: props.cliente.telefono,
+    estado: props.cliente.estado,
     email: props.cliente.email,
+    
 });
 
 const calculateDV = () => {
@@ -150,6 +152,15 @@ const submit = () => {
                                     v-model="form.email" autocomplete="email" />
 
                                 <InputError class="mt-2" :message="form.errors.email" />
+                            </div>
+
+                            <div class="mt-4">
+                                <InputLabel for="estado" value="Estado" class="text-gray-600" />
+
+                                <TextInput id="estado" type="estado" class="mt-1 block w-full bg-gray-200 text-gray-600"
+                                    v-model="form.estado" autocomplete="estado" />
+
+                                <InputError class="mt-2" :message="form.errors.estado" />
                             </div>
 
                             <div class="flex items-center justify-end mt-6">
