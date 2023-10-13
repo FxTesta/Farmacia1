@@ -4,6 +4,7 @@ import { Head, useForm } from '@inertiajs/vue3';
 import TextInput from '@/Components/TextInput.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
+import { XIcon, PlusCircleIcon } from "@heroicons/vue/outline";
 
 </script>
 <template>
@@ -12,14 +13,59 @@ import InputLabel from '@/Components/InputLabel.vue';
         <template #header>
             <h2 class="flex uppercase font-bold text-xl text-gray-800 leading-tight">Ventas</h2>
         </template>
-        <div class="h-screen">
-            <div class="ml-16 grid grid-rows-6 grid-cols-5 gap-4 mt-4 px-3 pb-2 h-90">
+        <div class="max-h-full flex">
+            <div class="ml-16 grid grid-rows-6 grid-cols-5 gap-4 mt-4 px-3 pb-2">
                 <!--div que contiene cabecera factura-->
-                <div class="col-end-5 col-start-1 row-span-3 bg-white rounded-md border border-black">
-                    02
+                <div class="col-end-5 col-start-1 row-start-1 row-end-4 bg-white rounded-md border border-black">
+                    <div class="flex flex-row w-full p-3 mt-4 space-x-5">
+                        <div class="space-x-1">
+                            <label for="usuario" class="font-medium text-sm">Usuario:</label>
+                            <input disabled type="text" id="usuario" name="usuario"
+                                class="rounded-md w-[130px] h-[28px] bg-slate-200 text-slate-500">
+                        </div>
+                        <div class="space-x-1">
+                            <label for="codigo" class="font-medium text-sm">Codigo:</label>
+                            <input disabled type="text" id="codigo" name="codigo"
+                                class="rounded-md w-[80px] h-[28px] bg-slate-200 text-slate-500">
+                        </div>
+                        <div class="space-x-1 -mt-1">
+                            <label for="formadepago" class="font-medium text-sm">Forma de pago:</label>
+                            <select id="formadepago" value="" class="rounded-md w-[150px] h-[35px] p-1">
+                                <option disabled value="">Seleccione</option>
+                                <option>Efectivo</option>
+                                <option>Tarjeta Debito</option>
+                                <option>Tarjeta Credito</option>
+                            </select>
+                        </div>
+                        <div class="space-x-1">
+                            <label for="fechafactura" class="font-medium text-sm">Fecha Factura:</label>
+                            <input type="date" id="fechafactura" name="fechafactura"
+                                class="rounded-md w-[130px] h-[28px] p-1">
+                        </div>
+                    </div>
+                    <div class="flex flex-row w-full p-3 space-x-5 mt-2">
+                        <div class="space-x-1">
+                            <label for="cliente" class="font-medium text-sm">Cliente:</label>
+                            <input type="text" id="cliente" name="cliente" class="rounded-md w-[130px] h-[28px]">
+                        </div>
+                        <div class="space-x-1 -mt-1">
+                            <label for="comprobante" class="font-medium text-sm">Comprobante:</label>
+                            <select id="comprobante" value="" class="rounded-md w-[150px] h-[35px] p-1">
+                                <option disabled value="">Seleccione</option>
+                                <option>Factura</option>
+                                <option>Ticket</option>
+                            </select>
+                        </div>
+                        <div class="space-x-1">
+                            <label for="nrofactura" class="font-medium text-sm">Numero Factura:</label>
+                            <input disabled type="number" id="nrofactura" name="nrofactura"
+                                class="rounded-md w-[140px] h-[28px] bg-slate-200 text-slate-500">
+                        </div>
+                    </div>
                 </div>
                 <!--div que contiene detalle factura-->
-                <div class="flex-1 row-span-3 col-end-5 col-start-1 bg-white overflow-hidden rounded-md border border-black">
+                <div
+                    class="flex-1 row-start-4 row-end-7 col-end-5 col-start-1 bg-white overflow-hidden rounded-md border border-black">
                     <div class="h-full">
                         <div class="max-h-full flex flex-col">
                             <div class="px-3 mt-2 overflow-y-auto">
@@ -94,8 +140,8 @@ import InputLabel from '@/Components/InputLabel.vue';
                                         class=" w-[30%] h-8 rounded-md placeholder-slate-400 bg-white text-gray-600 border border-black">
                                 </div>
                                 <div class="ml-2 pt-4 inline-flex space-x-2">
-                                    <input id="iva" type="checkbox">
-                                    <label for="iva" class="block text-sm font-bold text-black ">Paga con tarjeta
+                                    <input id="tarjeta" type="checkbox">
+                                    <label for="tarjeta" class="block text-sm font-bold text-black ">Paga con tarjeta
                                         +5%
                                     </label>
                                 </div>
