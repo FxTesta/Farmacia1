@@ -80,11 +80,6 @@ watch(search, _.debounce(function (value) {
                                                     Detalle
                                                 </button>
                                         </Link>
-                                            class="text-white font-bold bg-cyan-500 hover:bg-cyan-600 rounded-xl grid place-content-center">
-                                        <button class="px-2 py-1">
-                                            Detalle
-                                        </button>
-                                        </Link>
                                     </td>
                                 </tr>
                                 <!--div se muestra en caso que no hayan registros-->

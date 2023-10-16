@@ -36,7 +36,7 @@ handleSearch(search.value);
     <AuthenticatedLayout>
 
         <template #header>
-            <h2 class="flex uppercase font-bold text-xl text-gray-800 leading-tight">Compras realizadas por el proveedor </h2>
+            <h2 class="flex uppercase font-bold text-xl text-gray-800 leading-tight">Compras realizadas al proveedor </h2>
         </template>
 
         <div class="py-12">
