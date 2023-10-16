@@ -63,7 +63,7 @@ class ProveedorController extends Controller
         return redirect()->route('proveedor')->with('toast', 'Proveedor Creado');
         
     }
-
+//prueba aron
     
     public function destroy(Proveedor $proveedor)
     {
