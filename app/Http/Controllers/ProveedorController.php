@@ -64,6 +64,7 @@ class ProveedorController extends Controller
         
     }
 
+    
     public function destroy(Proveedor $proveedor)
     {
         $proveedor->delete();
