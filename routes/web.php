@@ -86,9 +86,7 @@ Route::controller(ProveedorController::class)->middleware('auth')->group(functio
     Route::get('/editar-proveedor/{proveedor_id}', 'edit')->name('proveedor.edit');
     Route::put('/editar-proveedor/{proveedor}', 'update')->name('proveedor.update');
     Route::delete('/proveedor/delete/{proveedor}', 'destroy')->name('proveedor.destroy');
-    Route::get('/proveedor/{proveedor_id}/facturas', function ($proveedor_id) {
-        return Inertia::render('FacturaPorProveedor');
-    });
+    Route::get('/proveedor/listar/{proveedor_id}', 'facturas')->name('factura');
     
 
 });

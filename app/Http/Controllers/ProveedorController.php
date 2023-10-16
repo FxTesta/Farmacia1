@@ -106,5 +106,12 @@ class ProveedorController extends Controller
         ]);
         return redirect()->route('proveedor')->with('toast', 'Proveedor Editado');
     }
-    
+
+    public function facturas(FacturaCompra $proveedor_id)
+    {
+        $proveedor_id->load('facturacompra');    
+        return Inertia::render('Proveedor/listarFactura',[
+          'proveedor_id' => $proveedor_id,         
+        ]);       
+    }
 }

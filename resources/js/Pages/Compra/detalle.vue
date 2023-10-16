@@ -11,10 +11,10 @@ import { ref } from 'vue';
 const formattedNroFactura = ref('');
 
 const formatNroFactura = (nroFactura) => {
-  const numericChars = nroFactura.replace(/\D/g, '');
-  const groups = numericChars.match(/^(\d{0,3})(\d{0,3})(\d{0,7})$/);
-  const nonEmptyGroups = groups.slice(1).filter(group => group !== undefined && group !== '');
-  return nonEmptyGroups.length > 0 ? nonEmptyGroups.join('-') : '';
+    const numericChars = nroFactura.replace(/\D/g, '');
+    const groups = numericChars.match(/^(\d{0,3})(\d{0,3})(\d{0,7})$/);
+    const nonEmptyGroups = groups.slice(1).filter(group => group !== undefined && group !== '');
+    return nonEmptyGroups.length > 0 ? nonEmptyGroups.join('-') : '';
 };
 
 
@@ -62,17 +62,11 @@ const props = defineProps({
                                 </div>
 
                                 <div class="flex space-x-2">
-      <InputLabel for="nrofactura" value="Nro Factura:" class="text-gray-600 mt-2 " />
-      <input
-        id="nrofactura"
-        type="text"
-        class="mt-1 w-40 h-8 bg-gray-200 text-gray-600"
-        v-model="formattedNroFactura"
-        @input="updateNroFactura"
-        required
-        autocomplete="nrofactura"
-      />
-    </div>
+                                    <InputLabel for="nrofactura" value="Nro Factura:" class="text-gray-600 mt-2 " />
+                                    <input id="nrofactura" type="text" class="mt-1 w-40 h-8 bg-gray-200 text-gray-600"
+                                        v-model="formattedNroFactura" @input="updateNroFactura" required
+                                        autocomplete="nrofactura" />
+                                </div>
                                 <div class="flex space-x-2">
                                     <InputLabel for="fechafactura" value="Fecha Factura:" class="text-gray-600 mt-2 " />
 
