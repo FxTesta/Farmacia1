@@ -16,10 +16,13 @@ const props = defineProps({
 let search = ref(props.filters.search);
 
 
-function setProveedorBusqueda(proveedor) {
-    search.value = proveedor;
-    router.get('/compra/listarProveedor', { search: proveedor });
-}
+watch(search, _.debounce(function (value) {
+    console.log('disparado');
+    router.get('/proveedor', { search: value }, {
+        preserveState: true,
+        replace: true
+    });
+}, 300));
 
 </script>
 <template>
