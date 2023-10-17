@@ -110,16 +110,16 @@ class ProveedorController extends Controller
 
     public function facturaProveedor(Proveedor $proveedor, Request $request)
     {
-        $proveedor->load('facturacompra');
+        $proveedor->load('facturacompra'); //carga la relación, sirve para obtener el id de proveedor en la url (router.get)
 
-        $facturaCompra = $proveedor->facturacompra();
+        $facturaCompra = $proveedor->facturacompra(); // obtiene la relación entre proveedor y factura
 
         $facturaCompra->when($request->search, function($query, $search){
             //buscar por numero de factura o fecha
             $query->where('nrofactura', 'LIKE', "{$search}%")->orWhere('fechafactura', 'LIKE', "{$search}%");;
-        });
+        }); //query de busqueda según la relación obtenida
         
-        $facturaCompra = $facturaCompra->paginate(15)->withQueryString();
+        $facturaCompra = $facturaCompra->paginate(15)->withQueryString(); //se hace de esta forma por que $facturaCompra es una colección y no un objeto
 
 
         $filters = $request->only('search');
