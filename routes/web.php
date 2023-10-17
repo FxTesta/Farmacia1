@@ -86,7 +86,9 @@ Route::controller(ProveedorController::class)->middleware('auth')->group(functio
     Route::get('/editar-proveedor/{proveedor_id}', 'edit')->name('proveedor.edit');
     Route::put('/editar-proveedor/{proveedor}', 'update')->name('proveedor.update');
     Route::delete('/proveedor/delete/{proveedor}', 'destroy')->name('proveedor.destroy');
-    Route::get('/proveedor/listar/{proveedor_id}', 'facturas')->name('factura');
+
+    //listar facturas del proveedor
+    Route::get('/proveedor/listar/{proveedor}', 'facturaProveedor')->name('factura.proveedor');
     
 
 });

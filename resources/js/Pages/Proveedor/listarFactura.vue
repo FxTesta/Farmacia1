@@ -9,15 +9,18 @@ import Pagination from '@/Components/Pagination.vue';
 import _ from 'lodash';
 
 const props = defineProps({
-    lista: Object,
+    proveedor: Object,
+    facturaCompra: Object,
     filters: Object,
 });
 
-let search = ref(props.filters.search);
+
+//HACER QUE FUNCIONE BUSCADOR
+  let search = ref(props.filters.search);
+
 
 watch(search, _.debounce(function (value) {
-    console.log('disparado');
-    router.get('/compra/listar', { search: value }, {
+    router.get( `/proveedor/listar/${props.proveedor.id}`, { search: value }, {
         preserveState: true,
         replace: true
     });
@@ -25,13 +28,13 @@ watch(search, _.debounce(function (value) {
 
 </script>
 <template>
-    <Head title="Dashboard" />
+    <Head title="Compras Realizadas" />
 
     <SideBar />
     <AuthenticatedLayout>
 
         <template #header>
-            <h2 class="flex uppercase font-bold text-xl text-gray-800 leading-tight">Compras realizadas</h2>
+            <h2 class="flex uppercase font-bold text-xl text-gray-800 leading-tight">Compras realizadas por proveedor</h2>
         </template>
 
         <div class="py-12">
@@ -67,14 +70,14 @@ watch(search, _.debounce(function (value) {
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-400 divide-opacity-30">
-                                <tr v-for="factura_compras in lista.data">
+                                <tr v-for="factura_compras in facturaCompra.data">
                                     <td class="py-3">{{ factura_compras.id }}</td>
                                     <td class="py-3">{{ factura_compras.proveedor_nombre }}</td>
                                     <td class="py-3">{{ factura_compras.nrofactura }}</td>
                                     <td class="py-3">{{ factura_compras.preciototal }}</td>
                                     <td class="py-3">{{ factura_compras.fechafactura }}</td>
                                     <td class="py-4">
-                                        <Link :href="`/compra/listar/detalle/${factura_compras.id}`" as="button"
+                                      <Link :href="`/compra/listar/detalle/${factura_compras.id}`" as="button"
                                                     class="text-white font-bold bg-cyan-500 hover:bg-cyan-600 rounded-xl grid place-content-center">
                                                 <button class="px-2 py-1">
                                                     Detalle
@@ -83,7 +86,7 @@ watch(search, _.debounce(function (value) {
                                     </td>
                                 </tr>
                                 <!--div se muestra en caso que no hayan registros-->
-                                <div v-if="lista.data.length <= 0" class="p-3">
+                                <div v-if="facturaCompra.data.length <= 0" class="p-3">
                                     <div class="absolute left-2/4 -translate-x-1/2">
                                         <span class="font-serif text-xl text-slate-500 uppercase">sin compras</span>
                                     </div>
@@ -93,7 +96,7 @@ watch(search, _.debounce(function (value) {
                     </div>
                 </div>
                 <!--PAGINACION-->
-                <Pagination :links="lista.links" class="mt-6" />
+             <Pagination :links="facturaCompra.links" class="mt-6" />
 
             </div>
         </div>

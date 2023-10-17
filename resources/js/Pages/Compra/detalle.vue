@@ -7,7 +7,7 @@ import InputLabel from '@/Components/InputLabel.vue';
 import { ref } from 'vue';
 
 
-
+/* 
 const formattedNroFactura = ref('');
 
 const formatNroFactura = (nroFactura) => {
@@ -16,7 +16,7 @@ const formatNroFactura = (nroFactura) => {
     const nonEmptyGroups = groups.slice(1).filter(group => group !== undefined && group !== '');
     return nonEmptyGroups.length > 0 ? nonEmptyGroups.join('-') : '';
 };
-
+ */
 
 
 const props = defineProps({
@@ -63,8 +63,8 @@ const props = defineProps({
 
                                 <div class="flex space-x-2">
                                     <InputLabel for="nrofactura" value="Nro Factura:" class="text-gray-600 mt-2 " />
-                                    <input id="nrofactura" type="text" class="mt-1 w-40 h-8 bg-gray-200 text-gray-600"
-                                        v-model="formattedNroFactura" @input="updateNroFactura" required
+                                    <TextInput id="nrofactura" type="text" class="mt-1 w-40 h-8 bg-gray-200 text-gray-600"
+                                        v-model="props.detallefact.nrofactura" disabled required
                                         autocomplete="nrofactura" />
                                 </div>
                                 <div class="flex space-x-2">

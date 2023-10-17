@@ -108,11 +108,26 @@ class ProveedorController extends Controller
         return redirect()->route('proveedor')->with('toast', 'Proveedor Editado');
     }
 
-    public function facturas(FacturaCompra $proveedor_id)
+    public function facturaProveedor(Proveedor $proveedor, Request $request)
     {
-        $proveedor_id->load('facturacompra');    
-        return Inertia::render('Proveedor/listarFactura',[
-          'proveedor_id' => $proveedor_id,         
+        $proveedor->load('facturacompra');
+
+        $facturaCompra = $proveedor->facturacompra();
+
+        $facturaCompra->when($request->search, function($query, $search){
+            //buscar por numero de factura o fecha
+            $query->where('nrofactura', 'LIKE', "{$search}%")->orWhere('fechafactura', 'LIKE', "{$search}%");;
+        });
+        
+        $facturaCompra = $facturaCompra->paginate(15)->withQueryString();
+
+
+        $filters = $request->only('search');
+
+        return Inertia::render('Proveedor/ListarFactura',[
+          'proveedor' => $proveedor,    
+          'filters' => $filters,
+          'facturaCompra' => $facturaCompra,
         ]);       
     }
 }
