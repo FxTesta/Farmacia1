@@ -124,7 +124,7 @@ class ProveedorController extends Controller
 
         $filters = $request->only('search');
 
-        return Inertia::render('Proveedor/ListarFactura',[
+        return Inertia::render('Proveedor/listarFactura',[
           'proveedor' => $proveedor,    
           'filters' => $filters,
           'facturaCompra' => $facturaCompra,
