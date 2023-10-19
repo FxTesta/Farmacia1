@@ -24,6 +24,7 @@ const form = useForm({
     callelateral: props.cliente.callelateral,
     telefono: props.cliente.telefono,
     estado: props.cliente.estado,
+    descuento: props.cliente.descuento,
     email: props.cliente.email,
 
 });
@@ -159,7 +160,7 @@ const submit = () => {
                                 <select id="estado" class="mt-1 block w-full bg-gray-200 text-gray-600"
                                     v-model="form.estado">
                                     <option value="Cliente Fiel">Cliente Fiel</option>
-                                    <option value="Otro Estado">Registrado</option>
+                                    <option value="Otro Estado">poco habitual</option>
                                 </select>
                             </div>
 

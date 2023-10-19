@@ -46,6 +46,7 @@ class ClienteController extends Controller
             'telefono' => 'required|max:255',
             'estado' => 'max:255',
             'email' => 'nullable|string|email|max:255|unique:'.Cliente::class,
+            'descuento' => 'max:255|nullable',
         ]);
 
         Cliente::create([
@@ -60,6 +61,7 @@ class ClienteController extends Controller
             'telefono' => $request->telefono,
             'estado' => $request->estado,
             'email' => $request->email,
+            'descuento' => $request->descuento,
         ]);
 
         return redirect()->route('cliente')->with('toast', 'Cliente Creado');
@@ -93,6 +95,7 @@ class ClienteController extends Controller
             'telefono' =>['required'],
             'estado' ,
             'email' ,
+            'descuento',
             
         ]);
 
@@ -106,6 +109,7 @@ class ClienteController extends Controller
             'telefono' => request('telefono'),
             'estado' => request('estado'),
             'email' => request('email'),
+            'descuento' => request('descuento'),
             
         ]);
         return redirect()->route('cliente')->with('toast', 'Cliente Editado');
