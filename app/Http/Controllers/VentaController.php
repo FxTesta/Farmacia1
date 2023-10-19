@@ -15,4 +15,24 @@ class VentaController extends Controller
             'user' => $user,
         ]);
     }
+
+    //LISTAR VENTAS
+    public function listarVentas(Request $request)
+    {
+        
+        $lista = FacturaVenta::when($request->search, function($query, $search){
+            //filtra la busqueda por nombre cliente o nrofactura
+            $query->where('cliente_nombre', 'LIKE', "%{$search}%" )->orWhere('nrofactura', 'LIKE', "{$search}%")->orWhere('fechafactura', 'LIKE', "{$search}%");
+        })
+        ->paginate(15)
+        ->withQueryString();
+
+        $filters = $request->only('search');
+        
+
+        return Inertia::render('Venta/ListarVenta',[
+            'lista' => $lista,
+            'filters' => $filters,
+        ]);
+    }
 }
