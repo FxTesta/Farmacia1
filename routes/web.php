@@ -58,6 +58,9 @@ Route::controller(ClienteController::class)->middleware('auth')->group(function 
     Route::get('/editar-cliente/{cliente_id}', 'edit')->name('cliente.edit');
     Route::put('/editar-cliente/{cliente}', 'update')->name('cliente.update');
     Route::delete('/cliente/delete/{cliente}', 'destroy')->name('cliente.destroy');
+
+    //LISTAR FACTURAS POR CLIENTE
+    Route::get('/cliente/listar/{cliente}', 'facturaCliente')->name('factura.cliente');
 });
 
 

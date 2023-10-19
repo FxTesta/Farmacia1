@@ -99,7 +99,7 @@ watch(search, _.debounce(function (value) {
                                                 <button class="px-2 py-1">
                                                     facturas
                                                 </button>
-                                        </Link>
+                                         </Link>
                                             </div>
                                         </div>
 

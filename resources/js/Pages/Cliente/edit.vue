@@ -158,7 +158,7 @@ const submit = () => {
                                 <InputLabel for="estado" value="Estado" class="text-gray-600" />
 
                                 <TextInput id="estado" type="estado" class="mt-1 block w-full bg-gray-200 text-gray-600"
-                                    v-model="form.estado" autocomplete="estado" />
+                                    v-model="form.estado" autocomplete="estado" readonly/>
 
                                 <InputError class="mt-2" :message="form.errors.estado" />
                             </div>

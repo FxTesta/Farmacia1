@@ -94,6 +94,14 @@ watch(search, _.debounce(function (value) {
                                             <div>
                                                 <Delete :cliente="clientes" :key="clientes.id" />
                                             </div>
+                                            <div>
+                                                <Link :href="`/cliente/listar/${clientes.id}`" as="button"
+                                                    class="text-white font-bold bg-cyan-500 hover:bg-cyan-600 rounded-xl grid place-content-center">
+                                                <button class="px-2 py-1">
+                                                    Historial
+                                                </button>
+                                                 </Link>
+                                            </div>
                                         </div>
 
                                     </td>
